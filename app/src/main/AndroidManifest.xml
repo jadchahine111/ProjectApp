@@ -31,9 +31,6 @@
             android:name=".UserPostedProjectsActivity"
             android:exported="false" />
         <activity
-            android:name=".MyProjectsSectionActivity"
-            android:exported="false" />
-        <activity
             android:name=".EditCVActivity"
             android:exported="false" />
         <activity
@@ -61,16 +58,7 @@
             android:name=".UserProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".OwnerProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name=".HomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SearchActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".AuthAppActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
