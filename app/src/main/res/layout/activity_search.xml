@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#EFEFEF"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Back Arrow Icon -->
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="40dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Go Back"
+            android:src="@drawable/ic_arrow_back"
+            />
+
+        <!-- Search and Filter Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="45dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingRight="10dp"
+            >
+
+            <!-- Search Bar -->
+            <EditText
+                android:id="@+id/search_bar"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="0.8"
+                android:background="@drawable/rounded_edit_text_background"
+                android:drawableStart="@drawable/ic_search"
+                android:hint="Search"
+                android:padding="12dp"
+                android:drawablePadding="8dp"
+                android:paddingStart="20dp"
+                android:textSize="15sp"
+                android:hintTextColor="@color/gray"
+                android:textColor="@color/black"
+                tools:ignore="RtlSymmetry" />
+
+            <!-- Filter Button -->
+            <ImageButton
+                android:id="@+id/filter_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/rounded_card_background"
+                android:src="@drawable/ic_filter" />
+        </LinearLayout>
+
+        <!-- Specialization Grid -->
+        <TextView
+            android:id="@+id/specialization_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Specialization"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_rowSpacing="16dp"
+            android:layout_columnSpacing="16dp"
+            android:columnCount="2"
+            android:rowCount="3">
+
+            <!-- Design Card -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                android:background="@drawable/rounded_card_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="40dp">
+
+                <FrameLayout
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/circle_background">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_mobile_development"
+                    android:contentDescription="Design Icon"
+                    android:layout_margin="10dp"
+                    android:scaleType="centerInside" /> <!-- To maintain aspect ratio and avoid distortion -->
+
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="Mobile Development"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="140 Projects"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                android:background="@drawable/rounded_card_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="40dp">
+
+                <FrameLayout
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/circle_background">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_mobile_development"
+                        android:contentDescription="Design Icon"
+                        android:layout_margin="10dp"
+                        android:scaleType="centerInside" /> <!-- To maintain aspect ratio and avoid distortion -->
+
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="Mobile Development"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="140 Projects"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+        </GridLayout>
+    </LinearLayout>
+</ScrollView>
