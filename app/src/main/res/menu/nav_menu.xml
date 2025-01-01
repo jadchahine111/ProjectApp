@@ -1,4 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/ic_home"
@@ -8,19 +9,21 @@
         android:id="@+id/nav_search"
         android:icon="@drawable/ic_search"
         android:title="Search" />
+
+    <!-- Placeholder for Add Button -->
     <item
-        android:id="@+id/fab"
+        android:id="@+id/nav_placeholder"
         android:enabled="false"
+        android:icon="@android:color/transparent"
         android:title="" />
 
+    <item
+        android:id="@+id/nav_my_section"
+        android:icon="@drawable/ic_work"
+        android:title="My Section" />
 
     <item
-        android:id="@+id/nav_project"
-        android:icon="@drawable/ic_project"
-        android:title="Profile" />
-
-    <item
-        android:id="@+id/nav_profile"
+        android:id="@+id/nav_my_profile"
         android:icon="@drawable/ic_profile"
-        android:title="Profile" />
+        android:title="My Profile" />
 </menu>

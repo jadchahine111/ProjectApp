@@ -1,0 +1,7 @@
+<resources>
+    <!-- Default icon size for BottomNavigationView -->
+    <dimen name="default_icon_size">32dp</dimen>
+
+    <!-- Size for Add Button -->
+    <dimen name="add_button_size">72dp</dimen>
+</resources>
