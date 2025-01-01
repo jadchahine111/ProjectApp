@@ -1,10 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EmailVerificationActivity">
+    tools:context=".LoginActivity"
+    android:orientation="vertical"
+    android:layout_marginTop="100dp"
+    >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Check Your Email"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:fontFamily="@font/dmsans_bold"
+            android:textSize="30sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="We have sent the reset password to the email address"
+            android:textAlignment="center"
+            android:textColor="@color/sub_title_grey_color"
+            android:textSize="14sp"
+            android:layout_marginBottom="3dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="test@gmail.com"
+            android:textAlignment="center"
+            android:textColor="@color/sub_title_grey_color"
+            android:textSize="14sp"
+            android:layout_marginBottom="40dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/email_verification_gif"
+            android:layout_marginBottom="60dp"
+            />
+
+        </LinearLayout>
+
+
+            <android.widget.Button
+                android:id="@+id/apply_now_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="Verify"
+                android:background="@drawable/rounded_button_background"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:padding="16dp"
+                android:gravity="center" />
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="60dp"
+                    android:text="You have not received the email? "
+                    android:textAlignment="center"
+                    android:textColor="@color/sub_title_grey_color"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="60dp"
+                    android:text="@string/resend_href"
+                    android:fontFamily="@font/dmsans_bold"
+                    android:textAlignment="center"
+                    android:textColor="@color/orange"
+                    android:textSize="14sp" />
+        </LinearLayout>
+
+</LinearLayout>

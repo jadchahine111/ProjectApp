@@ -4,7 +4,7 @@
     <!-- Jad Strings -->
     <string name="dream_project_text"><u>Dream Project</u></string>
     <string name="sign_up_href"><u>Sign up</u></string>
-
+    <string name="resend_href"><u>Resend</u></string>
 
     <!-- Ali Strings -->
 </resources>

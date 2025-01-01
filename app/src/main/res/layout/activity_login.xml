@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
     android:orientation="vertical"
-    android:gravity="center"
+    android:layout_marginTop="100dp"
     >
 
 
@@ -151,5 +151,5 @@
             </LinearLayout>
     </LinearLayout>
 
-
+    </LinearLayout>
 </LinearLayout>
