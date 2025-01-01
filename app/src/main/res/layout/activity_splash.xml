@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-
     tools:context=".SplashActivity">
 
     <ImageView
@@ -67,6 +66,12 @@
             android:textSize="16sp"
             android:layout_marginTop="7dp"
             android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
 
         <ImageButton
             android:id="@+id/filter_button"

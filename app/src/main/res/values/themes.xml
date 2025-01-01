@@ -8,5 +8,6 @@
 
     <style name="Theme.ProjectApp" parent="Base.Theme.ProjectApp" >
         <item name="android:fontFamily">@font/dmsans</item>
+        <item name="android:windowBackground">@color/gray</item>
     </style>
 </resources>

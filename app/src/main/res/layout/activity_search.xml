@@ -10,18 +10,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
 
-        <!-- Back Arrow Icon -->
-        <ImageButton
-            android:id="@+id/back_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginBottom="40dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="Go Back"
-            android:src="@drawable/ic_arrow_back"
-            />
+
 
         <!-- Search and Filter Section -->
         <LinearLayout
