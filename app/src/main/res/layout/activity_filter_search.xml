@@ -92,7 +92,7 @@
             android:layout_height="48dp"
             android:background="@drawable/rounded_edit_text_background"
             android:drawablePadding="8dp"
-            android:hintTextColor="@color/gray"
+            android:textColorHint="@color/gray"
             android:padding="12dp"
             android:paddingStart="40dp"
             android:textColor="@color/black"
