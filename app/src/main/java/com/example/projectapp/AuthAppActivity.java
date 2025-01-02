@@ -1,10 +1,12 @@
 package com.example.projectapp;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -20,14 +22,37 @@ public class AuthAppActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_home);
-        replaceFragment(new HomeFragment());
-    }
-    private void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.scroll_view, fragment);
-        fragmentTransaction.commit();
+        setContentView(R.layout.activity_auth_app);
+
+        // Load the default fragment
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new HomeFragment())
+                .commit();
+
+        // BottomNavigationView setup
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment selectedFragment = null;
+
+                if (item.getItemId() == R.id.nav_home) {
+                    selectedFragment = new HomeFragment();
+                } else if (item.getItemId() == R.id.nav_search) {
+                    selectedFragment = new SearchFragment();
+                } else if (item.getItemId() == R.id.nav_my_profile) {
+                    selectedFragment = new ProfileFragment();
+                } else if (item.getItemId() == R.id.nav_my_section) {
+                    selectedFragment = new ProjectFragment();
+                }
+
+                // Replace the fragment
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, selectedFragment)
+                        .commit();
+
+                return true;
+            }
+        });
     }
 }
