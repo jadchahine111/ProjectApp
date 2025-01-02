@@ -13,6 +13,18 @@
         android:theme="@style/Theme.ProjectApp"
         tools:targetApi="31">
         <activity
+            android:name=".UserAcceptedProjectsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserRejectedProjectsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserFavoritedProjectsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserArchivedProjectsActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddFragment"
             android:exported="false" />
         <activity
@@ -31,7 +43,7 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".UserAppliedFavoritedProjectsActivity"
+            android:name=".UserAppliedProjectsActivity"
             android:exported="false" />
         <activity
             android:name=".UserPostedProjectsActivity"

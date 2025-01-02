@@ -5,6 +5,11 @@
     <string name="dream_project_text"><u>Dream Project</u></string>
     <string name="sign_up_href"><u>Sign up</u></string>
     <string name="resend_href"><u>Resend</u></string>
+    <string name="archive_button"><u>Archive</u></string>
+    <string name="unarchive_button"><u>Unarchive</u></string>
+    <string name="view_details_button"><u>View Details</u></string>
+    <string name="unfavorite_button"><u>Remove</u></string>
+    <string name="manage_button"><u>Manage</u></string>
 
     <!-- Ali Strings -->
 </resources>
