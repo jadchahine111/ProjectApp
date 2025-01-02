@@ -1,10 +1,84 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditCVActivity">
+    android:orientation="vertical"
+    android:layout_marginBottom="200dp"
+    android:padding="16dp"
+    android:background="@color/gray">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Back Button -->
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="Go Back"
+        android:layout_marginBottom="40dp"
+        app:tint="@color/purple"
+        android:src="@drawable/ic_arrow_back" />
+
+    <!-- Header -->
+    <TextView
+        android:id="@+id/upload_cv_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upload CV"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginBottom="20dp" />
+
+
+    <android.widget.Button
+        android:id="@+id/select_file_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/ic_upload"
+        android:drawablePadding="8dp"
+        android:gravity="center"
+        android:paddingStart="25dp"
+        android:layout_gravity="start"
+        android:paddingBottom="10dp"
+        android:paddingEnd="25dp"
+        android:paddingTop="10dp"
+        android:text="Choose File"
+        android:backgroundTint="@color/orange"
+        android:background="@drawable/rounded_button_background"
+        android:textColor="@color/white"
+        android:elevation="2dp"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/uploaded_cv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="File.txt"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginBottom="20dp" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <!-- Save Button -->
+    <android.widget.Button
+        android:id="@+id/save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SAVE"
+        android:background="@drawable/rounded_button_background"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:paddingStart="100dp"
+        android:paddingBottom="20dp"
+        android:paddingEnd="100dp"
+        android:paddingTop="20dp"
+        android:layout_marginTop="300dp"
+        android:textAllCaps="true"
+        android:elevation="2dp" />
+</LinearLayout>
