@@ -31,6 +31,10 @@ android {
     }
 }
 
+tasks.withType<JavaCompile>().configureEach {
+    options.compilerArgs.add("-Xlint:deprecation")
+}
+
 dependencies {
 
     implementation(libs.appcompat)
