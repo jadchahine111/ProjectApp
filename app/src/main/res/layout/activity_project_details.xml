@@ -1,10 +1,115 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProjectDetailsActivity">
+    android:background="@color/gray">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Go Back"
+            android:layout_marginBottom="10dp"
+            app:tint="@color/purple"
+            android:src="@drawable/ic_arrow_back" />
+
+            <!-- Project Title and Location -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingStart="12dp">
+
+                <TextView
+                    android:id="@+id/project_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Project title"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/project_owner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="owner"
+                    android:textSize="14sp"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+
+
+
+
+        <!-- Project Description -->
+        <TextView
+            android:id="@+id/project_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Aspire Software is looking for a Senior Software Developer - Java to join our team in Lebanon."
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Apply and Save Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <android.widget.Button
+                android:id="@+id/apply_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Apply"
+                android:background="@drawable/rounded_button_background"
+                android:textColor="@color/white"
+                android:padding="12dp"
+                android:layout_marginEnd="8dp" />
+
+            <android.widget.Button
+                android:id="@+id/save_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Save"
+                android:backgroundTint="@color/orange"
+                android:background="@drawable/rounded_button_background"
+                android:textColor="@color/white"
+                android:padding="12dp" />
+        </LinearLayout>
+
+        <!-- Project Additional Details -->
+        <TextView
+            android:id="@+id/additional_details_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="About the Project"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/project_additional_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="This project is focused on developing high-quality software solutions in Java, collaborating with a dynamic team in Lebanon."
+            android:textSize="14sp"
+            android:textColor="@color/black" />
+    </LinearLayout>
+</ScrollView>
