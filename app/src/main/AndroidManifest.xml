@@ -37,9 +37,6 @@
             android:name=".EmailVerificationActivity"
             android:exported="false" />
         <activity
-            android:name=".SignupActivity"
-            android:exported="false" />
-        <activity
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
@@ -47,6 +44,9 @@
             android:exported="false" />
         <activity
             android:name=".UserPostedProjectsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AuthAppActivity"
             android:exported="false" />
         <activity
             android:name=".EditCVActivity"
@@ -76,7 +76,7 @@
             android:name=".UserProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".AuthAppActivity"
+            android:name=".SignupActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

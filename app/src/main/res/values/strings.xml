@@ -10,6 +10,8 @@
     <string name="view_details_button"><u>View Details</u></string>
     <string name="unfavorite_button"><u>Remove</u></string>
     <string name="manage_button"><u>Manage</u></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- Ali Strings -->
 </resources>

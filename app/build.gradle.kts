@@ -36,7 +36,7 @@ tasks.withType<JavaCompile>().configureEach {
 }
 
 dependencies {
-
+    implementation(libs.stepview)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
