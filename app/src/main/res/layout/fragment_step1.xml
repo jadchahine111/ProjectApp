@@ -1,110 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="16dp"
     tools:context=".Step1Fragment">
 
-    <!-- Email Input Field -->
-    <TextView
-        android:id="@+id/email_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="Email"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/email"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/rounded_edit_text_background"
-        android:drawablePadding="8dp"
-        android:textColorHint="@color/gray"
-        android:padding="12dp"
-        android:paddingStart="40dp"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:layout_marginBottom="30dp"
-        android:inputType="textEmailAddress" />
-
-    <!-- Username Input Field -->
-    <TextView
-        android:id="@+id/username_title"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="Username"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold" />
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/rounded_edit_text_background"
-        android:drawablePadding="8dp"
-        android:textColorHint="@color/gray"
-        android:padding="12dp"
-        android:paddingStart="40dp"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:layout_marginBottom="30dp"
-        android:inputType="textPersonName" />
+        <!-- Email Input Field -->
+        <TextView
+            android:id="@+id/email_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Email"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
-    <!-- Password Input Field -->
-    <TextView
-        android:id="@+id/password_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="Password"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold" />
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/rounded_edit_text_background"
+            android:drawablePadding="8dp"
+            android:textColorHint="@color/gray"
+            android:padding="12dp"
+            android:paddingStart="40dp"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_marginBottom="30dp"
+            android:inputType="textEmailAddress" />
 
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/rounded_edit_text_background"
-        android:drawablePadding="8dp"
-        android:textColorHint="@color/gray"
-        android:padding="12dp"
-        android:paddingStart="40dp"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:layout_marginBottom="30dp"
-        android:inputType="textPassword" />
+        <!-- Username Input Field -->
+        <TextView
+            android:id="@+id/username_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Username"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
-    <!-- Password Input Field -->
-    <TextView
-        android:id="@+id/password_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="Retype password"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold" />
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/rounded_edit_text_background"
+            android:drawablePadding="8dp"
+            android:textColorHint="@color/gray"
+            android:padding="12dp"
+            android:paddingStart="40dp"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_marginBottom="30dp"
+            android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/retype_password"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/rounded_edit_text_background"
-        android:drawablePadding="8dp"
-        android:textColorHint="@color/gray"
-        android:padding="12dp"
-        android:paddingStart="40dp"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:layout_marginBottom="30dp"
-        android:inputType="textPassword" />
+        <!-- Password Input Field -->
+        <TextView
+            android:id="@+id/password_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Password"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/rounded_edit_text_background"
+            android:drawablePadding="8dp"
+            android:textColorHint="@color/gray"
+            android:padding="12dp"
+            android:paddingStart="40dp"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_marginBottom="30dp"
+            android:inputType="textPassword" />
+
+        <!-- Retype Password Input Field -->
+        <TextView
+            android:id="@+id/retype_password_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Retype password"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/retype_password"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/rounded_edit_text_background"
+            android:drawablePadding="8dp"
+            android:textColorHint="@color/gray"
+            android:padding="12dp"
+            android:paddingStart="40dp"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_marginBottom="30dp"
+            android:inputType="textPassword" />
+
+    </LinearLayout>
+
+</ScrollView>
