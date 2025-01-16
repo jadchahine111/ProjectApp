@@ -20,7 +20,7 @@
             android:layout_marginTop="48dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="60dp"
-            android:text="My Projects"
+            android:text="@string/specialization_title"
             android:fontFamily="@font/dmsans_bold"
             android:textColor="@color/black"
             android:textSize="24sp"
@@ -29,10 +29,10 @@
 
         <!-- Specialization Grid -->
         <TextView
-            android:id="@+id/specialization_title1"
+            android:id="@+id/projects_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Projects"
+            android:text="@string/projects_title"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -61,7 +61,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="My Active Projects"
+                    android:text="@string/my_active_projects"
                     android:textSize="18sp"
                     android:fontFamily="@font/dmsans_bold"
                     android:textStyle="bold"
@@ -73,12 +73,12 @@
 
                 <!-- Delete -->
                 <ImageButton
-                    android:id="@+id/delete_1"
+                    android:id="@+id/go"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:src="@drawable/ic_chevron_right"
                     android:background="?attr/selectableItemBackground"
-                    android:contentDescription="Go to active projects"
+                    android:contentDescription="@string/go_to_active_projects"
                     android:scaleType="centerInside"
                     android:padding="8dp" />
             </LinearLayout>
@@ -107,7 +107,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="My Archived Projects"
+                    android:text="@string/my_archived_projects"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_marginEnd="8dp"
@@ -125,7 +125,7 @@
                     android:layout_height="48dp"
                     android:src="@drawable/ic_chevron_right"
                     android:background="?attr/selectableItemBackground"
-                    android:contentDescription="Go to archived projects"
+                    android:contentDescription="@string/go_to_archived_projects"
                     android:scaleType="centerInside"
                     android:padding="8dp" />
             </LinearLayout>
@@ -136,7 +136,7 @@
             android:id="@+id/specialization_title1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Applications"
+            android:text="@string/applications_title"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -164,7 +164,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="My Applied Applications"
+                    android:text="@string/my_applied_applications"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_marginEnd="8dp"
@@ -182,7 +182,7 @@
                     android:layout_height="48dp"
                     android:src="@drawable/ic_chevron_right"
                     android:background="?attr/selectableItemBackground"
-                    android:contentDescription="Go to applied applications"
+                    android:contentDescription="@string/go_to_applied_applications"
                     android:scaleType="centerInside"
                     android:padding="8dp" />
             </LinearLayout>
@@ -211,7 +211,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="My Accepted Applications"
+                    android:text="@string/my_accepted_applications"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_marginEnd="8dp"
@@ -229,7 +229,7 @@
                     android:layout_height="48dp"
                     android:src="@drawable/ic_chevron_right"
                     android:background="?attr/selectableItemBackground"
-                    android:contentDescription="Go to accepted applications"
+                    android:contentDescription="@string/go_to_accepted_applications"
                     android:scaleType="centerInside"
                     android:padding="8dp" />
             </LinearLayout>
@@ -258,7 +258,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="My Rejected Applications"
+                    android:text="@string/my_rejected_applications"
                     android:fontFamily="@font/dmsans_bold"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -275,7 +275,7 @@
                     android:layout_height="48dp"
                     android:src="@drawable/ic_chevron_right"
                     android:background="?attr/selectableItemBackground"
-                    android:contentDescription="Go to rejected applications"
+                    android:contentDescription="@string/go_to_rejected_applications"
                     android:scaleType="centerInside"
                     android:padding="8dp" />
             </LinearLayout>
@@ -304,7 +304,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="My Saved Projects"
+                    android:text="@string/my_saved_projects"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_marginEnd="8dp"
@@ -321,7 +321,7 @@
                     android:layout_height="48dp"
                     android:src="@drawable/ic_chevron_right"
                     android:background="?attr/selectableItemBackground"
-                    android:contentDescription="Go to saved projects"
+                    android:contentDescription="@string/go_to_saved_projects"
                     android:scaleType="centerInside"
                     android:padding="8dp" />
             </LinearLayout>
