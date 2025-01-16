@@ -20,7 +20,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@android:color/transparent"
-            android:contentDescription="Go Back"
+            android:contentDescription="@string/go_back"
             android:src="@drawable/ic_arrow_back"
             />
         <TextView
@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="60dp"
-            android:text="Filter"
+            android:text="@string/filter_title"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="Category"
+            android:text="@string/category_title"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -80,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="Title"
+            android:text="@string/title_label"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -108,7 +108,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="Amount"
+            android:text="@string/amount_label"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -128,7 +128,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="Min"
+                    android:hint="@string/min_hint"
                     android:inputType="numberDecimal"
                     android:background="@drawable/rounded_edit_text_background"
                     android:padding="12dp" />
@@ -137,7 +137,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
-                    android:text="to"
+                    android:text="@string/to_hint"
                     android:textColor="@color/gray"
                     android:textSize="16sp" />
 
@@ -147,7 +147,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="Max"
+                    android:hint="@string/max_hint"
                     android:inputType="numberDecimal"
                     android:background="@drawable/rounded_edit_text_background"
                     android:padding="12dp" />
@@ -158,7 +158,7 @@
             android:id="@+id/apply_now_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="APPLY FILTER"
+            android:text="@string/apply_filter_button"
             android:background="@drawable/rounded_button_background"
             android:textAllCaps="true"
             android:textColor="@color/white"

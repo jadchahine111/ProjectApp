@@ -13,17 +13,17 @@
 
         <!-- Front ID Input Field -->
         <TextView
-            android:id="@+id/email_title"
+            android:id="@+id/front_id_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="Front ID Pic"
+            android:text="@string/front_id_pic"
             android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="bold" />
 
         <android.widget.Button
-            android:id="@+id/select_file_button"
+            android:id="@+id/select_front_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_upload"
@@ -42,10 +42,10 @@
             android:layout_marginBottom="16dp" />
 
         <TextView
-            android:id="@+id/uploaded_cv"
+            android:id="@+id/uploaded_front_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="File.txt"
+            android:text=""
             android:textSize="15sp"
             android:textStyle="bold"
             android:textColor="@color/black"
@@ -53,17 +53,57 @@
 
         <!-- Back ID Input Field -->
         <TextView
-            android:id="@+id/username_title"
+            android:id="@+id/back_id_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="Back ID Pic"
+            android:text="@string/back_id_pic"
             android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="bold" />
 
         <android.widget.Button
-            android:id="@+id/select_file_button"
+            android:id="@+id/select_back_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_upload"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:paddingStart="25dp"
+            android:layout_gravity="start"
+            android:paddingBottom="10dp"
+            android:paddingEnd="25dp"
+            android:paddingTop="10dp"
+            android:text="Choose File"
+            android:backgroundTint="@color/orange"
+            android:background="@drawable/rounded_button_background"
+            android:textColor="@color/white"
+            android:elevation="2dp"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/uploaded_back_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Back ID Input Field -->
+        <TextView
+            android:id="@+id/cv_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/enter_cv"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <android.widget.Button
+            android:id="@+id/select_cv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_upload"
@@ -85,11 +125,13 @@
             android:id="@+id/uploaded_cv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="File.txt"
+            android:text=""
             android:textSize="15sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginBottom="20dp" />
+
+
 
     </LinearLayout>
 

@@ -10,8 +10,84 @@
     <string name="view_details_button"><u>View Details</u></string>
     <string name="unfavorite_button"><u>Remove</u></string>
     <string name="manage_button"><u>Manage</u></string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="check_email">Check Your Email</string>
+    <string name="reset_password_sent">We have sent a verification link to the email address</string>
+    <string name="verify">Verify</string>
+    <string name="not_received_email">You have not received the email?</string>
+    <string name="resend">Resend</string>
+    <string name="filter_title">Filter</string>
+    <string name="category_title">Category</string>
+    <string name="title_label">Title</string>
+    <string name="amount_label">Amount</string>
+    <string name="apply_filter_button">APPLY FILTER</string>
+    <string name="search_hint">Search...</string>
+    <string name="min_hint">Min</string>
+    <string name="to_hint">Min</string>
+    <string name="max_hint">Max</string>
+    <string name="back_button_description">Go Back</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="login_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login">LOGIN</string>
+    <string name="no_account">You don\'t have an account yet? </string>
+    <string name="sign_up">Sign Up</string>
+    <string name="specialization_title">My Projects</string>
+    <string name="projects_title">Projects</string>
+    <string name="applications_title">Applications</string>
+    <string name="my_active_projects">My Active Projects</string>
+    <string name="my_archived_projects">My Archived Projects</string>
+    <string name="my_applied_applications">My Applied Applications</string>
+    <string name="my_accepted_applications">My Accepted Applications</string>
+    <string name="my_rejected_applications">My Rejected Applications</string>
+    <string name="my_saved_projects">My Saved Projects</string>
+    <string name="go_to_active_projects">Go to active projects</string>
+    <string name="go_to_archived_projects">Go to archived projects</string>
+    <string name="go_to_applied_applications">Go to applied applications</string>
+    <string name="go_to_accepted_applications">Go to accepted applications</string>
+    <string name="go_to_rejected_applications">Go to rejected applications</string>
+    <string name="go_to_saved_projects">Go to saved projects</string>
+    <string name="delete_text">Delete</string>
+    <string name="projects_count">%1$d Projects</string>
+    <string name="specialization_title2">Specialization</string>
+    <string name="design_icon">Design Icon</string>
+    <string name="previous_btn">Previous</string>
+    <string name="next_btn">Next</string>
+    <string name="find_your">Find your</string>
+    <string name="here">Here!</string>
+    <string name="description_text">Explore all the most exciting projects based on your interest and study major.</string>
+    <string name="splash_icon">Splash Icon</string>
+    <string name="success_title">Success!</string>
+    <string name="verification_message">Your email has been successfully verified! \nIf your application is accepted, you may proceed to log in. Otherwise, please wait for the admin's approval of your application.</string>
+    <string name="go_back">Go Back</string>
+    <string name="my_favorited_projects">Favorites</string>
+    <string name="email_title">Email</string>
+    <string name="username_title">Username</string>
+    <string name="password_title">Password</string>
+    <string name="retype_password_title">Retype password</string>
+    <string name="enter_email">Enter your email</string>
+    <string name="enter_password">Enter your password</string>
+    <string name="enter_retype_password">Retype password</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="enter_first_name">Enter your first name</string>
+    <string name="enter_last_name">Enter your last name</string>
+    <string name="enter_linkedin">Enter your LinkedIn URL</string>
+    <string name="enter_bio">Bio</string>
+    <string name="front_id_pic">Upload your front ID</string>
+    <string name="back_id_pic">Upload your back ID</string>
+    <string name="enter_cv">Upload your CV</string>
+
+    <!-- Email Section -->
+    <string name="email_title2">Email: </string>
+
+    <!-- Username Section -->
+    <string name="username_title2">Username: </string>
+
+    <!-- Password Section -->
+    <string name="password_title2">Password: </string>
 
     <!-- Ali Strings -->
     <string name="hello_text">Hello</string>
@@ -54,4 +130,17 @@
     <string name="hint_username">Enter your lastname</string>
     <string name="choose_file_text">Choose File</string>
     <string name="upload_cv_text">Upload CV</string>
+    <!-- First Name Section -->
+    <string name="first_name_title2">First Name: </string>
+
+    <!-- Last Name Section -->
+    <string name="last_name_title2">Last Name: </string>
+
+    <!-- Bio Section -->
+    <string name="bio_title2">Bio: </string>
+
+    <!-- LinkedIn Section -->
+    <string name="linkedin_title2">LinkedIn: </string>
+
+    <string name="signup_button_text2">Sign up</string>
 </resources>

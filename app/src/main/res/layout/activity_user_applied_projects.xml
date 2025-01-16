@@ -19,7 +19,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@android:color/transparent"
-            android:contentDescription="Go Back"
+            android:contentDescription="@string/go_back"
             android:src="@drawable/ic_arrow_back"
             />
 
@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="60dp"
-            android:text="My Applied Projects"
+            android:text="@string/my_applied_applications"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -69,7 +69,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="16dp"
-                            android:text="Project Title"
+                            android:text=""
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -94,186 +94,35 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="7dp"
-                        android:text="Owner username"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="14sp" />
 
                     <!-- Skills Section -->
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp">
-
-                        <androidx.constraintlayout.helper.widget.Flow
-                            android:id="@+id/flow_layout"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:constraint_referenced_ids="skill1,skill2,skill3"
-                            app:flow_horizontalGap="8dp"
-                            app:flow_verticalGap="8dp"
-                            app:flow_wrapMode="chain"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <!-- Skill 1 -->
-                        <TextView
-                            android:id="@+id/skill1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="4dp"
-                            android:background="@drawable/skill_card_background"
-                            android:paddingHorizontal="12dp"
-                            android:paddingVertical="6dp"
-                            android:text="Java"
-                            android:textColor="@color/black" />
-
-                        <!-- Skill 2 -->
-                        <TextView
-                            android:id="@+id/skill2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="4dp"
-                            android:background="@drawable/skill_card_background"
-                            android:paddingHorizontal="12dp"
-                            android:paddingVertical="6dp"
-                            android:text="Kotlin"
-                            android:textColor="@color/black" />
-
-                        <!-- Skill 3 -->
-                        <TextView
-                            android:id="@+id/skill3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="4dp"
-                            android:background="@drawable/skill_card_background"
-                            android:paddingHorizontal="12dp"
-                            android:paddingVertical="6dp"
-                            android:text="SQL"
-                            android:textColor="@color/black" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </LinearLayout>
-
-            </FrameLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="0dp"
-            android:background="@color/white"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="21dp">
-
-                    <!-- Title and Archive Project next to each other -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
                         android:orientation="horizontal"
-                        android:layout_marginBottom="3dp">
-
-                        <!-- Title -->
-                        <TextView
-                            android:id="@+id/project_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="16dp"
-                            android:text="Project Title"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-
-                        <!-- Archive Project -->
-                        <TextView
-                            android:id="@+id/archive_project"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/view_details_button"
-                            android:textColor="@color/orange"
-                            android:fontFamily="@font/dmsans_bold"
-                            android:textSize="15sp"
-                            android:textAlignment="textEnd"
-                            android:textStyle="normal" />
-                    </LinearLayout>
-
-
-                    <!-- Owner -->
-                    <TextView
-                        android:id="@+id/OwnerUsername"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="7dp"
-                        android:text="Owner username"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-
-                    <!-- Skills Section -->
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp">
-
-                        <androidx.constraintlayout.helper.widget.Flow
-                            android:id="@+id/flow_layout"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:constraint_referenced_ids="skill1,skill2,skill3"
-                            app:flow_horizontalGap="8dp"
-                            app:flow_verticalGap="8dp"
-                            app:flow_wrapMode="chain"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                        android:gravity="start">
 
                         <!-- Skill 1 -->
                         <TextView
-                            android:id="@+id/skill1"
+                            android:id="@+id/skill"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="4dp"
                             android:background="@drawable/skill_card_background"
                             android:paddingHorizontal="12dp"
                             android:paddingVertical="6dp"
-                            android:text="Java"
+                            android:text=""
                             android:textColor="@color/black" />
-
-                        <!-- Skill 2 -->
-                        <TextView
-                            android:id="@+id/skill2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="4dp"
-                            android:background="@drawable/skill_card_background"
-                            android:paddingHorizontal="12dp"
-                            android:paddingVertical="6dp"
-                            android:text="Kotlin"
-                            android:textColor="@color/black" />
-
-                        <!-- Skill 3 -->
-                        <TextView
-                            android:id="@+id/skill3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="4dp"
-                            android:background="@drawable/skill_card_background"
-                            android:paddingHorizontal="12dp"
-                            android:paddingVertical="6dp"
-                            android:text="SQL"
-                            android:textColor="@color/black" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    </LinearLayout>
                 </LinearLayout>
 
             </FrameLayout>
         </androidx.cardview.widget.CardView>
+
 
 
     </LinearLayout>
