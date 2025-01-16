@@ -39,7 +39,7 @@ public class Step1Fragment extends Fragment {
         emailInput.setText(signUpViewModel.getEmail().getValue());
         usernameInput.setText(signUpViewModel.getUsername().getValue());
         passwordInput.setText(signUpViewModel.getPassword().getValue());
-
+        retypePasswordInput.setText(signUpViewModel.getRetypePassword().getValue());
         // Save data to ViewModel
         emailInput.addTextChangedListener(new TextWatcher() {
             @Override public void afterTextChanged(Editable s) {

@@ -25,7 +25,7 @@
             android:name=".UserArchivedProjectsActivity"
             android:exported="false" />
         <activity
-            android:name=".AddFragment"
+            android:name=".AddProjectActivity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"

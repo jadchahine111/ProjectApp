@@ -26,15 +26,13 @@
         android:padding="20dp"
         app:sv_selectedCircleColor="@color/purple"
         app:sv_selectedTextColor="@color/purple"
-
         app:sv_stepLineWidth="1dp"
 
         app:sv_stepPadding="4dp"
-        app:sv_nextTextColor="@color/white"
+        app:sv_nextTextColor="@color/gray"
         app:sv_nextStepLineColor="@color/orange"
         app:sv_doneCircleColor="@color/purple"
         app:sv_doneStepLineColor="@color/purple"
-
         app:sv_doneCircleRadius="16dp"
         app:sv_selectedCircleRadius="20dp"
         app:sv_selectedStepNumberColor="@color/white"

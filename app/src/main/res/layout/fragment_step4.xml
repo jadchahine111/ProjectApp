@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Step4Fragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Email Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email: "
+                android:fontFamily="@font/dmsans_bold"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="15sp"
+                android:fontFamily="@font/dmsans_bold"
+                android:textColor="@color/purple"/>
+        </LinearLayout>
+
+        <!-- Username Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Username: "
+                android:fontFamily="@font/dmsans_bold"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="15sp"
+                android:fontFamily="@font/dmsans_bold"
+                android:textColor="@color/purple"/>
+        </LinearLayout>
+
+        <!-- Password Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password: "
+                android:fontFamily="@font/dmsans_bold"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="15sp"
+                android:fontFamily="@font/dmsans_bold"
+                android:textColor="@color/purple"/>
+        </LinearLayout>
+
+        <!-- First Name Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="First Name: "
+                android:fontFamily="@font/dmsans_bold"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_firstName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="15sp"
+                android:fontFamily="@font/dmsans_bold"
+                android:textColor="@color/purple"/>
+        </LinearLayout>
+
+        <!-- First Name Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Last Name: "
+                android:fontFamily="@font/dmsans_bold"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_lastName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="15sp"
+                android:fontFamily="@font/dmsans_bold"
+                android:textColor="@color/purple"/>
+        </LinearLayout>
+
+        <!-- Bio Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bio: "
+                android:fontFamily="@font/dmsans_bold"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_bio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="15sp"
+                android:fontFamily="@font/dmsans_bold"
+                android:textColor="@color/purple"/>
+        </LinearLayout>
+
+        <!-- Bio Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LinkedIn: "
+                android:textSize="16sp"
+                android:fontFamily="@font/dmsans_bold"/>
+
+            <TextView
+                android:id="@+id/tv_linkedIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="15sp"
+                android:fontFamily="@font/dmsans_bold"
+                android:textColor="@color/purple"/>
+        </LinearLayout>
+
+        <android.widget.Button
+            android:id="@+id/previous"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginTop="50dp"
+            android:background="@color/purple"
+            android:drawablePadding="8dp"
+            android:elevation="2dp"
+            android:gravity="center"
+            android:paddingStart="25dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="25dp"
+            android:paddingBottom="10dp"
+            android:text="Sign up"
+            android:layout_weight="0.5"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/dmsans_bold"
+            />
+
+    </LinearLayout>
+
+</ScrollView>

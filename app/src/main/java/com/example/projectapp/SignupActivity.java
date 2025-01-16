@@ -36,13 +36,16 @@ public class SignupActivity extends AppCompatActivity {
         // Configure the StepView
         stepView.getState()
                 .animationType(StepView.ANIMATION_ALL)
-                .stepsNumber(3) // Adjust the number of steps as per your needs
+                .stepsNumber(4) // Adjust the number of steps as per your needs
                 .animationDuration(getResources().getInteger(android.R.integer.config_shortAnimTime))
                 .steps(new ArrayList<String>() {{
                     add("Personal Details");
                     add("Profile Details");
                     add("Identity Verification");
+                    add("Confirmation");
+
                 }})
+                .doneTextColor(getResources().getColor(R.color.gray))
                 .commit();
 
         // Load the first fragment initially
@@ -54,23 +57,24 @@ public class SignupActivity extends AppCompatActivity {
         // Handle Previous Button Click
         previousButton.setOnClickListener(v -> {
             if (currentStep > 0) {
-                stepView.done(false); // Mark the current step as not done
-                currentStep--;
-                updateStepView();
-                loadFragment(getFragmentByStep(currentStep));
+                currentStep--; // Move to the previous step
+                stepView.go(currentStep, true); // Update the StepView to the previous step
+                loadFragment(getFragmentByStep(currentStep)); // Load the fragment for the previous step
             }
         });
 
+
         // Handle Next Button Click
         nextButton.setOnClickListener(v -> {
-            if (currentStep < 2) { // Assuming there are 3 steps (Step1, Step2, Step3)
+            if (currentStep < 3) { // Assuming there are 4 steps (Step1, Step2, Step3, Step4)
                 // Mark the current step as done before moving to the next step
-                stepView.done(true);
-                currentStep++;
-                updateStepView();
-                loadFragment(getFragmentByStep(currentStep));
+                stepView.done(false); // Mark the current step as not done
+                currentStep++; // Move to the next step
+                stepView.go(currentStep, true); // Move StepView to the next step
+                loadFragment(getFragmentByStep(currentStep)); // Load the fragment for the new step
             }
         });
+
     }
 
     private void loadFragment(Fragment fragment) {
@@ -88,6 +92,8 @@ public class SignupActivity extends AppCompatActivity {
             return new Step2Fragment();
         } else if (step == 2) {
             return new Step3Fragment();
+        } else if (step == 3) {
+            return new Step4Fragment();
         } else {
             return new Step1Fragment(); // Default to Step1Fragment if the step is invalid
         }
