@@ -14,4 +14,44 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- Ali Strings -->
+    <string name="hello_text">Hello</string>
+    <string name="welcome_message">Welcome to ProjectApp</string>
+    <string name="sub_message">Explore, Create, and Collaborate on Amazing Projects.</string>
+    <string name="recent_projects_text">Recent Projects</string>
+    <string name="notification_button_description">Notification Button</string>
+    <string name="favorite_button_description">Favorite Button</string>
+    <string name="go_back">Go Back</string>
+    <string name="add_project_header">Add a Project</string>
+    <string name="hint_project_title">Project Title</string>
+    <string name="hint_project_description">Project description.</string>
+    <string name="hint_skills_needed">Skills Needed</string>
+    <string name="hint_category_name">Category name</string>
+    <string name="hint_amount">Amount</string>
+    <string name="add_button_text">Add</string>
+    <string name="apply_button_text">Apply</string>
+    <string name="save_button_text">Save</string>
+    <string name="additional_details_header">About the Project</string>
+    <string name="logout_button_description">Logout button</string>
+    <string name="about_me_title">About me</string>
+    <string name="edit_about_me_description">Edit About Me</string>
+    <string name="username_card_title">Username</string>
+    <string name="first_name_card_title">First Name</string>
+    <string name="last_name_card_title">Last Name</string>
+    <string name="about_me_card_title">About Me</string>
+    <string name="cv_card_title">My CV</string>
+    <string name="edit_cv_description">Edit CV</string>
+    <string name="edit_lastname_description">Edit lastname</string>
+    <string name="edit_firstname_description">Edit firstname</string>
+    <string name="edit_username_description">Edit username</string>
+    <string name="cv_image_description">CV</string>
+    <string name="firstname_image_description">firstname</string>
+    <string name="lastname_image_description">lastname</string>
+    <string name="username_image_description">username</string>
+    <string name="about_me_image_description">about me</string>
+    <string name="hint_about_me">Tell me about you</string>
+    <string name="hint_firstname">Enter your firstname</string>
+    <string name="hint_lastname">Enter your lastname</string>
+    <string name="hint_username">Enter your lastname</string>
+    <string name="choose_file_text">Choose File</string>
+    <string name="upload_cv_text">Upload CV</string>
 </resources>

@@ -1,127 +1,124 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginBottom="200dp"
+    android:padding="16dp">
 
+    <!-- Back Button -->
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/go_back"
+        android:layout_marginBottom="40dp"
+        app:tint="@color/purple"
+        android:src="@drawable/ic_arrow_back" />
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <!-- Header -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_project_header"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Project Title -->
+    <EditText
+        android:id="@+id/project_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginBottom="200dp"
-        android:padding="16dp">
+        android:hint="@string/hint_project_title"
+        android:background="@drawable/rounded_edit_text_background"
+        android:paddingStart="10dp"
+        android:paddingEnd="5dp"
+        android:padding="14dp"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:layout_marginBottom="16dp" />
 
-        <!-- Back Button -->
-        <ImageButton
-            android:id="@+id/back_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="Go Back"
-            android:layout_marginBottom="40dp"
-            app:tint="@color/purple"
-            android:src="@drawable/ic_arrow_back" />
+    <!-- Project Description -->
+    <EditText
+        android:id="@+id/project_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_project_description"
+        android:background="@drawable/rounded_edit_text_background"
+        android:paddingStart="10dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="100dp"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:layout_marginBottom="24dp" />
 
-        <!-- Header -->
-        <TextView
-            android:id="@+id/add_project_header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add a Project"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_marginBottom="20dp" />
+    <!-- Skills Needed -->
+    <EditText
+        android:id="@+id/skills_needed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_skills_needed"
+        android:background="@drawable/rounded_edit_text_background"
+        android:paddingStart="10dp"
+        android:paddingEnd="5dp"
+        android:padding="14dp"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:layout_marginBottom="16dp" />
 
-        <!-- Project Title -->
-        <EditText
-            android:id="@+id/project_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Project Title"
-            android:background="@drawable/rounded_edit_text_background"
-            android:paddingStart="10dp"
-            android:padding="14dp"
-            android:textSize="14sp"
-            android:textColor="@color/black"
-            android:layout_marginBottom="16dp" />
+    <!-- Category ID -->
+    <EditText
+        android:id="@+id/category_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_category_name"
+        android:background="@drawable/rounded_edit_text_background"
+        android:paddingStart="10dp"
+        android:paddingEnd="5dp"
+        android:padding="14dp"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:layout_marginBottom="16dp" />
 
-        <!-- Project Description -->
-        <EditText
-            android:id="@+id/about_me_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Project description."
-            android:background="@drawable/rounded_edit_text_background"
-            android:paddingStart="10dp"
-            android:paddingTop="20dp"
-            android:paddingEnd="5dp"
-            android:paddingBottom="100dp"
-            android:textSize="14sp"
-            android:textColor="@color/black"
-            android:layout_marginBottom="24dp" />
+    <!-- Amount -->
+    <EditText
+        android:id="@+id/amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_amount"
+        android:background="@drawable/rounded_edit_text_background"
+        android:paddingStart="10dp"
+        android:paddingEnd="5dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:layout_marginBottom="16dp"
+        android:inputType="number" />
 
-        <!-- Skills Needed -->
-        <EditText
-            android:id="@+id/skills_needed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Skills Needed"
-            android:background="@drawable/rounded_edit_text_background"
-            android:paddingStart="10dp"
-            android:padding="14dp"
-            android:textSize="14sp"
-            android:textColor="@color/black"
-            android:layout_marginBottom="16dp" />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-
-
-        <!-- Category ID -->
-        <EditText
-            android:id="@+id/category_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Category name"
-            android:background="@drawable/rounded_edit_text_background"
-            android:paddingStart="10dp"
-            android:padding="14dp"
-            android:textSize="14sp"
-            android:textColor="@color/black"
-            android:layout_marginBottom="16dp" />
-
-        <!-- Amount -->
-        <EditText
-            android:id="@+id/amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Amount"
-            android:background="@drawable/rounded_edit_text_background"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:textSize="14sp"
-            android:textColor="@color/black"
-            android:layout_marginBottom="16dp"
-            android:inputType="number" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <android.widget.Button
-            android:id="@+id/save_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add"
-            android:background="@drawable/rounded_button_background"
-            android:textColor="@color/white"
-            android:layout_gravity="center"
-            android:paddingStart="100dp"
-            android:paddingBottom="20dp"
-            android:paddingEnd="100dp"
-            android:paddingTop="20dp"
-            android:layout_marginBottom="0dp"
-            android:textAllCaps="true"
-            android:elevation="2dp" />
-    </LinearLayout>
-
+    <android.widget.Button
+        android:id="@+id/add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_button_text"
+        android:background="@drawable/rounded_button_background"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:paddingStart="100dp"
+        android:paddingBottom="20dp"
+        android:paddingEnd="100dp"
+        android:paddingTop="20dp"
+        android:layout_marginBottom="0dp"
+        android:textAllCaps="true"
+        android:elevation="2dp" />
+</LinearLayout>

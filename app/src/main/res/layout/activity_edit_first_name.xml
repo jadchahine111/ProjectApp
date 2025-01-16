@@ -14,7 +14,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:background="@android:color/transparent"
-        android:contentDescription="Go Back"
+        android:contentDescription="@string/go_back"
         android:layout_marginBottom="40dp"
         app:tint="@color/purple"
         android:src="@drawable/ic_arrow_back" />
@@ -24,7 +24,7 @@
         android:id="@+id/edit_last_name_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit First Name"
+        android:text="@string/first_name_card_title"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/black"
@@ -32,10 +32,10 @@
 
     <!-- Last Name Field -->
     <EditText
-        android:id="@+id/last_name_input"
+        android:id="@+id/edited_owner_firstname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter your first name"
+        android:hint="@string/hint_firstname"
         android:background="@drawable/rounded_edit_text_background"
         android:paddingStart="10dp"
         android:paddingTop="16dp"
@@ -53,7 +53,7 @@
         android:id="@+id/save_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SAVE"
+        android:text="@string/save_button_text"
         android:background="@drawable/rounded_button_background"
         android:textColor="@color/white"
         android:layout_gravity="center"

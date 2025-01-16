@@ -13,6 +13,9 @@
         android:theme="@style/Theme.ProjectApp"
         tools:targetApi="31">
         <activity
+            android:name=".EditUsernameActivity"
+            android:exported="false" />
+        <activity
             android:name=".UserAcceptedProjectsActivity"
             android:exported="false" />
         <activity
@@ -23,6 +26,9 @@
             android:exported="false" />
         <activity
             android:name=".UserArchivedProjectsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddProjectActivity"
             android:exported="false" />
         <activity
             android:name=".AddProjectActivity"
@@ -59,9 +65,6 @@
             android:exported="false" />
         <activity
             android:name=".EditFirstNameActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AddProjectActivity"
             android:exported="false" />
         <activity
             android:name=".NotificationsActivity"

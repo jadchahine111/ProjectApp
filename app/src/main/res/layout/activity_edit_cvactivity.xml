@@ -14,17 +14,16 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:background="@android:color/transparent"
-        android:contentDescription="Go Back"
+        android:contentDescription="@string/go_back"
         android:layout_marginBottom="40dp"
         app:tint="@color/purple"
         android:src="@drawable/ic_arrow_back" />
 
     <!-- Header -->
     <TextView
-        android:id="@+id/upload_cv_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Upload CV"
+        android:text="@string/upload_cv_text"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/black"
@@ -32,7 +31,7 @@
 
 
     <android.widget.Button
-        android:id="@+id/select_file_button"
+        android:id="@+id/choose_file_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableEnd="@drawable/ic_upload"
@@ -43,7 +42,7 @@
         android:paddingBottom="10dp"
         android:paddingEnd="25dp"
         android:paddingTop="10dp"
-        android:text="Choose File"
+        android:text="@string/choose_file_text"
         android:backgroundTint="@color/orange"
         android:background="@drawable/rounded_button_background"
         android:textColor="@color/white"
@@ -54,7 +53,7 @@
         android:id="@+id/uploaded_cv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="File.txt"
+        android:text=""
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/black"
@@ -62,7 +61,7 @@
 
     <View
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1" />
 
     <!-- Save Button -->
@@ -70,7 +69,7 @@
         android:id="@+id/save_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SAVE"
+        android:text="@string/save_button_text"
         android:background="@drawable/rounded_button_background"
         android:textColor="@color/white"
         android:layout_gravity="center"

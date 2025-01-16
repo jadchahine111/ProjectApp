@@ -1,239 +1,199 @@
+<!-- Scrollable Content -->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".HomeFragment"
+    android:id="@+id/scroll_view"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_above="@id/bottomNavigationView">
 
-
-    <!-- Scrollable Content -->
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".HomeFragment"
-        android:id="@+id/scroll_view"
-        android:padding="16dp"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/bottomNavigationView">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
 
+        <!-- Header Section -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:orientation="horizontal">
 
-            <!-- Header Section -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:paddingTop="10dp">
 
-                <LinearLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingTop="10dp">
+                    android:fontFamily="@font/dmsans_bold"
+                    android:text="@string/hello_text"
+                    android:textColor="@color/orange"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/dmsans_bold"
-                        android:text="Hello"
-                        android:textColor="@color/orange"
-                        android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/dmsans_bold"
-                        android:text="Username,"
-                        android:textColor="@color/orange"
-                        android:textSize="25sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <ImageView
-                    android:id="@+id/notification_button"
+                <TextView
+                    android:id="@+id/owner_username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:contentDescription="Notification Button"
-                    android:padding="5dp"
-                    android:src="@drawable/ic_notification"
-                    app:tint="@color/purple" />
+                    android:fontFamily="@font/dmsans_bold"
+                    android:text=""
+                    android:textColor="@color/orange"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
+            <View
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:layout_marginTop="20dp"
-                app:cardBackgroundColor="@color/purple"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="8dp">
+                android:layout_weight="1" />
 
-                <!-- Content Inside the Card -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="10dp"
-                    android:paddingTop="30dp"
-                    android:paddingBottom="30dp"
-                    >
-
-                    <!-- Main Welcome Text -->
-                    <TextView
-                        android:id="@+id/welcome_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/dmsans_bold"
-                        android:text="Welcome to ProjectApp"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <!-- Sub Text -->
-                    <TextView
-                        android:id="@+id/sub_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:fontFamily="@font/dmsans"
-                        android:text="Explore, Create, and Collaborate on Amazing Projects."
-                        android:textColor="@color/white"
-                        android:textSize="14sp"
-                        android:textStyle="normal" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-
-            <TextView
-                android:id="@+id/recent_projects_text"
+            <ImageView
+                android:id="@+id/notification_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Recent Projects"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="8dp" />
-
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="0dp"
-                    android:background="@color/white"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="21dp">
-
-                            <!-- Title -->
-                            <TextView
-                                android:id="@+id/project_title"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="3dp"
-                                android:text="Project Title"
-                                android:textColor="@color/black"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
-
-                            <!-- Owner -->
-                            <TextView
-                                android:id="@+id/OwnerUsername"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="7dp"
-                                android:text="Owner username"
-                                android:textColor="@color/black"
-                                android:textSize="14sp" />
-
-                            <!-- Skills Section -->
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="12dp">
-
-                                <androidx.constraintlayout.helper.widget.Flow
-                                    android:id="@+id/flow_layout"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    app:constraint_referenced_ids="skill1,skill2,skill3"
-                                    app:flow_horizontalGap="8dp"
-                                    app:flow_verticalGap="8dp"
-                                    app:flow_wrapMode="chain"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-
-                                <!-- Skill 1 -->
-                                <TextView
-                                    android:id="@+id/skill1"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="4dp"
-                                    android:background="@drawable/skill_card_background"
-                                    android:paddingHorizontal="12dp"
-                                    android:paddingVertical="6dp"
-                                    android:text="Java"
-                                    android:textColor="@color/black" />
-
-                                <!-- Skill 2 -->
-                                <TextView
-                                    android:id="@+id/skill2"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="4dp"
-                                    android:background="@drawable/skill_card_background"
-                                    android:paddingHorizontal="12dp"
-                                    android:paddingVertical="6dp"
-                                    android:text="Kotlin"
-                                    android:textColor="@color/black" />
-
-                                <!-- Skill 3 -->
-                                <TextView
-                                    android:id="@+id/skill3"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="4dp"
-                                    android:background="@drawable/skill_card_background"
-                                    android:paddingHorizontal="12dp"
-                                    android:paddingVertical="6dp"
-                                    android:text="SQL"
-                                    android:textColor="@color/black" />
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-                        </LinearLayout>
-
-                        <!-- Favorite Icon -->
-                        <ImageButton
-                            android:id="@+id/favorite_button"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:layout_gravity="top|end"
-                            android:layout_margin="8dp"
-                            android:background="?attr/selectableItemBackgroundBorderless"
-                            android:contentDescription="Favorite Button"
-                            android:src="@drawable/ic_favorite"
-                            app:tint="@color/orange" />
-                    </FrameLayout>
-                </androidx.cardview.widget.CardView>
+                android:contentDescription="@string/notification_button_description"
+                android:padding="5dp"
+                android:src="@drawable/ic_notification"
+                app:tint="@color/purple" />
         </LinearLayout>
-    </ScrollView>
 
-    <!-- Floating Add Button -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_marginTop="20dp"
+            app:cardBackgroundColor="@color/purple"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="8dp">
+
+            <!-- Content Inside the Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="30dp"
+                android:paddingBottom="30dp">
+
+                <!-- Main Welcome Text -->
+                <TextView
+                    android:id="@+id/welcome_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dmsans_bold"
+                    android:text="@string/welcome_message"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <!-- Sub Text -->
+                <TextView
+                    android:id="@+id/sub_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/dmsans"
+                    android:text="@string/sub_message"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/recent_projects_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recent_projects_text"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="8dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="0dp"
+            android:background="@color/white"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="21dp">
+
+                    <!-- Title -->
+                    <TextView
+                        android:id="@+id/project_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <!-- Owner -->
+                    <TextView
+                        android:id="@+id/project_owner_username"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="7dp"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <!-- Skills Section -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal"
+                        android:gravity="start">
+
+                        <!-- Skill 1 -->
+                        <TextView
+                            android:id="@+id/skill"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:background="@drawable/skill_card_background"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:text=""
+                            android:textColor="@color/black" />
+                    </LinearLayout>
 
 
+                </LinearLayout>
 
+                <!-- Favorite Icon -->
+                <ImageButton
+                    android:id="@+id/favorite_button"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="top|end"
+                    android:layout_margin="8dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/favorite_button_description"
+                    android:src="@drawable/ic_favorite"
+                    app:tint="@color/orange" />
+            </FrameLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</ScrollView>

@@ -21,7 +21,7 @@
         android:layout_alignParentBottom="true"
         android:background="@drawable/purple_circle_background"
         android:src="@drawable/ic_add"
-        android:contentDescription="Add Button"
+        android:contentDescription="@string/add_button_text"
         android:elevation="8dp"
         android:padding="16dp" />
 

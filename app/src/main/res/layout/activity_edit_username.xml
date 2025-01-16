@@ -8,6 +8,7 @@
     android:layout_marginBottom="200dp"
     android:background="@color/gray">
 
+    <!-- Back Button -->
     <ImageButton
         android:id="@+id/back_button"
         android:layout_width="48dp"
@@ -18,28 +19,28 @@
         app:tint="@color/purple"
         android:src="@drawable/ic_arrow_back" />
 
+    <!-- Header -->
+    <TextView
+        android:id="@+id/edit_last_name_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/username_card_title"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginBottom="20dp" />
 
-        <TextView
-            android:id="@+id/about_me_header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/about_me_card_title"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_marginBottom="20dp" />
-
-        <!-- About Me Input -->
+    <!-- Last Name Field -->
     <EditText
-        android:id="@+id/edited_owner_bio"
+        android:id="@+id/edited_owner_firstname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/hint_about_me"
+        android:hint="@string/hint_username"
         android:background="@drawable/rounded_edit_text_background"
         android:paddingStart="10dp"
-        android:paddingTop="20dp"
-        android:paddingEnd="5dp"
-        android:paddingBottom="100dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="16dp"
         android:textSize="14sp"
         android:textColor="@color/black"
         android:layout_marginBottom="24dp" />
@@ -47,7 +48,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1" />
-
     <!-- Save Button -->
     <android.widget.Button
         android:id="@+id/save_button"
@@ -61,8 +61,7 @@
         android:paddingBottom="20dp"
         android:paddingEnd="100dp"
         android:paddingTop="20dp"
-        android:layout_marginBottom="0dp"
+        android:layout_marginTop="40dp"
         android:textAllCaps="true"
         android:elevation="2dp" />
-    </LinearLayout>
-
+</LinearLayout>

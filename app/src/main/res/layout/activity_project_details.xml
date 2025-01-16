@@ -11,52 +11,48 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- Project Title and Location -->
         <ImageButton
             android:id="@+id/back_button"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="Go Back"
             android:layout_marginBottom="10dp"
-            app:tint="@color/purple"
-            android:src="@drawable/ic_arrow_back" />
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/go_back"
+            android:src="@drawable/ic_arrow_back"
+            app:tint="@color/purple" />
 
-            <!-- Project Title and Location -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingStart="12dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingStart="12dp">
 
-                <TextView
-                    android:id="@+id/project_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Project title"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black" />
+            <TextView
+                android:id="@+id/project_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
 
-                <TextView
-                    android:id="@+id/project_owner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="owner"
-                    android:textSize="14sp"
-                    android:textColor="@color/black" />
-            </LinearLayout>
-
-
-
-
+            <TextView
+                android:id="@+id/project_owner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="14sp"
+                android:textColor="@color/black" />
+        </LinearLayout>
 
         <!-- Project Description -->
         <TextView
             android:id="@+id/project_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Aspire Software is looking for a Senior Software Developer - Java to join our team in Lebanon."
+            android:text=""
             android:textSize="14sp"
             android:textColor="@color/black"
             android:layout_marginTop="20dp"
@@ -74,7 +70,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Apply"
+                android:text="@string/apply_button_text"
                 android:background="@drawable/rounded_button_background"
                 android:textColor="@color/white"
                 android:padding="12dp"
@@ -85,7 +81,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Save"
+                android:text="@string/save_button_text"
                 android:backgroundTint="@color/orange"
                 android:background="@drawable/rounded_button_background"
                 android:textColor="@color/white"
@@ -97,7 +93,7 @@
             android:id="@+id/additional_details_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="About the Project"
+            android:text="@string/additional_details_header"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="@color/black"
@@ -108,7 +104,7 @@
             android:id="@+id/project_additional_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="This project is focused on developing high-quality software solutions in Java, collaborating with a dynamic team in Lebanon."
+            android:text=""
             android:textSize="14sp"
             android:textColor="@color/black" />
     </LinearLayout>
