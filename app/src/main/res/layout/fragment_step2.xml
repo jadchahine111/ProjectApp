@@ -23,7 +23,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/enter_first_name"
+            android:id="@+id/first_name"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@drawable/rounded_edit_text_background"

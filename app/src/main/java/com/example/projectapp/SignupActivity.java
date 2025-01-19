@@ -5,6 +5,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -45,7 +46,7 @@ public class SignupActivity extends AppCompatActivity {
                     add("Confirmation");
 
                 }})
-                .doneTextColor(getResources().getColor(R.color.gray))
+                .doneTextColor(ContextCompat.getColor(this, R.color.gray)) // Updated to use ContextCompat
                 .commit();
 
         // Load the first fragment initially

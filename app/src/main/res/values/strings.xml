@@ -60,8 +60,8 @@
     <string name="description_text">Explore all the most exciting projects based on your interest and study major.</string>
     <string name="splash_icon">Splash Icon</string>
     <string name="success_title">Success!</string>
-    <string name="verification_message">Your email has been successfully verified! \nIf your application is accepted, you may proceed to log in. Otherwise, please wait for the admin's approval of your application.</string>
-    <string name="go_back">Go Back</string>
+    <string name="verification_message1">Your email has been successfully verified!</string>
+    <string name="verification_message2">If your application is accepted, you may proceed to log in. Otherwise, please wait for the admin approval of your application.</string>
     <string name="my_favorited_projects">Favorites</string>
     <string name="email_title">Email</string>
     <string name="username_title">Username</string>
