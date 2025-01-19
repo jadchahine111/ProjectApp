@@ -112,6 +112,14 @@ public class Step2Fragment extends Fragment {
                 binding.skillsAutoComplete.setText(""); // clear after selection
             }
         });
+        String storedSkills = signUpViewModel.getSkills().getValue();
+        if (storedSkills != null && !storedSkills.isEmpty()) {
+            // Split by comma (or your chosen delimiter)
+            String[] skillArray = storedSkills.split(",\\s*");
+            for (String skill : skillArray) {
+                addChip(skill.trim());
+            }
+        }
 
         return view;
     }
