@@ -29,5 +29,9 @@ public class SignUpViewModel extends ViewModel {
 
     public MutableLiveData<String> getRetypePassword() { return retypePassword; }
 
+    public MutableLiveData<String> getSkills() {
+        return skills;
+    }
+
 }
 

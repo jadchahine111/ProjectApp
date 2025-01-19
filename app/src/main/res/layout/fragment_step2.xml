@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp"
     tools:context=".Step2View">
 
@@ -26,16 +27,16 @@
             android:id="@+id/first_name"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/rounded_edit_text_background"
             android:drawablePadding="8dp"
-            android:textColorHint="@color/gray"
+            android:hint="@string/enter_first_name"
+            android:inputType="textEmailAddress"
             android:padding="12dp"
             android:paddingStart="40dp"
-            android:hint="@string/enter_first_name"
             android:textColor="@color/black"
-            android:textSize="15sp"
-            android:layout_marginBottom="30dp"
-            android:inputType="textEmailAddress" />
+            android:textColorHint="@color/gray"
+            android:textSize="15sp" />
 
         <!-- Last Name Input Field -->
         <TextView
@@ -52,16 +53,16 @@
             android:id="@+id/last_name"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/rounded_edit_text_background"
             android:drawablePadding="8dp"
-            android:textColorHint="@color/gray"
-            android:padding="12dp"
             android:hint="@string/enter_last_name"
+            android:inputType="textPersonName"
+            android:padding="12dp"
             android:paddingStart="40dp"
             android:textColor="@color/black"
-            android:textSize="15sp"
-            android:layout_marginBottom="30dp"
-            android:inputType="textPersonName" />
+            android:textColorHint="@color/gray"
+            android:textSize="15sp" />
 
         <!-- Bio Input Field -->
         <TextView
@@ -78,15 +79,15 @@
             android:id="@+id/bio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_about_me"
+            android:layout_marginBottom="24dp"
             android:background="@drawable/rounded_edit_text_background"
+            android:hint="@string/hint_about_me"
+            android:paddingBottom="100dp"
+            android:paddingEnd="5dp"
             android:paddingStart="10dp"
             android:paddingTop="20dp"
-            android:paddingEnd="5dp"
-            android:paddingBottom="100dp"
-            android:textSize="14sp"
             android:textColor="@color/black"
-            android:layout_marginBottom="24dp" />
+            android:textSize="14sp" />
 
         <!-- LinkedIn URL Input Field -->
         <TextView
@@ -103,16 +104,51 @@
             android:id="@+id/linkedin_url"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/rounded_edit_text_background"
             android:drawablePadding="8dp"
-            android:textColorHint="@color/gray"
+            android:hint="@string/enter_linkedin"
+            android:inputType="textPersonName"
             android:padding="12dp"
             android:paddingStart="40dp"
             android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:textSize="15sp" />
+
+        <!-- Skills Label -->
+        <TextView
+            android:id="@+id/tv_skills_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Skills"
+            android:textColor="@color/black"
             android:textSize="15sp"
-            android:layout_marginBottom="30dp"
-            android:hint="@string/enter_linkedin"
-            android:inputType="textPersonName" />
+            android:textStyle="bold" />
+
+        <!-- AutoCompleteTextView for entering skills -->
+        <AutoCompleteTextView
+            android:id="@+id/skillsAutoComplete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter skills here"
+            android:background="@drawable/rounded_edit_text_background"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:layout_marginBottom="10dp" />
+
+        <!-- ChipGroup to display selected skills as chips -->
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupSkills"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:layout_marginBottom="20dp"
+            app:chipSpacing="4dp"
+            app:chipSpacingHorizontal="4dp"
+            app:chipSpacingVertical="4dp"
+            app:singleLine="false"
+            app:singleSelection="false" />
 
     </LinearLayout>
 
