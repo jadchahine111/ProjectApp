@@ -8,17 +8,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.projectapp.databinding.ActivitySuccessEmailVerificationBinding;
+import com.example.projectapp.databinding.ActivityUserAcceptedProjectsBinding;
+
 public class UserAcceptedProjectsActivity extends AppCompatActivity {
 
+    private ActivityUserAcceptedProjectsBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_user_accepted_projects);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        binding= ActivityUserAcceptedProjectsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
     }
 }

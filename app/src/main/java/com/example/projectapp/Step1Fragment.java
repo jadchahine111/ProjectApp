@@ -6,7 +6,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,10 +13,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.projectapp.ViewModels.SignUpViewModel;
+import com.example.projectapp.databinding.FragmentStep1Binding;
 
 public class Step1Fragment extends Fragment {
 
-
+    private FragmentStep1Binding binding;
     private SignUpViewModel signUpViewModel;
 
     @Override
@@ -27,21 +27,20 @@ public class Step1Fragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_step1, container, false);
-
-        EditText emailInput = view.findViewById(R.id.email);
-        EditText usernameInput = view.findViewById(R.id.username);
-        EditText passwordInput = view.findViewById(R.id.password);
-        EditText retypePasswordInput = view.findViewById(R.id.retype_password);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate using binding
+        binding = FragmentStep1Binding.inflate(inflater, container, false);
+        View view = binding.getRoot();
 
         // Restore data from ViewModel
-        emailInput.setText(signUpViewModel.getEmail().getValue());
-        usernameInput.setText(signUpViewModel.getUsername().getValue());
-        passwordInput.setText(signUpViewModel.getPassword().getValue());
-        retypePasswordInput.setText(signUpViewModel.getRetypePassword().getValue());
-        // Save data to ViewModel
-        emailInput.addTextChangedListener(new TextWatcher() {
+        binding.email.setText(signUpViewModel.getEmail().getValue());
+        binding.username.setText(signUpViewModel.getUsername().getValue());
+        binding.password.setText(signUpViewModel.getPassword().getValue());
+        binding.retypePassword.setText(signUpViewModel.getRetypePassword().getValue());
+
+        // Save data to ViewModel using TextWatchers
+        binding.email.addTextChangedListener(new TextWatcher() {
             @Override public void afterTextChanged(Editable s) {
                 signUpViewModel.getEmail().setValue(s.toString());
             }
@@ -49,7 +48,7 @@ public class Step1Fragment extends Fragment {
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
         });
 
-        usernameInput.addTextChangedListener(new TextWatcher() {
+        binding.username.addTextChangedListener(new TextWatcher() {
             @Override public void afterTextChanged(Editable s) {
                 signUpViewModel.getUsername().setValue(s.toString());
             }
@@ -57,7 +56,7 @@ public class Step1Fragment extends Fragment {
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
         });
 
-        passwordInput.addTextChangedListener(new TextWatcher() {
+        binding.password.addTextChangedListener(new TextWatcher() {
             @Override public void afterTextChanged(Editable s) {
                 signUpViewModel.getPassword().setValue(s.toString());
             }
@@ -65,7 +64,7 @@ public class Step1Fragment extends Fragment {
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
         });
 
-        retypePasswordInput.addTextChangedListener(new TextWatcher() {
+        binding.retypePassword.addTextChangedListener(new TextWatcher() {
             @Override public void afterTextChanged(Editable s) {
                 signUpViewModel.getRetypePassword().setValue(s.toString());
             }
@@ -75,5 +74,4 @@ public class Step1Fragment extends Fragment {
 
         return view;
     }
-
 }

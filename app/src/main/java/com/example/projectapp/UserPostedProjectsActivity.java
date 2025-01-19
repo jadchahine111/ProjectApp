@@ -8,17 +8,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.projectapp.databinding.ActivityUserFavoritedProjectsBinding;
+import com.example.projectapp.databinding.ActivityUserPostedProjectsBinding;
+
 public class UserPostedProjectsActivity extends AppCompatActivity {
 
+    private ActivityUserPostedProjectsBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_user_posted_projects);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        binding= ActivityUserPostedProjectsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
     }
 }

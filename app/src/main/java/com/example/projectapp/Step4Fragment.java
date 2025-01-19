@@ -4,16 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-
 import com.example.projectapp.ViewModels.SignUpViewModel;
+import com.example.projectapp.databinding.FragmentStep4Binding;
 
 public class Step4Fragment extends Fragment {
 
+    private FragmentStep4Binding binding;
     private SignUpViewModel signUpViewModel;
 
     @Override
@@ -24,30 +23,21 @@ public class Step4Fragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_step4, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate using binding
+        binding = FragmentStep4Binding.inflate(inflater, container, false);
+        View view = binding.getRoot();
 
-        // Bind Views (Step 1)
-        TextView tvEmail = view.findViewById(R.id.tv_email);
-        TextView tvUsername = view.findViewById(R.id.tv_username);
-        TextView tvPassword = view.findViewById(R.id.tv_password);
+        // Observe ViewModel data and bind to TextViews
+        signUpViewModel.getEmail().observe(getViewLifecycleOwner(), binding.tvEmail::setText);
+        signUpViewModel.getUsername().observe(getViewLifecycleOwner(), binding.tvUsername::setText);
+        signUpViewModel.getPassword().observe(getViewLifecycleOwner(), binding.tvPassword::setText);
 
-        // Bind Views (Step 2)
-        TextView tvFirstName = view.findViewById(R.id.tv_firstName);
-        TextView tvLastName = view.findViewById(R.id.tv_lastName);
-        TextView tvBio = view.findViewById(R.id.tv_bio);
-        TextView tvLinkedIn = view.findViewById(R.id.tv_linkedIn);
-
-        // Observe ViewModel data for Step 1 and set it to TextViews
-        signUpViewModel.getEmail().observe(getViewLifecycleOwner(), tvEmail::setText);
-        signUpViewModel.getUsername().observe(getViewLifecycleOwner(), tvUsername::setText);
-        signUpViewModel.getPassword().observe(getViewLifecycleOwner(), tvPassword::setText);
-
-        // Observe ViewModel data for Step 2 and set it to TextViews
-        signUpViewModel.getFirstName().observe(getViewLifecycleOwner(), tvFirstName::setText);
-        signUpViewModel.getLastName().observe(getViewLifecycleOwner(), tvLastName::setText);
-        signUpViewModel.getBio().observe(getViewLifecycleOwner(), tvBio::setText);
-        signUpViewModel.getLinkedinURL().observe(getViewLifecycleOwner(), tvLinkedIn::setText);
+        signUpViewModel.getFirstName().observe(getViewLifecycleOwner(), binding.tvFirstName::setText);
+        signUpViewModel.getLastName().observe(getViewLifecycleOwner(), binding.tvLastName::setText);
+        signUpViewModel.getBio().observe(getViewLifecycleOwner(), binding.tvBio::setText);
+        signUpViewModel.getLinkedinURL().observe(getViewLifecycleOwner(), binding.tvLinkedIn::setText);
 
         return view;
     }
