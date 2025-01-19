@@ -130,6 +130,8 @@
     <string name="hint_username">Enter your lastname</string>
     <string name="choose_file_text">Choose File</string>
     <string name="upload_cv_text">Upload CV</string>
+    <string name="user_bio">About</string>
+    <string name="user_cv">CV</string>
     <!-- First Name Section -->
     <string name="first_name_title2">First Name: </string>
 
