@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".WelcomeFragment">
+
+    <!-- Vertical LinearLayout for the content -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp">
+
+        <!-- Splash Image -->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/splash_icon"
+            android:src="@drawable/splash_gif"
+            android:layout_marginBottom="50dp"
+            android:layout_marginTop="100dp"
+            android:layout_gravity="center"/>
+
+        <!-- Main Content Layout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+
+            <!-- First part: "Find Your" -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/find_your"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginBottom="-6dp"
+                android:fontFamily="@font/dmsans_bold"/>
+
+            <!-- Second part: "Dream Project" with yellow color and underline -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dream_project_text"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:textColor="@color/orange"
+                android:layout_marginBottom="-6dp"
+                android:fontFamily="@font/dmsans_bold"/>
+
+            <!-- Third part: "Here!" -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/here"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:fontFamily="@font/dmsans_bold"/>
+
+            <!-- Description Text -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/description_text"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_marginTop="7dp"
+                android:textStyle="bold"
+                android:layout_gravity="center"/>
+
+            <!-- Spacer View to push button down -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <!-- Filter Button -->
+            <ImageButton
+                android:id="@+id/filter_button"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="end|bottom"
+                android:background="@drawable/purple_circle_background"
+                android:src="@drawable/ic_arrow_forward"
+                android:layout_marginBottom="20dp"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/welcomeFragment">
+
+    <!-- Welcome Fragment -->
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.example.projectapp.WelcomeFragment"
+        android:label="Welcome Screen"
+        tools:layout="@layout/fragment_welcome">
+        <action
+            android:id="@+id/action_welcomeFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <!-- LoginFragment -->
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.projectapp.LoginFragment"
+        android:label="Login Screen"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_signupFragment"
+            app:destination="@id/signupFragment" />
+    </fragment>
+
+    <!-- SignupFragment  -->
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.example.projectapp.SignupFragment"
+        android:label="Signup Screen"
+        tools:layout="@layout/fragment_signup" />
+
+    <!-- Step1Fragment  -->
+    <fragment
+        android:id="@+id/step1Fragment"
+        android:name="com.example.projectapp.Step1Fragment"
+        android:label="Step 1: Personal Details" />
+
+    <!-- Step2Fragment  -->
+    <fragment
+        android:id="@+id/step2Fragment"
+        android:name="com.example.projectapp.Step2Fragment"
+        android:label="Step 2: Profile Details" />
+
+    <!-- Step3Fragment  -->
+    <fragment
+        android:id="@+id/step3Fragment"
+        android:name="com.example.projectapp.Step3Fragment"
+        android:label="Step 3: Identity Verification" />
+
+    <!-- Step4Fragment  -->
+    <fragment
+        android:id="@+id/step4Fragment"
+        android:name="com.example.projectapp.Step4Fragment"
+        android:label="Step 4: Confirmation" />
+
+
+    <!-- HomeFragment  -->
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.projectapp.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_notificationFragment"
+            app:destination="@id/fragmentNotifications" />
+        <action
+            android:id="@+id/action_homeFragment_to_projectDetailsFragment"
+            app:destination="@id/fragmentProjectDetails" />
+    </fragment>
+
+    <!-- SearchFragment  -->
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.projectapp.SearchFragment"
+        android:label="Search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_searchFilterFragment"
+            app:destination="@id/fragmentSearchFilter" />
+    </fragment>
+
+    <!-- ProfileFragment  -->
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.projectapp.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_owner_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_editUsernameFragment"
+            app:destination="@id/fragmentEditUsername" />
+        <action
+            android:id="@+id/action_profileFragment_to_editFirstNameFragment"
+            app:destination="@id/fragmentEditFirstName" />
+        <action
+            android:id="@+id/action_profileFragment_to_editLastNameFragment"
+            app:destination="@id/fragmentEditLastName" />
+        <action
+            android:id="@+id/action_profileFragment_to_editAboutMeFragment"
+            app:destination="@id/fragmentEditAboutMe" />
+        <action
+            android:id="@+id/action_profileFragment_to_editCV"
+            app:destination="@id/fragmentEditCV" />
+    </fragment>
+
+    <!-- MyProjectsFragment  -->
+    <fragment
+        android:id="@+id/myProjectsFragment"
+        android:name="com.example.projectapp.ProjectFragment"
+        android:label="Projects"
+        tools:layout="@layout/fragment_my_projects_section" >
+        <action
+            android:id="@+id/action_projectFragment_to_myActiveProjectsFragment"
+            app:destination="@id/fragmentMyActiveProjects" />
+        <action
+            android:id="@+id/action_projectFragment_to_myArchivedProjectsFragment"
+            app:destination="@id/fragmentMyArchivedProjects" />
+        <action
+            android:id="@+id/action_projectFragment_to_myAppliedApplicationsFragment"
+            app:destination="@id/fragmentMyAppliedApplications" />
+        <action
+            android:id="@+id/action_projectFragment_to_myAcceptedApplicationsFragment"
+            app:destination="@id/fragmentMyAcceptedApplications" />
+        <action
+            android:id="@+id/action_projectFragment_to_myRejectedApplicationsFragment"
+            app:destination="@id/fragmentMyRejectedApplications" />
+        <action
+            android:id="@+id/action_projectFragment_to_mySavedProjectsFragment"
+            app:destination="@id/fragmentMySavedProjects" />
+    </fragment>
+
+    <!-- EditUsernameFragment  -->
+    <fragment
+        android:id="@+id/fragmentEditUsername"
+        android:name="com.example.projectapp.EditUsernameFragment"
+        android:label="Edit Username Screen"
+        tools:layout="@layout/fragment_edit_username" />
+
+    <!-- EditFirstNameFragment  -->
+    <fragment
+        android:id="@+id/fragmentEditFirstName"
+        android:name="com.example.projectapp.EditFirstNameFragment"
+        android:label="Edit First Name Screen"
+        tools:layout="@layout/fragment_edit_first_name" />
+
+    <!-- EditLastNameFragment  -->
+    <fragment
+        android:id="@+id/fragmentEditLastName"
+        android:name="com.example.projectapp.EditLastNameFragment"
+        android:label="Edit Last Name Screen"
+        tools:layout="@layout/fragment_edit_last_name" />
+
+    <!-- EditAboutMe  -->
+    <fragment
+        android:id="@+id/fragmentEditAboutMe"
+        android:name="com.example.projectapp.EditBioFragment"
+        android:label="Edit About Me Screen"
+        tools:layout="@layout/fragment_edit_bio" />
+
+    <!-- EditCV  -->
+    <fragment
+        android:id="@+id/fragmentEditCV"
+        android:name="com.example.projectapp.EditCVFragment"
+        android:label="Edit About Me Screen"
+        tools:layout="@layout/fragment_edit_cv" />
+
+    <!-- NotificationFragment  -->
+    <fragment
+        android:id="@+id/fragmentNotifications"
+        android:name="com.example.projectapp.NotificationsFragment"
+        android:label="Notifications Screen"
+        tools:layout="@layout/fragment_edit_cv" />
+
+    <!-- SearchFilterFragment  -->
+    <fragment
+        android:id="@+id/fragmentSearchFilter"
+        android:name="com.example.projectapp.SearchFilterFragment"
+        android:label="Filter Search Screen"
+        tools:layout="@layout/fragment_edit_cv" />
+
+    <!-- AddProjectFragment  -->
+    <fragment
+        android:id="@+id/addProjectFragment"
+        android:name="com.example.projectapp.AddProjectFragment"
+        android:label="Add Project Screen"
+        tools:layout="@layout/fragment_add_project" />
+
+    <!-- MyActiveProjectsFragment -->
+    <fragment
+        android:id="@+id/fragmentMyActiveProjects"
+        android:name="com.example.projectapp.UserPostedProjectsFragment"
+        android:label="My Posted Projects Screen"
+        tools:layout="@layout/fragment_user_posted_projects" />
+
+    <!-- MyArchivedProjectsFragment -->
+    <fragment
+        android:id="@+id/fragmentMyArchivedProjects"
+        android:name="com.example.projectapp.UserArchivedProjectsFragment"
+        android:label="My Archived Projects Screen"
+        tools:layout="@layout/fragment_user_archived_projects" />
+
+    <!-- MyAppliedProjectsFragment -->
+    <fragment
+        android:id="@+id/fragmentMyAppliedApplications"
+        android:name="com.example.projectapp.UserAppliedProjectsFragment"
+        android:label="My Applied Applications Screen"
+        tools:layout="@layout/fragment_user_applied_projects" />
+
+    <!-- MyAcceptedApplicationsFragment -->
+    <fragment
+        android:id="@+id/fragmentMyAcceptedApplications"
+        android:name="com.example.projectapp.UserAcceptedProjectsFragment"
+        android:label="My Accepted Applications Screen"
+        tools:layout="@layout/fragment_user_accepted_projects" />
+
+    <!-- MyRejectedApplicationsFragment -->
+    <fragment
+        android:id="@+id/fragmentMyRejectedApplications"
+        android:name="com.example.projectapp.UserRejectedProjectsFragment"
+        android:label="My Rejected Applications Screen"
+        tools:layout="@layout/fragment_user_rejected_projects" />
+
+    <!-- MySavedProjectsFragment -->
+    <fragment
+        android:id="@+id/fragmentMySavedProjects"
+        android:name="com.example.projectapp.UserFavoritedProjectsFragment"
+        android:label="My Saved Projects Screen"
+        tools:layout="@layout/fragment_user_favorited_projects" />
+
+    <!-- ProjectDetailsFragment -->
+    <fragment
+        android:id="@+id/fragmentProjectDetails"
+        android:name="com.example.projectapp.ProjectDetailsFragment"
+        android:label="Projects Details Screen"
+        tools:layout="@layout/fragment_project_details" />
+
+    <!-- UserFragment -->
+    <fragment
+        android:id="@+id/fragmentUser"
+        android:name="com.example.projectapp.UserFragment"
+        android:label="User Details Screen"
+        tools:layout="@layout/fragment_user" />
+
+    <!-- EmailVerificationFragment -->
+    <fragment
+        android:id="@+id/fragmentEmailVerification"
+        android:name="com.example.projectapp.EmailVerificationFragment"
+        android:label="Email Verification Screen"
+        tools:layout="@layout/fragment_email_verification" />
+
+    <!-- SuccessEmailVerificationFragment-->
+    <fragment
+        android:id="@+id/fragmentSuccessEmailVerification"
+        android:name="com.example.projectapp.SuccessEmailVerificationFragment"
+        android:label="Success Email Verification Screen"
+        tools:layout="@layout/fragment_success_email_verification">
+        <action
+            android:id="@+id/action_successEmailVerificationFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+</navigation>
