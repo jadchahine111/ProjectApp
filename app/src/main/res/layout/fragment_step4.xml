@@ -180,7 +180,7 @@
         </LinearLayout>
 
         <android.widget.Button
-            android:id="@+id/previous"
+            android:id="@+id/signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"

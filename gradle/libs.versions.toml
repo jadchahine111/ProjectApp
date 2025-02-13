@@ -9,6 +9,9 @@ activity = "1.9.3"
 constraintlayout = "2.2.0"
 stepview = "1.5.1"
 navigation = "2.7.3"
+retrofit = "2.9.0"
+retrofitGsonConverter = "2.9.0"
+okhttpLoggingInterceptor = "4.9.0"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -22,6 +25,10 @@ stepview = { group = "com.github.shuhart", name = "stepview", version.ref = "ste
 navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigation" }
 navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigation" }
 
+# Corrected Retrofit and related dependencies
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-gson-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofitGsonConverter" }
+okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttpLoggingInterceptor" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-

@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.projectapp.ViewModels.SignUpViewModel;
+import com.example.projectapp.ViewModels.UserViewModel;
 import com.example.projectapp.databinding.FragmentStep2Binding;
 import com.google.android.material.chip.Chip;
 
@@ -24,7 +24,7 @@ import java.util.List;
 public class Step2Fragment extends Fragment {
 
     private FragmentStep2Binding binding;
-    private SignUpViewModel signUpViewModel;
+    private UserViewModel userViewModel;
 
     // Example skills data (could come from a server, database, etc.)
     private final String[] SKILLS = {
@@ -36,7 +36,7 @@ public class Step2Fragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        signUpViewModel = new ViewModelProvider(requireActivity()).get(SignUpViewModel.class);
+        userViewModel = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
     }
 
     @Override
@@ -52,17 +52,17 @@ public class Step2Fragment extends Fragment {
         // -----------------------
         // Restoring data from ViewModel
         // -----------------------
-        binding.firstName.setText(signUpViewModel.getFirstName().getValue());
-        binding.lastName.setText(signUpViewModel.getLastName().getValue());
-        binding.bio.setText(signUpViewModel.getBio().getValue());
-        binding.linkedinUrl.setText(signUpViewModel.getLinkedinURL().getValue());
+        binding.firstName.setText(userViewModel.getUserLiveData().getValue().getFirstName());
+        binding.lastName.setText(userViewModel.getUserLiveData().getValue().getLastName());
+        binding.bio.setText(userViewModel.getUserLiveData().getValue().getBio());
+        binding.linkedinUrl.setText(userViewModel.getUserLiveData().getValue().getLinkedinURL());
 
         // -----------------------
         // Saving data to ViewModel (TextWatchers)
         // -----------------------
         binding.firstName.addTextChangedListener(new TextWatcher() {
             @Override public void afterTextChanged(Editable s) {
-                signUpViewModel.getFirstName().setValue(s.toString());
+                userViewModel.getUserLiveData().getValue().setFirstName(s.toString());
             }
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
@@ -70,7 +70,7 @@ public class Step2Fragment extends Fragment {
 
         binding.lastName.addTextChangedListener(new TextWatcher() {
             @Override public void afterTextChanged(Editable s) {
-                signUpViewModel.getLastName().setValue(s.toString());
+                userViewModel.getUserLiveData().getValue().setLastName(s.toString());
             }
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
@@ -78,7 +78,7 @@ public class Step2Fragment extends Fragment {
 
         binding.bio.addTextChangedListener(new TextWatcher() {
             @Override public void afterTextChanged(Editable s) {
-                signUpViewModel.getBio().setValue(s.toString());
+                userViewModel.getUserLiveData().getValue().setBio(s.toString());
             }
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
@@ -86,7 +86,7 @@ public class Step2Fragment extends Fragment {
 
         binding.linkedinUrl.addTextChangedListener(new TextWatcher() {
             @Override public void afterTextChanged(Editable s) {
-                signUpViewModel.getLinkedinURL().setValue(s.toString());
+                userViewModel.getUserLiveData().getValue().setLinkedinURL(s.toString());
             }
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
@@ -112,9 +112,10 @@ public class Step2Fragment extends Fragment {
                 binding.skillsAutoComplete.setText(""); // clear after selection
             }
         });
-        String storedSkills = signUpViewModel.getSkills().getValue();
+
+        // Restore skills from ViewModel if they exist
+        String storedSkills = userViewModel.getSkillsLiveData().getValue();
         if (storedSkills != null && !storedSkills.isEmpty()) {
-            // Split by comma (or your chosen delimiter)
             String[] skillArray = storedSkills.split(",\\s*");
             for (String skill : skillArray) {
                 addChip(skill.trim());
@@ -124,10 +125,6 @@ public class Step2Fragment extends Fragment {
         return view;
     }
 
-    /**
-     * Dynamically create a Chip for the given skill name and add it to the ChipGroup.
-     * Clicking the close icon removes the chip.
-     */
     private void addChip(String skillName) {
         Chip chip = new Chip(requireContext());
         chip.setText(skillName);
@@ -135,17 +132,11 @@ public class Step2Fragment extends Fragment {
 
         chip.setOnCloseIconClickListener(view -> {
             binding.chipGroupSkills.removeView(chip);
+            storeChipsInViewModel(); // Update ViewModel when a chip is removed
         });
 
         binding.chipGroupSkills.addView(chip);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        // When the user leaves this fragment (or the fragment is paused),
-        // gather all chip texts and store them in the ViewModel.
-        storeChipsInViewModel();
+        storeChipsInViewModel(); // Update ViewModel whenever a new chip is added
     }
 
     private void storeChipsInViewModel() {
@@ -159,8 +150,7 @@ public class Step2Fragment extends Fragment {
             }
         }
         String allSkills = TextUtils.join(", ", skillList);
-        // Optionally store it in your ViewModel (assuming you have a LiveData or a field for skills):
-        signUpViewModel.getSkills().setValue(allSkills);;
+        userViewModel.getSkillsLiveData().setValue(allSkills); // Update ViewModel with the skills list
     }
 
     @Override

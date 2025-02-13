@@ -1,6 +1,8 @@
 package com.example.projectapp;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,32 +10,54 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
-import com.example.projectapp.databinding.FragmentSearchBinding;
+import com.example.projectapp.ViewModels.UserViewModel;
 import com.example.projectapp.databinding.FragmentStep3Binding;
 
 public class Step3Fragment extends Fragment {
 
     private FragmentStep3Binding binding;
+    private UserViewModel userViewModel;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        userViewModel = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
+    }
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate using binding
         binding = FragmentStep3Binding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        View view = binding.getRoot();
 
-        return root;
-    }
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        // Observe LiveData for user data
+        userViewModel.getUserLiveData().observe(getViewLifecycleOwner(), user -> {
+            if (user != null) {
+                // You can update the UI with the existing data if needed
+            }
+        });
 
-    }
+        // TextWatcher to capture frontID and backID
+        binding.frontIdLabel.addTextChangedListener(new TextWatcher() {
+            @Override public void afterTextChanged(Editable s) {
+                // Update frontID in the user model
+            }
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
+        });
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+        binding.backIdLabel.addTextChangedListener(new TextWatcher() {
+            @Override public void afterTextChanged(Editable s) {
+                // Update backID in the user model
+            }
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
+        });
+
+
+        return view;
     }
 }

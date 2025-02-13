@@ -8,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
+
+import com.example.projectapp.Retrofit.ApiClient;
+import com.example.projectapp.Retrofit.ApiInterface;
 import com.example.projectapp.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -18,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private View relativeLayout; // Add this line to reference the RelativeLayout
 
+    private ApiInterface apiInterface;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
         // Initialize binding
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        // Initialize the Retrofit instance and ApiInterface
+        apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+
 
         // Retrieve NavHostFragment using binding
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
