@@ -10,7 +10,7 @@ public class UserViewModel extends ViewModel {
     private UserRepository userRepository;
     private MutableLiveData<User> userLiveData;
     private MutableLiveData<String> errorMessageLiveData;
-
+    private MutableLiveData<String> responseLiveData; // LiveData to store raw response
     private MutableLiveData<String> skillsLiveData; // Add this to store skills
 
 
@@ -18,6 +18,7 @@ public class UserViewModel extends ViewModel {
         userRepository = new UserRepository();
         userLiveData = new MutableLiveData<>(new User()); // Initialize User object
         errorMessageLiveData = new MutableLiveData<>();
+        responseLiveData = new MutableLiveData<>(); // Initialize the response LiveData
         skillsLiveData = new MutableLiveData<>(); // Initialize the skills LiveData
 
     }
@@ -32,15 +33,19 @@ public class UserViewModel extends ViewModel {
     }
 
     public MutableLiveData<String> getSkillsLiveData() {
-        return skillsLiveData; // Getter for skills
+        return skillsLiveData; //
+    }
+
+    public MutableLiveData<String> getResponseLiveData() {
+        return responseLiveData; // Getter for raw response body
     }
 
     // Call repository method to register the user
     public void registerUser(User user) {
         userRepository.registerUser(user, new UserRepository.RegisterUserCallback() {
             @Override
-            public void onSuccess(User user) {
-                userLiveData.setValue(user); // Update user data on success
+            public void onSuccess(String responseBody) {
+                responseLiveData.setValue(responseBody); // Set the raw response body into LiveData
             }
 
             @Override

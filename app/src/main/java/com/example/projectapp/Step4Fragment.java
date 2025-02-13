@@ -1,6 +1,7 @@
 package com.example.projectapp;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.projectapp.Model.User;
 import com.example.projectapp.ViewModels.UserViewModel;
 import com.example.projectapp.databinding.FragmentStep4Binding;
 
@@ -48,9 +50,31 @@ public class Step4Fragment extends Fragment {
 
         // Final confirmation button
         binding.signup.setOnClickListener(v -> {
+            // Log the current value of responseLiveData
+
+            // Get the user object to register
+            User user = userViewModel.getUserLiveData().getValue();
+
             // Proceed with registration logic
-            userViewModel.registerUser(userViewModel.getUserLiveData().getValue());
-            // Navigate to success or login screen
+            if (user != null) {
+                userViewModel.registerUser(user);
+            } else {
+                Log.e("UserRegistration", "User object is null, cannot proceed with registration.");
+            }
+
+            // Observe the response live data using the fragment's view lifecycle owner
+            userViewModel.getResponseLiveData().observe(getViewLifecycleOwner(), response -> {
+                Log.d("UserRegistration", "Registration request: " + user);
+
+                Log.d("UserRegistration", "Registration response: " + response);
+                // After registration, you can navigate to the success or login screen based on the response
+            });
+
+            // If there’s an error during registration, you can observe errorMessageLiveData as well
+            userViewModel.getErrorMessageLiveData().observe(getViewLifecycleOwner(), errorMessage -> {
+                Log.e("UserRegistration", "Registration failed: " + errorMessage);
+                // Handle the error message (e.g., show a toast or alert)
+            });
         });
 
         return view;

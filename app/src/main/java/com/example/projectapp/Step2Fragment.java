@@ -114,13 +114,14 @@ public class Step2Fragment extends Fragment {
         });
 
         // Restore skills from ViewModel if they exist
-        String storedSkills = userViewModel.getSkillsLiveData().getValue();
+        String storedSkills = userViewModel.getUserLiveData().getValue().getSkills();
         if (storedSkills != null && !storedSkills.isEmpty()) {
             String[] skillArray = storedSkills.split(",\\s*");
             for (String skill : skillArray) {
                 addChip(skill.trim());
             }
         }
+
 
         return view;
     }
