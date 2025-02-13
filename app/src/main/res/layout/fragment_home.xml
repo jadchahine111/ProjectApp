@@ -118,83 +118,9 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="8dp" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/projectCard"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="0dp"
-            android:background="@color/white"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="21dp">
-
-                    <!-- Title -->
-                    <TextView
-                        android:id="@+id/project_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="3dp"
-                        android:text=""
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <!-- Owner -->
-                    <TextView
-                        android:id="@+id/project_owner_username"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="7dp"
-                        android:text=""
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-
-                    <!-- Skills Section -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:gravity="start"
-                        android:orientation="horizontal">
-
-                        <!-- Skill 1 -->
-                        <TextView
-                            android:id="@+id/skill"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="4dp"
-                            android:background="@drawable/skill_card_background"
-                            android:paddingHorizontal="12dp"
-                            android:paddingVertical="6dp"
-                            android:text=""
-                            android:textColor="@color/black" />
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-                <!-- Favorite Icon -->
-                <ImageButton
-                    android:id="@+id/favorite_button"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="top|end"
-                    android:layout_margin="8dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="@string/favorite_button_description"
-                    android:src="@drawable/ic_favorite"
-                    app:tint="@color/orange" />
-            </FrameLayout>
-        </androidx.cardview.widget.CardView>
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/projectsRecyclerView"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"/>
     </LinearLayout>
 </ScrollView>

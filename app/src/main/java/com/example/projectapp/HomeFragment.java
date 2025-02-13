@@ -8,17 +8,28 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.projectapp.Adapter.ProjectAdapter;
+import com.example.projectapp.Model.Project;
+import com.example.projectapp.ViewModels.ProjectViewModel;
 import com.example.projectapp.databinding.FragmentHomeBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+    private ProjectViewModel projectViewModel;
+    private ProjectAdapter projectAdapter;
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         // Inflate the layout using ViewBinding
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         return binding.getRoot();
@@ -31,7 +42,16 @@ public class HomeFragment extends Fragment {
         // Show Bottom Navigation
         showBottomNavigation();
 
-        // Set up notification button click listener
+        // Initialize ViewModel
+        projectViewModel = new ViewModelProvider(this).get(ProjectViewModel.class);
+
+        // Setup the RecyclerView and Adapter
+        setupRecyclerView();
+
+        // Observe data from ViewModel
+        observeViewModel();
+
+        // Setup click listeners (notification button, etc.)
         setupListeners();
     }
 
@@ -45,12 +65,46 @@ public class HomeFragment extends Fragment {
     }
 
     /**
-     * Sets up the notification button to navigate to the Notification Fragment.
+     * Sets up the RecyclerView with a ProjectAdapter.
+     */
+    private void setupRecyclerView() {
+        // 1. Initialize the adapter with an empty list (or pass a list if you have one)
+        projectAdapter = new ProjectAdapter(requireContext(), new ArrayList<>());
+
+        // 2. Attach a layout manager
+        binding.projectsRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+
+        // 3. Set the adapter
+        binding.projectsRecyclerView.setAdapter(projectAdapter);
+    }
+
+    /**
+     * Observes the LiveData from the ProjectViewModel to update UI automatically.
+     */
+    private void observeViewModel() {
+        // Observe the list of projects
+        projectViewModel.getFilteredProjects().observe(getViewLifecycleOwner(), projects -> {
+            if (projects != null) {
+                projectAdapter.setProjects(projects);
+            }
+        });
+
+
+        // Observe any error message
+        projectViewModel.getErrorMessage().observe(getViewLifecycleOwner(), errorMsg -> {
+            if (errorMsg != null && !errorMsg.isEmpty()) {
+                // Show a toast, or set an error text, etc.
+                // Toast.makeText(requireContext(), errorMsg, Toast.LENGTH_SHORT).show();
+                binding.recentProjectsText.setText(errorMsg);
+            }
+        });
+    }
+
+    /**
+     * Sets up click listeners (e.g., notification button).
      */
     private void setupListeners() {
         binding.notificationButton.setOnClickListener(v -> navigateToNotificationFragment());
-        binding.projectCard.setOnClickListener(v -> navigateToProjectDetailsFragment());
-
     }
 
     /**
@@ -61,7 +115,17 @@ public class HomeFragment extends Fragment {
         navController.navigate(R.id.action_homeFragment_to_notificationFragment);
     }
 
-    private void navigateToProjectDetailsFragment() {
+    /**
+     * Navigates to the Project Details Fragment, potentially passing project data/ID.
+     */
+    private void navigateToProjectDetailsFragment(Project project) {
+        // Example navigation with SafeArgs or direct
+        // Bundle bundle = new Bundle();
+        // bundle.putInt("projectId", project.getId());
+        // NavController navController = Navigation.findNavController(binding.getRoot());
+        // navController.navigate(R.id.action_homeFragment_to_projectDetailsFragment, bundle);
+
+        // For now, direct
         NavController navController = Navigation.findNavController(binding.getRoot());
         navController.navigate(R.id.action_homeFragment_to_projectDetailsFragment);
     }

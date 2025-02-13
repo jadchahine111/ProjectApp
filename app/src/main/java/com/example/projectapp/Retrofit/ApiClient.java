@@ -16,7 +16,7 @@ public class ApiClient {
                     .create();
 
             retrofit = new Retrofit.Builder()
-                    .baseUrl("http://10.0.2.2:8000/")  // Use 10.0.2.2 for localhost on emulator
+                    .baseUrl("http://192.168.0.59:8000/")  // Use 10.0.2.2 for localhost on emulator
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
         }

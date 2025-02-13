@@ -58,7 +58,6 @@
         android:name="com.example.projectapp.Step4Fragment"
         android:label="Step 4: Confirmation" />
 
-
     <!-- HomeFragment  -->
     <fragment
         android:id="@+id/homeFragment"
@@ -165,7 +164,7 @@
     <fragment
         android:id="@+id/fragmentEditCV"
         android:name="com.example.projectapp.EditCVFragment"
-        android:label="Edit About Me Screen"
+        android:label="Edit CV Screen"
         tools:layout="@layout/fragment_edit_cv" />
 
     <!-- NotificationFragment  -->
@@ -180,7 +179,13 @@
         android:id="@+id/fragmentSearchFilter"
         android:name="com.example.projectapp.SearchFilterFragment"
         android:label="Filter Search Screen"
-        tools:layout="@layout/fragment_edit_cv" />
+        tools:layout="@layout/fragment_edit_cv" >
+
+        <!-- ADD THIS ACTION to navigate to FilteredProjectsFragment -->
+        <action
+            android:id="@+id/action_searchFilterFragment_to_filteredProjectsFragment"
+            app:destination="@id/filteredProjectsFragment" />
+    </fragment>
 
     <!-- AddProjectFragment  -->
     <fragment
@@ -262,4 +267,12 @@
             android:id="@+id/action_successEmailVerificationFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+
+    <!-- NEW FilteredProjectsFragment -->
+    <fragment
+        android:id="@+id/filteredProjectsFragment"
+        android:name="com.example.projectapp.FilteredProjectsFragment"
+        android:label="Filtered Projects Screen"
+        tools:layout="@layout/fragment_filtered_projects" />
+
 </navigation>
