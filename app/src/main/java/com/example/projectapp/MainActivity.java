@@ -1,5 +1,6 @@
 package com.example.projectapp;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
         // Initialize the Retrofit instance and ApiInterface
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
 
+        // Check if the user is logged in
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+
+
 
         // Retrieve NavHostFragment using binding
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
@@ -48,6 +54,13 @@ public class MainActivity extends AppCompatActivity {
                 // Navigate to MainAuthFragment initially
                 navController.navigate(R.id.welcomeFragment);
             }
+        }
+
+        // If token is available, navigate to HomeFragment
+        if (token != null) {
+            navController.navigate(R.id.homeFragment);  // Replace with your HomeFragment's ID
+        } else {
+            navController.navigate(R.id.loginFragment);  // Replace with your LoginFragment's ID
         }
 
         // Set up Bottom Navigation View
