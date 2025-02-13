@@ -12,14 +12,14 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface ApiInterface {
 
-    @POST("/api/auth/signup")
-    Call<User> registerUser(@Body User user);
+
     @GET("/api/user/projects/recent-active")
-    Call<List<Project>> getRecentActiveProjects();
+    Call<List<Project>> getRecentActiveProjects(@Header("Authorization") String token);
     @GET("/api/user/categories")
     Call<List<Category>> getCategories();
     @POST("api/auth/signup")

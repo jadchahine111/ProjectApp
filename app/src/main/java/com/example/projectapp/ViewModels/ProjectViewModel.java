@@ -3,13 +3,14 @@ package com.example.projectapp.ViewModels;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.example.projectapp.MainActivity;
 import com.example.projectapp.Model.Project;
+import com.example.projectapp.MyApplication.MyApplication;
 import com.example.projectapp.Repository.ProjectRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Retrofit;
 
 public class ProjectViewModel extends ViewModel {
 
@@ -20,7 +21,7 @@ public class ProjectViewModel extends ViewModel {
     private final MutableLiveData<String> errorMessageLiveData = new MutableLiveData<>();
 
     public ProjectViewModel() {
-        projectRepository = new ProjectRepository();
+        projectRepository = new ProjectRepository(MyApplication.getAppContext());
         loadProjects();
     }
 

@@ -20,10 +20,8 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private NavController navController;
     private BottomNavigationView bottomNavigationView;
-    private View relativeLayout; // Add this line to reference the RelativeLayout
 
     private ApiInterface apiInterface;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
         // Check if the user is logged in
         SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
         String token = sharedPreferences.getString("token", null);
-
-
 
         // Retrieve NavHostFragment using binding
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
