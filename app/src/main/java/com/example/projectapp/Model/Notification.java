@@ -1,9 +1,12 @@
 package com.example.projectapp.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Notification {
     private int id;
     private int userId;
     private String message;
+    @SerializedName("created_at")
     private String createdAt;
     private String updatedAt;
 

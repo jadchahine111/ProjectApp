@@ -1,6 +1,7 @@
 package com.example.projectapp.Retrofit;
 
 import com.example.projectapp.Model.Category;
+import com.example.projectapp.Model.Notification;
 import com.example.projectapp.Model.Project;
 import com.example.projectapp.Model.User;
 
@@ -25,7 +26,8 @@ public interface ApiInterface {
     @POST("api/auth/signup")
     Call<ResponseBody> registerUser(@Body User user);
 
-
+    @GET("/api/notifications/all")
+    Call<List<Notification>> getNotifications(@Header("Authorization") String token);
 
     @FormUrlEncoded
     @POST("api/auth/login")
