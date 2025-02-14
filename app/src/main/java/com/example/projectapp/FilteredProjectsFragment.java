@@ -20,7 +20,7 @@ import com.example.projectapp.databinding.FragmentFilteredProjectsBinding;
 
 import java.util.ArrayList;
 
-public class FilteredProjects extends Fragment {
+public class FilteredProjectsFragment extends Fragment {
 
     private FragmentFilteredProjectsBinding binding;
     private ProjectViewModel projectViewModel;

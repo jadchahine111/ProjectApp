@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.projectapp.Adapter.CategoryAdapter;
@@ -75,6 +77,11 @@ public class SearchFragment extends Fragment {
             public void afterTextChanged(Editable s) {
                 // No action needed
             }
+        });
+
+        binding.filterButton.setOnClickListener(v -> {
+            NavController navController = Navigation.findNavController(binding.getRoot());
+            navController.navigate(R.id.action_searchFragment_to_searchFilterFragment);
         });
     }
 

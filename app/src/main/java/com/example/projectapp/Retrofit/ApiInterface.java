@@ -20,10 +20,12 @@ public interface ApiInterface {
 
     @GET("/api/user/projects/recent-active")
     Call<List<Project>> getRecentActiveProjects(@Header("Authorization") String token);
-    @GET("/api/user/categories")
-    Call<List<Category>> getCategories();
+    @GET("/api/categories/all")
+    Call<List<Category>> getCategories(@Header("Authorization") String token);
     @POST("api/auth/signup")
     Call<ResponseBody> registerUser(@Body User user);
+
+
 
     @FormUrlEncoded
     @POST("api/auth/login")

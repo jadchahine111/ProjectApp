@@ -6,12 +6,13 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- (Optional) A "Back" button -->
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back" />
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/go_back"
+        android:src="@drawable/ic_arrow_back" />
 
     <!-- The RecyclerView for filtered projects -->
     <androidx.recyclerview.widget.RecyclerView

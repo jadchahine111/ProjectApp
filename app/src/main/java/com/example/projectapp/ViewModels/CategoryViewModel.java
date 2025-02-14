@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.projectapp.Model.Category;
+import com.example.projectapp.MyApplication.MyApplication;
 import com.example.projectapp.Repository.CategoryRepository;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class CategoryViewModel extends ViewModel {
     private final MutableLiveData<String> errorMessage;
 
     public CategoryViewModel() {
-        categoryRepository = new CategoryRepository();
+        categoryRepository = new CategoryRepository(MyApplication.getAppContext());
         categoriesLiveData = new MutableLiveData<>();
         filteredCategoriesLiveData = new MutableLiveData<>();
         errorMessage = new MutableLiveData<>();
@@ -26,7 +27,7 @@ public class CategoryViewModel extends ViewModel {
     }
 
     public LiveData<List<Category>> getCategories() {
-        return filteredCategoriesLiveData; // We'll expose the filtered list to the UI.
+        return filteredCategoriesLiveData;
     }
 
     public LiveData<String> getErrorMessage() {
