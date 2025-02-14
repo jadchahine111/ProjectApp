@@ -1,23 +1,29 @@
 package com.example.projectapp;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import com.example.projectapp.Model.User;
+import com.example.projectapp.ViewModels.UserViewModel;
 import com.example.projectapp.databinding.FragmentEditBioBinding;
 
 public class EditBioFragment extends Fragment {
 
     private FragmentEditBioBinding binding;
+    private UserViewModel userViewModel;
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Use View Binding to inflate the layout
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         binding = FragmentEditBioBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -26,34 +32,32 @@ public class EditBioFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Hide Bottom Navigation
-        hideBottomNavigation();
+        // Obtain shared UserViewModel
+        userViewModel = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
 
-        // Set up UI listeners
-        setupListeners();
-    }
-
-    private void setupListeners() {
-        binding.backButton.setOnClickListener(v -> navigateBack());
-    }
-
-    private void navigateBack() {
-        // Use NavController to navigate back to the ProfileFragment
-        NavController navController = Navigation.findNavController(binding.getRoot());
-        navController.navigate(R.id.profileFragment);
-    }
-
-    private void hideBottomNavigation() {
-        // Delegate bottom navigation visibility management to MainActivity
-        if (getActivity() instanceof MainActivity) {
-            ((MainActivity) getActivity()).setBottomNavigationVisibility(false);
+        User currentUser = userViewModel.getUserLiveData().getValue();
+        if (currentUser != null && !TextUtils.isEmpty(currentUser.getBio())) {
+            binding.editedOwnerBio.setText(currentUser.getBio());
         }
+
+        binding.saveButton.setOnClickListener(v -> {
+            String newBio = binding.editedOwnerBio.getText().toString().trim();
+            if (TextUtils.isEmpty(newBio)) {
+                Toast.makeText(requireContext(), "Bio cannot be empty", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (currentUser != null) {
+                currentUser.setBio(newBio);
+                userViewModel.updateUser(currentUser);
+            }
+            NavController navController = Navigation.findNavController(view);
+            navController.navigate(R.id.profileFragment);
+        });
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        // Clear binding reference to prevent memory leaks
         binding = null;
     }
 }

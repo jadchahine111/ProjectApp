@@ -32,7 +32,7 @@
 
     <!-- Last Name Field -->
     <EditText
-        android:id="@+id/edited_owner_firstname"
+        android:id="@+id/edited_owner_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_username"

@@ -1,5 +1,7 @@
 package com.example.projectapp.Repository;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.example.projectapp.Model.User;
@@ -16,7 +18,10 @@ import retrofit2.Response;
 public class UserRepository {
     private ApiInterface apiInterface;
 
-    public UserRepository() {
+    private final Context context ;
+
+    public UserRepository(Context context) {
+        this.context = context.getApplicationContext();
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
     }
 
@@ -109,6 +114,73 @@ public class UserRepository {
             }
         });
     }
+    public void getUserDetails(final GetUserDetailsCallback callback) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+        if (token == null) {
+            callback.onFailure("Token not found");
+            return;
+        }
+        Call<User> call = apiInterface.getUserDetailsById("Bearer " + token);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    callback.onSuccess(response.body());
+                } else {
+                    String errorMessage = "Error: empty response or server error.";
+                    if (response.errorBody() != null) {
+                        try {
+                            errorMessage = "Error: " + response.errorBody().string();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    Log.e("API Error", "Response Code: " + response.code());
+                    callback.onFailure(errorMessage);
+                }
+            }
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.e("Network Error", t.getMessage(), t);
+                callback.onFailure("Network error: " + t.getMessage());
+            }
+        });
+    }
+    public void updateUserDetails(User user, final UpdateUserCallback callback) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+        if (token == null) {
+            callback.onFailure("Token not found");
+            return;
+        }
+        Call<User> call = apiInterface.updateUserDetails("Bearer " + token, user);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    callback.onSuccess(response.body());
+                } else {
+                    String errorMessage = "Error: empty response or server error.";
+                    if (response.errorBody() != null) {
+                        try {
+                            errorMessage = "Error: " + response.errorBody().string();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    Log.e("API Error", "Response Code: " + response.code());
+                    callback.onFailure(errorMessage);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.e("Network Error", t.getMessage(), t);
+                callback.onFailure("Network error: " + t.getMessage());
+            }
+        });
+    }
 
 
 
@@ -132,6 +204,14 @@ public class UserRepository {
     // Callback interface for success and failure for login
     public interface LoginUserCallback {
         void onSuccess(String responseBody);
+        void onFailure(String error);
+    }
+    public interface GetUserDetailsCallback {
+        void onSuccess(User user);
+        void onFailure(String error);
+    }
+    public interface UpdateUserCallback {
+        void onSuccess(User updatedUser);
         void onFailure(String error);
     }
 }

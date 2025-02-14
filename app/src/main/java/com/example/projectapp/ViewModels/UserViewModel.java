@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.projectapp.Model.User;
+import com.example.projectapp.MyApplication.MyApplication;
 import com.example.projectapp.Repository.UserRepository;
 
 public class UserViewModel extends ViewModel {
@@ -15,11 +16,12 @@ public class UserViewModel extends ViewModel {
 
 
     public UserViewModel() {
-        userRepository = new UserRepository();
+        userRepository = new UserRepository(MyApplication.getAppContext());
         userLiveData = new MutableLiveData<>(new User()); // Initialize User object
         errorMessageLiveData = new MutableLiveData<>();
         responseLiveData = new MutableLiveData<>(); // Initialize the response LiveData
         skillsLiveData = new MutableLiveData<>(); // Initialize the skills LiveData
+        loadUserDetails();
 
     }
 
@@ -51,6 +53,31 @@ public class UserViewModel extends ViewModel {
             @Override
             public void onFailure(String error) {
                 errorMessageLiveData.setValue(error); // Update error message on failure
+            }
+        });
+    }
+    public void loadUserDetails() {
+        userRepository.getUserDetails(new UserRepository.GetUserDetailsCallback() {
+            @Override
+            public void onSuccess(User user) {
+                userLiveData.setValue(user);
+            }
+            @Override
+            public void onFailure(String error) {
+                errorMessageLiveData.setValue(error);
+            }
+        });
+    }
+    public void updateUser(User user) {
+        userRepository.updateUserDetails(user, new UserRepository.UpdateUserCallback() {
+            @Override
+            public void onSuccess(User updatedUser) {
+                // Update LiveData with the updated user.
+                userLiveData.setValue(updatedUser);
+            }
+            @Override
+            public void onFailure(String error) {
+                errorMessageLiveData.setValue(error);
             }
         });
     }

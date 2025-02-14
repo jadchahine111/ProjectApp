@@ -1,24 +1,29 @@
 package com.example.projectapp;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
+import com.example.projectapp.Model.User;
+import com.example.projectapp.ViewModels.UserViewModel;
 import com.example.projectapp.databinding.FragmentEditLastNameBinding;
 
 public class EditLastNameFragment extends Fragment {
 
     private FragmentEditLastNameBinding binding;
+    private UserViewModel userViewModel;
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        // Inflate the layout using ViewBinding
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         binding = FragmentEditLastNameBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -27,41 +32,32 @@ public class EditLastNameFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Hide Bottom Navigation
-        hideBottomNavigation();
+        // Obtain shared UserViewModel
+        userViewModel = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
 
-        // Set up event listeners
-        setupListeners();
-    }
-
-    /**
-     * Sets up UI event listeners.
-     */
-    private void setupListeners() {
-        binding.backButton.setOnClickListener(v -> navigateToProfileFragment());
-    }
-
-    /**
-     * Navigates back to the Profile Fragment.
-     */
-    private void navigateToProfileFragment() {
-        NavController navController = Navigation.findNavController(binding.getRoot());
-        navController.navigate(R.id.profileFragment);
-    }
-
-    /**
-     * Hides the Bottom Navigation View by delegating the behavior to MainActivity.
-     */
-    private void hideBottomNavigation() {
-        if (getActivity() instanceof MainActivity) {
-            ((MainActivity) getActivity()).setBottomNavigationVisibility(false);
+        User currentUser = userViewModel.getUserLiveData().getValue();
+        if (currentUser != null && !TextUtils.isEmpty(currentUser.getLastName())) {
+            binding.editedOwnerLastname.setText(currentUser.getLastName());
         }
+
+        binding.saveButton.setOnClickListener(v -> {
+            String newLastName = binding.editedOwnerLastname.getText().toString().trim();
+            if (TextUtils.isEmpty(newLastName)) {
+                Toast.makeText(requireContext(), "Last name cannot be empty", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (currentUser != null) {
+                currentUser.setLastName(newLastName);
+                userViewModel.updateUser(currentUser);
+            }
+            NavController navController = Navigation.findNavController(view);
+            navController.navigate(R.id.profileFragment);
+        });
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        // Prevent memory leaks by nullifying the binding reference
         binding = null;
     }
 }

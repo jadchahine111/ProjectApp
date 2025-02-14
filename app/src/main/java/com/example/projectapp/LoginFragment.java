@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.example.projectapp.MyApplication.MyApplication;
 import com.example.projectapp.Repository.UserRepository;
 import com.example.projectapp.databinding.FragmentLoginBinding;
 
@@ -31,7 +32,7 @@ public class LoginFragment extends Fragment {
             ((MainActivity) getActivity()).setBottomNavigationVisibility(false);  // Hide Bottom Navigation for this fragment
         }
 
-        userRepository = new UserRepository();
+        userRepository = new UserRepository(MyApplication.getAppContext());
 
         binding.signUpText.setOnClickListener(v -> navigateSignup());
         binding.loginButton.setOnClickListener(v -> handleLogin());
