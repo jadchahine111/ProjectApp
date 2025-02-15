@@ -107,6 +107,9 @@
         <action
             android:id="@+id/action_profileFragment_to_editCV"
             app:destination="@id/fragmentEditCV" />
+        <action
+            android:id="@+id/action_profileFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
     <!-- MyProjectsFragment  -->

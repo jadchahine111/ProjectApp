@@ -1,5 +1,6 @@
 package com.example.projectapp;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,6 +55,7 @@ public class ProfileFragment extends Fragment {
                 binding.ownerFirstname.setText(user.getFirstName());
                 binding.ownerLastname.setText(user.getLastName());
                 binding.ownerBio.setText(user.getBio());
+                binding.ownerUsername.setText(user.getUsername());
             }
         });
 
@@ -82,6 +84,25 @@ public class ProfileFragment extends Fragment {
         binding.editCv.setOnClickListener(v ->
                 navigateTo(R.id.action_profileFragment_to_editCV)
         );
+
+        binding.logoutButton.setOnClickListener(v -> logout());
+    }
+
+    private void logout() {
+        // Clear SharedPreferences
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("UserPrefs", getContext().MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
+
+        // Navigate to LoginFragment
+        NavController navController = Navigation.findNavController(requireView());
+        navController.navigate(R.id.action_profileFragment_to_loginFragment);
+
+        // Hide Bottom Navigation
+        if (getActivity() instanceof MainActivity) {
+            ((MainActivity) getActivity()).setBottomNavigationVisibility(false);
+        }
     }
 
     private void navigateTo(int actionId) {

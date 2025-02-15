@@ -11,6 +11,7 @@ import com.example.projectapp.Retrofit.ApiInterface;
 import java.io.IOException;
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -76,4 +77,54 @@ public class ProjectRepository {
             }
         });
     }
+
+    public void addProject(Project project, AddProjectCallback callback) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+
+        if (token == null) {
+            callback.onFailure("Token is missing. Please log in again.");
+            return;
+        }
+
+        Call<ResponseBody> call = apiInterface.addProject("Bearer " + token, project);
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    // Success
+                    callback.onSuccess("Project added successfully!");
+                    Log.d("ProjectRepository", "Project added successfully.");
+                } else {
+                    // Log response code and body for debugging
+                    String errorMessage = "Error: Something went wrong.";
+                    try {
+                        if (response.errorBody() != null) {
+                            errorMessage = response.errorBody().string();
+                            Log.e("API Error", "Error Response Body: " + errorMessage);
+                        }
+                        Log.e("API Error", "Response Code: " + response.code());
+                    } catch (IOException e) {
+                        Log.e("API Error", "Error reading error body", e);
+                    }
+                    callback.onFailure(errorMessage);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                // Log failure exception
+                Log.e("Network Error", "Network failure: " + t.getMessage(), t);
+                callback.onFailure("Network error: " + t.getMessage());
+            }
+        });
+    }
+
+    // Callback interface
+    public interface AddProjectCallback {
+        void onSuccess(String message);
+        void onFailure(String errorMessage);
+    }
+
 }

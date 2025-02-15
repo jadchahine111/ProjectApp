@@ -51,6 +51,7 @@ public class SearchFilterFragment extends Fragment {
         categoryViewModel = new ViewModelProvider(requireActivity()).get(CategoryViewModel.class);
         projectViewModel = new ViewModelProvider(requireActivity()).get(ProjectViewModel.class);
 
+
         // 2. Observe categories from CategoryViewModel
         categoryViewModel.getCategories().observe(getViewLifecycleOwner(), categories -> {
             // Clear old data

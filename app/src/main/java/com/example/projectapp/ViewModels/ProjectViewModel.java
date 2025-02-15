@@ -18,6 +18,7 @@ public class ProjectViewModel extends ViewModel {
     private final MutableLiveData<List<Project>> allProjectsLiveData = new MutableLiveData<>();
     private final MutableLiveData<List<Project>> filteredProjectsLiveData = new MutableLiveData<>();
     private final MutableLiveData<String> errorMessageLiveData = new MutableLiveData<>();
+    private final MutableLiveData<String> successMessageLiveData = new MutableLiveData<>();
 
     public ProjectViewModel() {
         projectRepository = new ProjectRepository(MyApplication.getAppContext());
@@ -31,6 +32,11 @@ public class ProjectViewModel extends ViewModel {
     public LiveData<String> getErrorMessage() {
         return errorMessageLiveData;
     }
+
+    public LiveData<String> getSuccessMessage() {
+        return successMessageLiveData;
+    }
+
 
     public void loadProjects() {
         projectRepository.getRecentActiveProjects(new ProjectRepository.GetProjectsCallback() {
@@ -82,6 +88,34 @@ public class ProjectViewModel extends ViewModel {
         }
         filteredProjectsLiveData.setValue(newFilteredList);
     }
+
+    // Method to add a project
+    public void addProject(Project project) {
+        projectRepository.addProject(project, new ProjectRepository.AddProjectCallback() {
+            @Override
+            public void onSuccess(String message) {
+                successMessageLiveData.setValue("Project Added Successfully");
+
+                // Reload the filtered list by adding the new project to the list
+                List<Project> currentList = filteredProjectsLiveData.getValue();
+                if (currentList != null) {
+                    currentList.add(project); // Add the new project to the current list
+                    filteredProjectsLiveData.setValue(currentList); // Notify observers
+                }
+
+                // Reset the success message after it's shown to avoid triggering the toast again
+                resetSuccessMessage();
+            }
+
+            @Override
+            public void onFailure(String errorMessage) {
+                errorMessageLiveData.setValue(errorMessage);
+            }
+        });
+    }
+
+
+    public void resetSuccessMessage() {
+        successMessageLiveData.postValue(null);
+    }
 }
-
-

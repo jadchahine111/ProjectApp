@@ -14,6 +14,15 @@ public class Project {
     private String createdAt;
     @SerializedName("jsonKey")
     private String updatedAt;
+
+    public Project(String title, String description, int amount, int categoryId, String skillsNeeded) {
+        this.title = title;
+        this.description = description;
+        this.amount = amount;
+        this.categoryId = categoryId;
+        this.skillsNeeded = skillsNeeded;
+    }
+
     @SerializedName("jsonKey")
 
 

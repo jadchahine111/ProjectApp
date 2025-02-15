@@ -42,6 +42,35 @@
         android:textColor="@color/black"
         android:layout_marginBottom="16dp" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/rounded_edit_text_background">
+
+        <!-- Spinner -->
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingEnd="40dp"
+            android:background="@android:color/transparent"
+            android:spinnerMode="dropdown"
+            android:popupBackground="@android:color/white" />
+
+        <!-- Dropdown Icon -->
+        <ImageView
+            android:id="@+id/dropdown_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="13dp"
+            android:src="@drawable/ic_dropdown"
+            />
+
+    </RelativeLayout>
+
     <!-- Project Description -->
     <EditText
         android:id="@+id/project_description"
@@ -71,19 +100,6 @@
         android:textColor="@color/black"
         android:layout_marginBottom="16dp" />
 
-    <!-- Category ID -->
-    <EditText
-        android:id="@+id/category_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/hint_category_name"
-        android:background="@drawable/rounded_edit_text_background"
-        android:paddingStart="10dp"
-        android:paddingEnd="5dp"
-        android:padding="14dp"
-        android:textSize="14sp"
-        android:textColor="@color/black"
-        android:layout_marginBottom="16dp" />
 
     <!-- Amount -->
     <EditText

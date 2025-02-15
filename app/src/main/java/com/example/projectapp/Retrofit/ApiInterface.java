@@ -39,4 +39,7 @@ public interface ApiInterface {
     @POST("/api/auth/login")
     Call<ResponseBody> loginUser(@Field("email") String email, @Field("password") String password);
 
+    @POST("/api/user/add-project")
+    Call<ResponseBody> addProject(@Header("Authorization") String token, @Body Project project);
+
 }
