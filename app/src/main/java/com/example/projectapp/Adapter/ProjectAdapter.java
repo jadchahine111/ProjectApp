@@ -1,12 +1,15 @@
 package com.example.projectapp.Adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.projectapp.Model.Project;
 import com.example.projectapp.R;
@@ -48,7 +51,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
         // Set the title
         holder.projectTitle.setText(project.getTitle());
 
-        // Set owner username (or placeholder)
+        // Set owner placeholder (using userId as an example)
         holder.projectOwnerUsername.setText("Owner ID: " + project.getUserId());
 
         // Set skills text
@@ -63,6 +66,14 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
             if (favoriteClickListener != null) {
                 favoriteClickListener.onFavoriteClicked(project);
             }
+        });
+
+        // Handle card click to navigate to project details
+        holder.itemView.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putInt("projectId", project.getId());  // Passing the projectId
+            NavController navController = Navigation.findNavController(v);
+            navController.navigate(R.id.action_homeFragment_to_projectDetailsFragment, bundle);
         });
     }
 

@@ -98,7 +98,7 @@ public class AddProjectFragment extends Fragment {
 
         binding.addButton.setOnClickListener(v -> {
             String title = binding.projectTitle.getText().toString().trim();
-            String description = binding.projectDescription.getText().toString().trim();
+            String description = binding.projectDescriptionDetails.getText().toString().trim();
             String skillsNeeded = binding.skillsNeeded.getText().toString().trim();
             String amountText = binding.amount.getText().toString().trim();
 

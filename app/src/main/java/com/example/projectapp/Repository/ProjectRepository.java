@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 import com.example.projectapp.Model.Project;
 import com.example.projectapp.Retrofit.ApiClient;
 import com.example.projectapp.Retrofit.ApiInterface;
@@ -461,6 +464,53 @@ public class ProjectRepository {
 
 
 
+    // Fetch project by ID
+    public void getProjectById(int projectId, GetProjectByIdCallback callback) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+
+        if (token == null) {
+            callback.onFailure("Token is missing. Please log in again.");
+            return;
+        }
+
+        // Convert projectId to String before passing to the API
+        String projectIdStr = String.valueOf(projectId);
+        Call<Project> call = apiInterface.getProjectById("Bearer " + token, projectIdStr); // Pass the projectId as a String
+
+        call.enqueue(new Callback<Project>() {
+            @Override
+            public void onResponse(Call<Project> call, Response<Project> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    callback.onSuccess(response.body());
+                } else {
+                    String errorMessage = "Error: Unable to fetch project.";
+                    try {
+                        if (response.errorBody() != null) {
+                            errorMessage = response.errorBody().string();
+                            Log.e("API Error", "Error Response Body: " + errorMessage);
+                        }
+                        Log.e("API Error", "Response Code: " + response.code());
+                    } catch (IOException e) {
+                        Log.e("API Error", "Error reading error body", e);
+                    }
+                    callback.onFailure(errorMessage);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Project> call, Throwable t) {
+                Log.e("Network Error", "Network failure: " + t.getMessage(), t);
+                callback.onFailure("Network error: " + t.getMessage());
+            }
+        });
+    }
+
+    // Callback interface for getProjectById
+    public interface GetProjectByIdCallback {
+        void onSuccess(Project project);
+        void onFailure(String errorMessage);
+    }
 
 
 

@@ -3,9 +3,11 @@ package com.example.projectapp.ViewModels;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
 import com.example.projectapp.Model.Project;
 import com.example.projectapp.MyApplication.MyApplication;
 import com.example.projectapp.Repository.ProjectRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +28,11 @@ public class ProjectViewModel extends ViewModel {
     private final MutableLiveData<List<Project>> rejectedProjectsLiveData = new MutableLiveData<>();
     private final MutableLiveData<List<Project>> acceptedProjectsLiveData = new MutableLiveData<>();
     private final MutableLiveData<List<Project>> archivedProjectsLiveData = new MutableLiveData<>();
+    private final MutableLiveData<Project> projectDetails = new MutableLiveData<>();
+
+
+    // User Active Projects
+    private final MutableLiveData<List<Project>> allUserActiveProjectsLiveData = new MutableLiveData<>();
 
     public ProjectViewModel() {
         projectRepository = new ProjectRepository(MyApplication.getAppContext());
@@ -45,6 +52,54 @@ public class ProjectViewModel extends ViewModel {
         return filteredProjectsLiveData;
     }
 
+    public MutableLiveData<List<Project>> getAllUserActiveProjectsLiveData() {
+        return allUserActiveProjectsLiveData;
+    }
+
+    public MutableLiveData<List<Project>> getRejectedProjectsLiveData() {
+        return rejectedProjectsLiveData;
+    }
+
+    public MutableLiveData<List<Project>> getFavoritedProjectsLiveData() {
+        return favoritedProjectsLiveData;
+    }
+
+    public MutableLiveData<List<Project>> getAppliedProjectsLiveData() {
+        return appliedProjectsLiveData;
+    }
+
+    public MutableLiveData<List<Project>> getActiveProjectsLiveData() {
+        return activeProjectsLiveData;
+    }
+
+    public MutableLiveData<String> getSuccessMessageLiveData() {
+        return successMessageLiveData;
+    }
+
+    public MutableLiveData<String> getErrorMessageLiveData() {
+        return errorMessageLiveData;
+    }
+
+    public MutableLiveData<List<Project>> getFilteredProjectsLiveData() {
+        return filteredProjectsLiveData;
+    }
+
+    public MutableLiveData<List<Project>> getAllProjectsLiveData() {
+        return allProjectsLiveData;
+    }
+
+    public ProjectRepository getProjectRepository() {
+        return projectRepository;
+    }
+
+    public LiveData<List<Project>> getAllUserActiveProjects() {
+        return allUserActiveProjectsLiveData;
+    }
+
+    public LiveData<Project> getProjectDetails() {
+        return projectDetails;
+    }
+
     public LiveData<String> getErrorMessage() {
         return errorMessageLiveData;
     }
@@ -53,27 +108,12 @@ public class ProjectViewModel extends ViewModel {
         return successMessageLiveData;
     }
 
-    public LiveData<List<Project>> getActiveProjectsLiveData() {
-        return activeProjectsLiveData;
-    }
-
-    public LiveData<List<Project>> getAppliedProjectsLiveData() {
-        return appliedProjectsLiveData;
-    }
-    public LiveData<List<Project>> getAcceptedProjectsLiveData() {
-        return acceptedProjectsLiveData;
-    }
-
-    public LiveData<List<Project>> getFavoritedProjectsLiveData() {
-        return favoritedProjectsLiveData;
-    }
-
-    public LiveData<List<Project>> getRejectedProjectsLiveData() {
-        return rejectedProjectsLiveData;
-    }
 
     public LiveData<List<Project>> getArchivedProjectsLiveData() {
         return archivedProjectsLiveData;
+    }
+    public LiveData<List<Project>> getAcceptedProjectsLiveData() {
+        return acceptedProjectsLiveData;
     }
 
     // Load all recent active projects (for default listing and filtering)
@@ -291,6 +331,23 @@ public class ProjectViewModel extends ViewModel {
             }
         });
     }
+
+
+    public void fetchProjectDetails(int projectId) {
+        projectRepository.getProjectById(projectId, new ProjectRepository.GetProjectByIdCallback() {
+            @Override
+            public void onSuccess(Project project) {
+                projectDetails.postValue(project);
+            }
+
+            @Override
+            public void onFailure(String errorMessage) {
+                errorMessageLiveData.setValue(errorMessage);
+            }
+        });
+    }
+
+
 
     public void resetSuccessMessage() {
         successMessageLiveData.postValue(null);

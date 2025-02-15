@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.projectapp.Adapter.ProjectAdapter;
 import com.example.projectapp.Model.Project;
 import com.example.projectapp.ViewModels.ProjectViewModel;
+import com.example.projectapp.ViewModels.UserViewModel;
 import com.example.projectapp.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;
@@ -26,6 +27,8 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     private ProjectViewModel projectViewModel;
     private ProjectAdapter projectAdapter;
+
+    private UserViewModel userViewModel;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -45,6 +48,14 @@ public class HomeFragment extends Fragment {
         // Initialize ViewModel
         projectViewModel = new ViewModelProvider(this).get(ProjectViewModel.class);
 
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+
+        userViewModel.getUserLiveData().observe(getViewLifecycleOwner(), user -> {
+            if (user != null) {
+                // Set welcome text and subtext (username & email)
+                binding.ownerUsername.setText(user.getUsername());
+            }
+        });
         // Setup the RecyclerView and Adapter
         setupRecyclerView();
 

@@ -46,6 +46,9 @@ public interface ApiInterface {
 
     @GET("/api/projects/active-projects")
     Call<List<Project>> getUserActiveProjects(@Header("Authorization") String token);
+
+    @GET("/api/projects/{id}")
+    Call<Project> getProjectById(@Header("Authorization") String token, @Path("id") String projectId);
     @GET("api/user/applied-projects")
     Call<List<Project>> getUserAppliedProjects(@Header("Authorization") String token);
 
@@ -72,3 +75,4 @@ public interface ApiInterface {
 
 
 }
+
