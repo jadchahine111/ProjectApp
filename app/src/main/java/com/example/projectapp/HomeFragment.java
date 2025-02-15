@@ -76,6 +76,11 @@ public class HomeFragment extends Fragment {
 
         // 3. Set the adapter
         binding.projectsRecyclerView.setAdapter(projectAdapter);
+
+        projectAdapter.setOnFavoriteClickListener(project -> {
+            // Call your ViewModel method to add this project to favorites
+            projectViewModel.addProjectToFav(project);
+        });
     }
 
     /**

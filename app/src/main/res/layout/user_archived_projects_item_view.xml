@@ -1,14 +1,11 @@
-<androidx.cardview.widget.CardView android:layout_width="match_parent"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginTop="10dp"
     android:layout_marginBottom="7dp"
-    android:layout_marginStart="10dp"
-    android:layout_marginEnd="10dp"
     app:cardCornerRadius="12dp"
-    app:cardElevation="4dp"
-    layout_height=""
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    app:cardElevation="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +21,7 @@
             android:layout_marginBottom="3dp">
 
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/project_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
@@ -33,12 +30,12 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/unarchive_button"
-                android:layout_width="wrap_content"
+                android:id="@+id/archive_button_1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/dmsans_bold"
-                android:text="@string/archive_button"
+                android:text="@string/unarchive_button"
                 android:textColor="@color/orange"
                 android:textSize="15sp"
                 android:textAlignment="textEnd"
@@ -72,6 +69,16 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
+        <!-- Owner -->
+        <TextView
+            android:id="@+id/owner_username_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="14sp" />
 
         <!-- Skills Section -->
         <LinearLayout

@@ -23,12 +23,14 @@ public class NotificationViewModel extends ViewModel {
     private final MutableLiveData<List<Notification>> filteredNotificationsLiveData;
 
     private MutableLiveData<String> errorMessage = new MutableLiveData<>();
+    private MutableLiveData<String> successMessage;
 
     public NotificationViewModel() {
         filteredNotificationsLiveData = new MutableLiveData<>();
         notificationRepository = new NotificationRepository(MyApplication.getAppContext());
         notificationsLiveData = new MutableLiveData<>();
         errorMessage = new MutableLiveData<>();
+        successMessage = new MutableLiveData<>();
         loadNotifications();
     }
 
@@ -38,6 +40,9 @@ public class NotificationViewModel extends ViewModel {
 
     public LiveData<String> getErrorMessage() {
         return errorMessage;
+    }
+    public MutableLiveData<String> getSuccessMessage() {
+        return successMessage;
     }
 
     public void loadNotifications() {
@@ -74,6 +79,20 @@ public class NotificationViewModel extends ViewModel {
             }
         }
         notificationsLiveData.setValue(filteredList);
+    }
+    public void deleteNotification(int notificationId) {
+        notificationRepository.deleteNotification(notificationId, new NotificationRepository.DeleteNotificationCallback() {
+            @Override
+            public void onSuccess(String message) {
+                successMessage.setValue(message);
+                // Refresh the notifications list after deletion
+                loadNotifications();
+            }
+            @Override
+            public void onFailure(String error) {
+                errorMessage.setValue(error);
+            }
+        });
     }
 }
 

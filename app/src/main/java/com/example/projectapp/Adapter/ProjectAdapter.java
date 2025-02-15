@@ -6,19 +6,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.projectapp.Model.Project;
 import com.example.projectapp.R;
-
 import java.util.List;
 
 public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder> {
 
     private Context context;
     private List<Project> projectList;
+
+    // Interface for favorite button click
+    public interface OnFavoriteClickListener {
+        void onFavoriteClicked(Project project);
+    }
+
+    private OnFavoriteClickListener favoriteClickListener;
+
+    public void setOnFavoriteClickListener(OnFavoriteClickListener listener) {
+        this.favoriteClickListener = listener;
+    }
 
     // Constructor
     public ProjectAdapter(Context context, List<Project> projectList) {
@@ -40,21 +48,21 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
         // Set the title
         holder.projectTitle.setText(project.getTitle());
 
-        // We don’t have 'owner' in your Project model, but let's assume we have a userId
-        // For now, let's just show "Owner ID: " + userId or set some placeholder
+        // Set owner username (or placeholder)
         holder.projectOwnerUsername.setText("Owner ID: " + project.getUserId());
 
-        // Skills
-        // If 'skillsNeeded' is a string, you could parse it or just display it
+        // Set skills text
         if (project.getSkillsNeeded() != null) {
             holder.skill.setText(project.getSkillsNeeded());
         } else {
             holder.skill.setText("No skills specified");
         }
 
-        // Handle favorite (click listener)
+        // Set favorite button click listener
         holder.favoriteButton.setOnClickListener(v -> {
-           //
+            if (favoriteClickListener != null) {
+                favoriteClickListener.onFavoriteClicked(project);
+            }
         });
     }
 
@@ -76,15 +84,11 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
             skill = itemView.findViewById(R.id.skill);
             favoriteButton = itemView.findViewById(R.id.favorite_button);
         }
-
     }
-    public void setProjects(List<Project> newProjects) {
-        // Clear or replace the old data
-        this.projectList.clear();
-        this.projectList.addAll(newProjects);
 
-        // Notify the RecyclerView that the data changed
+    public void setProjects(List<Project> newProjects) {
+        projectList.clear();
+        projectList.addAll(newProjects);
         notifyDataSetChanged();
     }
-
 }
