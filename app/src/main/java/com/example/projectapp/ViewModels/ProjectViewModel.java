@@ -20,6 +20,9 @@ public class ProjectViewModel extends ViewModel {
     private final MutableLiveData<String> errorMessageLiveData = new MutableLiveData<>();
     private final MutableLiveData<String> successMessageLiveData = new MutableLiveData<>();
 
+    private final MutableLiveData<Project> projectDetails = new MutableLiveData<>();
+
+
     // User Active Projects
     private final MutableLiveData<List<Project>> allUserActiveProjectsLiveData = new MutableLiveData<>();
 
@@ -35,6 +38,10 @@ public class ProjectViewModel extends ViewModel {
 
     public LiveData<List<Project>> getAllUserActiveProjects() {
         return allUserActiveProjectsLiveData;
+    }
+
+    public LiveData<Project> getProjectDetails() {
+        return projectDetails;
     }
 
     public LiveData<String> getErrorMessage() {
@@ -135,6 +142,22 @@ public class ProjectViewModel extends ViewModel {
             }
         });
     }
+
+
+    public void fetchProjectDetails(int projectId) {
+        projectRepository.getProjectById(projectId, new ProjectRepository.GetProjectByIdCallback() {
+            @Override
+            public void onSuccess(Project project) {
+                projectDetails.postValue(project);
+            }
+
+            @Override
+            public void onFailure(String errorMessage) {
+                errorMessageLiveData.setValue(errorMessage);
+            }
+        });
+    }
+
 
 
     public void resetSuccessMessage() {

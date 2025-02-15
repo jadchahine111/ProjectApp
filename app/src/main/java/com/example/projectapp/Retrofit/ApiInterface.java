@@ -16,6 +16,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public interface ApiInterface {
 
@@ -44,4 +45,8 @@ public interface ApiInterface {
 
     @GET("/api/projects/active-projects")
     Call<List<Project>> getUserActiveProjects(@Header("Authorization") String token);
+
+    @GET("/api/projects/{id}")
+    Call<Project> getProjectById(@Header("Authorization") String token, @Path("id") String projectId);
 }
+

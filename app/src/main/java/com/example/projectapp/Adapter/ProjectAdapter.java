@@ -1,6 +1,7 @@
 package com.example.projectapp.Adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projectapp.Model.Project;
@@ -52,10 +55,15 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
             holder.skill.setText("No skills specified");
         }
 
-        // Handle favorite (click listener)
-        holder.favoriteButton.setOnClickListener(v -> {
-           //
+
+        // Handle card click to make an API request
+        holder.itemView.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putInt("projectId", project.getId());  // Passing only the projectId
+            NavController navController = Navigation.findNavController(v);
+            navController.navigate(R.id.action_homeFragment_to_projectDetailsFragment, bundle);
         });
+
     }
 
     @Override
