@@ -42,4 +42,6 @@ public interface ApiInterface {
     @POST("/api/user/add-project")
     Call<ResponseBody> addProject(@Header("Authorization") String token, @Body Project project);
 
+    @GET("/api/projects/active-projects")
+    Call<List<Project>> getUserActiveProjects(@Header("Authorization") String token);
 }
