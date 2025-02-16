@@ -48,8 +48,8 @@ public class ProjectDetailsFragment extends Fragment {
                     if (project != null) {
                         // Set the data to the views
                         binding.projectTitle.setText(project.getTitle());
-                        binding.projectDescriptionDetails.setText(project.getDescription());
-                        binding.projectAdditionalDetails.setText(project.getSkillsNeeded());
+                        binding.projectAdditionalDetails.setText(project.getDescription());
+                        binding.projectDescriptionDetails.setText(project.getSkillsNeeded());
                     }
                 }
             });

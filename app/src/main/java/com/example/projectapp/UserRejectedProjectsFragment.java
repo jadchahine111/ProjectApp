@@ -39,12 +39,12 @@ public class UserRejectedProjectsFragment extends Fragment {
         binding.userRejectedProjectsRecyclerView.setAdapter(adapter);
 
         projectViewModel = new ViewModelProvider(requireActivity()).get(ProjectViewModel.class);
-        projectViewModel.loadUserRejectedProjects();
 
         projectViewModel.getRejectedProjectsLiveData().observe(getViewLifecycleOwner(), projects -> {
             if (projects != null) {
                 adapter.setProjects(projects);
             }
+            projectViewModel.loadUserRejectedProjects();
         });
 
         binding.backButton.setOnClickListener(v -> navigateToProjects());

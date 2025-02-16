@@ -205,7 +205,9 @@
         android:id="@+id/fragmentMyActiveProjects"
         android:name="com.example.projectapp.UserPostedProjectsFragment"
         android:label="My Posted Projects Screen"
-        tools:layout="@layout/fragment_user_posted_projects" />
+        tools:layout="@layout/fragment_user_posted_projects">
+    </fragment>
+
 
     <!-- MyArchivedProjectsFragment -->
     <fragment
@@ -280,5 +282,11 @@
         android:name="com.example.projectapp.FilteredProjectsFragment"
         android:label="Filtered Projects Screen"
         tools:layout="@layout/fragment_filtered_projects" />
+
+
+    <action
+        android:id="@+id/action_global_projectDetailsFragment"
+        app:destination="@id/fragmentProjectDetails" />
+
 
 </navigation>

@@ -1,5 +1,7 @@
 package com.example.projectapp.ViewModels;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -48,11 +50,14 @@ public class UserViewModel extends ViewModel {
             @Override
             public void onSuccess(String responseBody) {
                 responseLiveData.setValue(responseBody); // Set the raw response body into LiveData
+                Log.d("UserViewModel", "Registration success: " + responseBody);
             }
 
             @Override
             public void onFailure(String error) {
                 errorMessageLiveData.setValue(error); // Update error message on failure
+                Log.e("UserViewModel", "Registration failed: " + error);
+
             }
         });
     }

@@ -5,7 +5,7 @@ public class User {
     private String username;
     private String password;
 
-    private String retypePassword;
+    private String password_confirmation;
 
     private String firstName;
     private String lastName;
@@ -14,7 +14,7 @@ public class User {
     private String linkedinURL;
 
     // Constructor
-    public User(String email, String username, String password, String firstName, String lastName, String bio, String skills, String linkedinURL, String retypePassword) {
+    public User(String email, String username, String password, String firstName, String lastName, String bio, String skills, String linkedinURL, String password_confirmation) {
         this.email = email;
         this.username = username;
         this.password = password;
@@ -23,7 +23,7 @@ public class User {
         this.bio = bio;
         this.skills = skills;
         this.linkedinURL = linkedinURL;
-        this.retypePassword = retypePassword;
+        this.password_confirmation = password_confirmation;
     }
 
     public User(String email, String username, String password) {
@@ -60,8 +60,8 @@ public class User {
     public String getLinkedinURL() { return linkedinURL; }
     public void setLinkedinURL(String linkedinURL) { this.linkedinURL = linkedinURL; }
 
-    public String getRetypePassword() { return retypePassword; }
-    public void setRetypePassword(String retypePassword) { this.retypePassword = retypePassword; }
+    public String getRetypePassword() { return password_confirmation; }
+    public void setRetypePassword(String password_confirmation) { this.password_confirmation = password_confirmation; }
 
 
 }

@@ -1,11 +1,14 @@
 package com.example.projectapp.Adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.projectapp.Model.Project;
 import com.example.projectapp.R;
@@ -56,6 +59,15 @@ public class UserProjectsAdapter extends RecyclerView.Adapter<UserProjectsAdapte
             holder.skill.setText("No skills specified");
         }
 
+        // Handle navigation to project details
+        holder.viewDetails.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putInt("projectId", project.getId());  // Pass project ID to details screen
+
+            NavController navController = Navigation.findNavController(v);
+            navController.navigate(R.id.action_global_projectDetailsFragment, bundle);
+        });
+
         // If an archive button is present, set its click listener
         if (actionListener != null && holder.archiveButton != null) {
             holder.archiveButton.setOnClickListener(v -> actionListener.onArchiveClicked(project));
@@ -85,6 +97,8 @@ public class UserProjectsAdapter extends RecyclerView.Adapter<UserProjectsAdapte
     // ViewHolder definition
     public static class UserProjectViewHolder extends RecyclerView.ViewHolder {
         TextView projectTitle;
+
+        TextView viewDetails;
         TextView skill;
         // Optional buttons – they might be present in some layouts but not others.
         TextView archiveButton;    // e.g. for archiving in posted projects
@@ -93,12 +107,13 @@ public class UserProjectsAdapter extends RecyclerView.Adapter<UserProjectsAdapte
 
         public UserProjectViewHolder(@NonNull View itemView) {
             super(itemView);
-            projectTitle = itemView.findViewById(R.id.title);
+            projectTitle = itemView.findViewById(R.id.project_title);
             skill = itemView.findViewById(R.id.skill);
             // Try to find these views; if the current layout doesn’t include them, they’ll be null.
-            archiveButton = itemView.findViewById(R.id.archive_button_1);
+            archiveButton = itemView.findViewById(R.id.archive_button);
             unarchiveButton = itemView.findViewById(R.id.unarchive_button);
             unfavoriteButton = itemView.findViewById(R.id.unfavorite_button);
+            viewDetails = itemView.findViewById(R.id.view_details);
         }
     }
 }

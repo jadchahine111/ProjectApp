@@ -26,44 +26,43 @@ public class UserRepository {
     }
 
     // Method to register the user via the API
+    // Register User with API call
     public void registerUser(User user, final RegisterUserCallback callback) {
+        // Pass the user information to your API method
         Call<ResponseBody> call = apiInterface.registerUser(user);
+
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
                     try {
-                        // Read the response body as a string to debug
                         String responseBody = response.body().string();
-                        Log.e("Response", responseBody); // Log the response body
-                        // You can optionally parse this response into your desired format (like User)
-                        callback.onSuccess(responseBody);
+                        Log.d("UserRepository", "Registration success: " + responseBody);
+                        callback.onSuccess(responseBody);  // Pass the success response
                     } catch (IOException e) {
                         e.printStackTrace();
                         callback.onFailure("Error parsing response body");
                     }
                 } else {
-                    // Log more information to debug the failure
                     String errorMessage = "Registration failed!";
                     if (response.errorBody() != null) {
                         try {
                             String errorBody = response.errorBody().string();
-                            Log.e("ErrorBody", errorBody); // Log the error body
-                            callback.onFailure("Error: " + errorBody);
+                            Log.e("UserRepository", "Error: " + errorBody);
+                            callback.onFailure("Error: " + errorBody);  // Pass the error response
                         } catch (IOException e) {
                             e.printStackTrace();
                             callback.onFailure("Error parsing error body");
                         }
                     } else {
-                        callback.onFailure("Unknown error occurred");
+                        callback.onFailure(errorMessage);  // If no error body, return a general error
                     }
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                // Handle network failure
-                Log.e("NetworkFailure", t.getMessage(), t);  // Log the network failure
+                Log.e("UserRepository", "Network failure: " + t.getMessage(), t);
                 callback.onFailure("Network failure: " + t.getMessage());
             }
         });

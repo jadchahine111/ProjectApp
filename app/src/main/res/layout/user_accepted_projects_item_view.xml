@@ -1,6 +1,6 @@
 <androidx.cardview.widget.CardView
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
     android:layout_marginBottom="7dp"
 
@@ -43,17 +43,7 @@
                 android:textColor="@color/orange"
                 android:textSize="12sp"
                 android:textStyle="bold" />
-            <!-- Owner -->
-            <TextView
-                android:id="@+id/OwnerUsername"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="7dp"
-                android:layout_marginTop="7dp"
 
-                android:text=""
-                android:textColor="@color/black"
-                android:textSize="14sp" />
 
             <!-- Skills Section -->
             <LinearLayout

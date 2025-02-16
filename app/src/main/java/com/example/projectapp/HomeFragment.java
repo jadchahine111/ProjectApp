@@ -91,6 +91,7 @@ public class HomeFragment extends Fragment {
         projectAdapter.setOnFavoriteClickListener(project -> {
             // Call your ViewModel method to add this project to favorites
             projectViewModel.addProjectToFav(project);
+            projectViewModel.loadProjects();
         });
     }
 

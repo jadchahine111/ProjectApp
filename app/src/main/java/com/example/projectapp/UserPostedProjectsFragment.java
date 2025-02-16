@@ -47,6 +47,7 @@ public class UserPostedProjectsFragment extends Fragment {
             public void onArchiveClicked(Project project) {
                 // Call the ViewModel to archive this project
                 projectViewModel.archiveProject(project.getId());
+                projectViewModel.loadUserActiveProjects();
             }
 
             @Override

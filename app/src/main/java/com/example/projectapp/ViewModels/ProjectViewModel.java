@@ -45,6 +45,7 @@ public class ProjectViewModel extends ViewModel {
         loadUserFavoritedProjects();
         loadUserRejectedProjects();
         loadUserArchivedProjects();
+        loadUserAcceptedProjects();
     }
 
     // Getter methods for LiveData

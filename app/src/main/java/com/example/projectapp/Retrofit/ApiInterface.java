@@ -26,8 +26,14 @@ public interface ApiInterface {
     Call<List<Project>> getRecentActiveProjects(@Header("Authorization") String token);
     @GET("/api/categories/all")
     Call<List<Category>> getCategories(@Header("Authorization") String token);
-    @POST("/api/auth/signup")
+
+    @POST("/api/signup")
     Call<ResponseBody> registerUser(@Body User user);
+
+
+    @FormUrlEncoded
+    @POST("/api/auth/login")
+    Call<ResponseBody> loginUser(@Field("email") String email, @Field("email") String password);
 
     @GET("/api/user/info")
     Call<User> getUserDetailsById(@Header("Authorization") String token);
@@ -37,9 +43,6 @@ public interface ApiInterface {
     @GET("/api/notifications/all")
     Call<List<Notification>> getNotifications(@Header("Authorization") String token);
 
-    @FormUrlEncoded
-    @POST("/api/auth/login")
-    Call<ResponseBody> loginUser(@Field("email") String email, @Field("password") String password);
 
     @POST("/api/user/add-project")
     Call<ResponseBody> addProject(@Header("Authorization") String token, @Body Project project);
@@ -49,28 +52,28 @@ public interface ApiInterface {
 
     @GET("/api/projects/{id}")
     Call<Project> getProjectById(@Header("Authorization") String token, @Path("id") String projectId);
-    @GET("api/user/applied-projects")
+    @GET("api/status/applied-projects")
     Call<List<Project>> getUserAppliedProjects(@Header("Authorization") String token);
 
-    @GET("api/user/favorited-projects")
+    @GET("api/status/favorited-projects")
     Call<List<Project>> getFavoritedProjects(@Header("Authorization") String token);
 
-    @GET("api/user/accepted-projects")
+    @GET("api/status/accepted-projects")
     Call<List<Project>> getAcceptedProjects(@Header("Authorization") String token);
-    @GET("api/user/rejected-projects")
+    @GET("api/status/rejected-projects")
     Call<List<Project>> getRejectedProjects(@Header("Authorization") String token);
 
-    @GET("api/user/archived-projects")
+    @GET("/api/status/archived-projects")
     Call<List<Project>> getUserArchivedProjects(@Header("Authorization") String token);
-    @PUT("api/projects/unarchive/{projectId}")
+    @PUT("api/user/projects/unarchive/{projectId}")
     Call<ResponseBody> unarchiveProject(@Header("Authorization") String token, @Path("projectId") int projectId);
-    @PUT("api/projects/archive/{projectId}")
+    @PUT("api/user/projects/archive/{projectId}")
     Call<ResponseBody> archiveProject(@Header("Authorization") String token, @Path("projectId") int projectId);
     @DELETE("api/notifications/delete/{notificationId}")
     Call<ResponseBody> deleteNotification(@Header("Authorization") String token, @Path("notificationId") int notificationId);
-    @POST("api/add-fav/{projectId}")
+    @POST("api/user/add-fav/{projectId}")
     Call<ResponseBody> addProjectToFav(@Header("Authorization") String token, @Path("projectId") int projectId);
-    @DELETE("api/remove-fav/{projectId}")
+    @DELETE("api/user/remove-fav/{projectId}")
     Call<ResponseBody> remProjectFromFav(@Header("Authorization") String token, @Path("projectId") int projectId);
 
 

@@ -45,6 +45,8 @@ public class UserAcceptedProjectsFragment extends Fragment {
             if (projects != null) {
                 adapter.setProjects(projects);
             }
+            projectViewModel.loadUserAcceptedProjects();
+
         });
 
         binding.backButton.setOnClickListener(v -> navigateToProjects());

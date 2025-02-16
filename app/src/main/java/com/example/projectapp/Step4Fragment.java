@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,43 +41,58 @@ public class Step4Fragment extends Fragment {
                 binding.tvEmail.setText(user.getEmail());
                 binding.tvUsername.setText(user.getUsername());
                 binding.tvPassword.setText(user.getPassword());
-                binding.tvFirstName.setText(user.getBio());
+                binding.tvPassword.setText(user.getPassword());
+
+                binding.tvFirstName.setText(user.getFirstName());
                 binding.tvLastName.setText(user.getLastName());
                 binding.tvBio.setText(user.getBio());
                 binding.tvLinkedIn.setText(user.getLinkedinURL());
-
             }
         });
 
         // Final confirmation button
         binding.signup.setOnClickListener(v -> {
-            // Log the current value of responseLiveData
-
-            // Get the user object to register
+            // Get user data from ViewModel
             User user = userViewModel.getUserLiveData().getValue();
-
-            // Proceed with registration logic
-            if (user != null) {
-                userViewModel.registerUser(user);
-            } else {
-                Log.e("UserRegistration", "User object is null, cannot proceed with registration.");
+            if (user == null) {
+                Toast.makeText(getContext(), "Please complete the form", Toast.LENGTH_SHORT).show();
+                return;
             }
 
-            // Observe the response live data using the fragment's view lifecycle owner
-            userViewModel.getResponseLiveData().observe(getViewLifecycleOwner(), response -> {
-                Log.d("UserRegistration", "Registration request: " + user);
+            // Validate the data
+            if (isValidUserData(user)) {
+                // Call the registerUser method from ViewModel to submit the data
+                userViewModel.registerUser(user);
+            } else {
+                Toast.makeText(getContext(), "Please fill in all fields correctly", Toast.LENGTH_SHORT).show();
+            }
+        });
 
-                Log.d("UserRegistration", "Registration response: " + response);
-                // After registration, you can navigate to the success or login screen based on the response
-            });
+        // Observe the registration result
+        userViewModel.getResponseLiveData().observe(getViewLifecycleOwner(), response -> {
+            // Handle success response
+            Log.d("Step4Fragment", "Registration successful: " + response);
+            Toast.makeText(getContext(), "Sign-up successful", Toast.LENGTH_SHORT).show();
+            // Optionally, navigate to another screen after successful registration
+        });
 
-            // If there’s an error during registration, you can observe errorMessageLiveData as well
-            userViewModel.getErrorMessageLiveData().observe(getViewLifecycleOwner(), errorMessage -> {
-                Log.e("UserRegistration", "Registration failed: " + errorMessage);
-                // Handle the error message (e.g., show a toast or alert)
-            });
+        userViewModel.getErrorMessageLiveData().observe(getViewLifecycleOwner(), error -> {
+            // Handle error response
+            Log.e("Step4Fragment", "Registration failed: " + error);
+            Toast.makeText(getContext(), "Error: " + error, Toast.LENGTH_SHORT).show();
         });
 
         return view;
     }
+
+    private boolean isValidUserData(User user) {
+        return user.getEmail() != null && !user.getEmail().isEmpty() &&
+                user.getUsername() != null && !user.getUsername().isEmpty() &&
+                user.getPassword() != null && !user.getPassword().isEmpty() &&
+                user.getRetypePassword() != null && !user.getRetypePassword().isEmpty() &&
+                user.getFirstName() != null && !user.getFirstName().isEmpty() &&
+                user.getLastName() != null && !user.getLastName().isEmpty() &&
+                user.getPassword().equals(user.getRetypePassword());  // Add this validation
+    }
+
 }

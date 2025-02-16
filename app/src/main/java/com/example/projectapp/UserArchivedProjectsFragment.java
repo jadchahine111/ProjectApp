@@ -49,6 +49,7 @@ public class UserArchivedProjectsFragment extends Fragment {
             @Override
             public void onUnarchiveClicked(Project project) {
                 projectViewModel.unarchiveProject(project.getId());
+                projectViewModel.loadUserArchivedProjects();
             }
 
             @Override
