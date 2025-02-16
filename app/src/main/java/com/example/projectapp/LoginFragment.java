@@ -3,6 +3,7 @@ package com.example.projectapp;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.example.projectapp.MyApplication.MyApplication;
 import com.example.projectapp.Repository.UserRepository;
 import com.example.projectapp.databinding.FragmentLoginBinding;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LoginFragment extends Fragment {
@@ -82,13 +84,50 @@ public class LoginFragment extends Fragment {
 
                 @Override
                 public void onFailure(String error) {
-                    // Handle the failure, such as a network error or invalid credentials
-                    binding.emailInput.setError("Login failed: " + error);
-                    binding.passwordInput.setError("Login failed: " + error);
+                    Log.e("LoginError", "Raw error response: " + error); // Debugging log
 
-                    // Optionally, show a toast message for more user-friendly feedback
-                    Toast.makeText(requireContext(), "Login failed: " + error, Toast.LENGTH_SHORT).show();
+                    try {
+                        // Remove "Error: " prefix if present
+                        if (error.startsWith("Error: ")) {
+                            error = error.substring(7); // Remove the first 7 characters
+                        }
+
+                        // Parse the error response as JSON
+                        JSONObject jsonError = new JSONObject(error);
+                        String errorMessage = jsonError.optString("error", "An unexpected error occurred.");
+
+                        Log.e("LoginError", "Extracted error message: " + errorMessage); // Debugging log
+
+                        // Customize messages for better UI
+                        switch (errorMessage) {
+                            case "Invalid credentials":
+                                errorMessage = "Incorrect email or password. Please try again.";
+                                break;
+                            case "Your registration is pending admin approval.":
+                                errorMessage = "Your account is awaiting admin approval.";
+                                break;
+                            case "Email is not verified. A verification email has been sent to your email address.":
+                                errorMessage = "Please verify your email. A verification link has been sent.";
+                                break;
+                        }
+
+                        // Update UI with error message
+                        binding.emailInput.setError(errorMessage);
+                        binding.passwordInput.setError(null);
+                        Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        Log.e("LoginError", "JSON Parsing failed: " + e.getMessage()); // Debugging log
+
+                        // Fallback error message
+                        String fallbackMessage = "An unexpected error occurred. Please try again.";
+                        binding.emailInput.setError(fallbackMessage);
+                        binding.passwordInput.setError(null);
+                        Toast.makeText(requireContext(), fallbackMessage, Toast.LENGTH_SHORT).show();
+                    }
                 }
+
+
+
             });
         }
     }

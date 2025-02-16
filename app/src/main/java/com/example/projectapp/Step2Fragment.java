@@ -49,17 +49,13 @@ public class Step2Fragment extends Fragment {
         binding = FragmentStep2Binding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-        // -----------------------
         // Restoring data from ViewModel
-        // -----------------------
         binding.firstName.setText(userViewModel.getUserLiveData().getValue().getFirstName());
         binding.lastName.setText(userViewModel.getUserLiveData().getValue().getLastName());
         binding.bio.setText(userViewModel.getUserLiveData().getValue().getBio());
         binding.linkedinUrl.setText(userViewModel.getUserLiveData().getValue().getLinkedinURL());
 
-        // -----------------------
         // Saving data to ViewModel (TextWatchers)
-        // -----------------------
         binding.firstName.addTextChangedListener(new TextWatcher() {
             @Override public void afterTextChanged(Editable s) {
                 userViewModel.getUserLiveData().getValue().setFirstName(s.toString());
@@ -92,19 +88,19 @@ public class Step2Fragment extends Fragment {
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
         });
 
-        // -------------------------------------------------
-        // AUTO-COMPLETE & CHIPGROUP LOGIC FOR SKILLS
-        // -------------------------------------------------
+        // Observe skillsLiveData and update the TextView
+        userViewModel.getSkillsLiveData().observe(getViewLifecycleOwner(), skills -> {
+            binding.tvSkills.setText(skills.isEmpty() ? "No skills selected" : skills);
+        });
 
-        // Create an ArrayAdapter for the AutoCompleteTextView
+        // AUTO-COMPLETE & CHIPGROUP LOGIC FOR SKILLS
         ArrayAdapter<String> skillsAdapter = new ArrayAdapter<>(
                 requireContext(),
-                android.R.layout.simple_list_item_1,  // or a custom layout
+                android.R.layout.simple_list_item_1,
                 SKILLS
         );
         binding.skillsAutoComplete.setAdapter(skillsAdapter);
 
-        // When the user selects an item from suggestions
         binding.skillsAutoComplete.setOnItemClickListener((parent, itemView, position, id) -> {
             String selectedSkill = skillsAdapter.getItem(position);
             if (selectedSkill != null) {
@@ -122,7 +118,6 @@ public class Step2Fragment extends Fragment {
             }
         }
 
-
         return view;
     }
 
@@ -132,17 +127,19 @@ public class Step2Fragment extends Fragment {
         chip.setCloseIconVisible(true);
 
         chip.setOnCloseIconClickListener(view -> {
-            binding.chipGroupSkills.removeView(chip);
-            storeChipsInViewModel(); // Update ViewModel when a chip is removed
+            binding.chipGroupSkills.removeView(chip);  // Remove chip from the ChipGroup
+            storeChipsInViewModel();  // Update ViewModel when a chip is removed
         });
 
         binding.chipGroupSkills.addView(chip);
-        storeChipsInViewModel(); // Update ViewModel whenever a new chip is added
+        storeChipsInViewModel();  // Update ViewModel when a new chip is added
     }
 
     private void storeChipsInViewModel() {
         List<String> skillList = new ArrayList<>();
         int childCount = binding.chipGroupSkills.getChildCount();
+
+        // Collect all the chip text (skills) into the list
         for (int i = 0; i < childCount; i++) {
             View chipView = binding.chipGroupSkills.getChildAt(i);
             if (chipView instanceof Chip) {
@@ -150,8 +147,12 @@ public class Step2Fragment extends Fragment {
                 skillList.add(chip.getText().toString());
             }
         }
+
+        // Join the list of skills into a comma-separated string
         String allSkills = TextUtils.join(", ", skillList);
-        userViewModel.getSkillsLiveData().setValue(allSkills); // Update ViewModel with the skills list
+
+        // Update the ViewModel with the comma-separated string of skills
+        userViewModel.setSkills(allSkills);
     }
 
     @Override
@@ -159,4 +160,5 @@ public class Step2Fragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 }
