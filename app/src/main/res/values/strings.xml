@@ -12,7 +12,7 @@
     <string name="manage_button"><u>Manage</u></string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="check_email">Check Your Email</string>
-    <string name="reset_password_sent">We have sent a verification link to the email address</string>
+    <string name="reset_password_sent">We have sent a verification link to your email address</string>
     <string name="verify">Verify</string>
     <string name="not_received_email">You have not received the email?</string>
     <string name="resend">Resend</string>
@@ -138,4 +138,6 @@
     <string name="bio_title2">Bio: </string>
     <string name="linkedin_title2">LinkedIn: </string>
     <string name="signup_button_text2">Sign up</string>
+    <string name="skills">Skills: </string>
+    <string name="no_skills_selected">No skills selected</string>
 </resources>

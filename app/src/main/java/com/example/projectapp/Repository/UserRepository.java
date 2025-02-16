@@ -8,6 +8,8 @@ import com.example.projectapp.Model.User;
 import com.example.projectapp.Retrofit.ApiClient;
 import com.example.projectapp.Retrofit.ApiInterface;
 
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import okhttp3.ResponseBody;
@@ -179,6 +181,57 @@ public class UserRepository {
                 callback.onFailure("Network error: " + t.getMessage());
             }
         });
+    }
+
+
+    // Add this method to UserRepository
+    public void checkEmailVerificationStatus(String email, final EmailVerificationCallback callback) {
+        Call<ResponseBody> call = apiInterface.checkEmailVerificationStatus(email);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    try {
+                        // Parse the response body as JSON
+                        String responseBody = response.body().string();
+                        JSONObject jsonObject = new JSONObject(responseBody);
+
+                        // Get the verification status
+                        String status = jsonObject.getString("status");
+
+                        // Pass the status to the callback
+                        callback.onSuccess(status);
+                    } catch (Exception e) {
+                        Log.e("UserRepository", "Error parsing response: " + e.getMessage());
+                        callback.onFailure("Error parsing response");
+                    }
+                } else {
+                    // Handle API call failure
+                    String errorMessage = "Failed to check verification status.";
+                    if (response.errorBody() != null) {
+                        try {
+                            errorMessage = "Error: " + response.errorBody().string();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    callback.onFailure(errorMessage);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                // Handle network failure
+                Log.e("UserRepository", "Network failure: " + t.getMessage());
+                callback.onFailure("Network failure: " + t.getMessage());
+            }
+        });
+    }
+
+    // Add this callback interface to UserRepository
+    public interface EmailVerificationCallback {
+        void onSuccess(String status);
+        void onFailure(String error);
     }
 
 

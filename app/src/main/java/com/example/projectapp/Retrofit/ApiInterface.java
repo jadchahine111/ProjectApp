@@ -18,6 +18,7 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiInterface {
 
@@ -33,7 +34,7 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("/api/auth/login")
-    Call<ResponseBody> loginUser(@Field("email") String email, @Field("email") String password);
+    Call<ResponseBody> loginUser(@Field("email") String email, @Field("password") String password);
 
     @GET("/api/user/info")
     Call<User> getUserDetailsById(@Header("Authorization") String token);
@@ -75,6 +76,9 @@ public interface ApiInterface {
     Call<ResponseBody> addProjectToFav(@Header("Authorization") String token, @Path("projectId") int projectId);
     @DELETE("api/user/remove-fav/{projectId}")
     Call<ResponseBody> remProjectFromFav(@Header("Authorization") String token, @Path("projectId") int projectId);
+
+    @GET("/api/auth/check-verification-status")
+    Call<ResponseBody> checkEmailVerificationStatus(@Query("email") String email);
 
 
 }
