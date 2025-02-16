@@ -75,6 +75,18 @@ public interface ApiInterface {
     Call<ResponseBody> addProjectToFav(@Header("Authorization") String token, @Path("projectId") int projectId);
     @DELETE("api/user/remove-fav/{projectId}")
     Call<ResponseBody> remProjectFromFav(@Header("Authorization") String token, @Path("projectId") int projectId);
+    @GET("api/projects/{projectId}/applied-users")
+    Call<List<User>> getAppliedUsersForProject(@Header("Authorization") String token, @Path("projectId") int projectId);
+    @PUT("api/projects/{projectId}/accept-applicant/{userId}")
+    Call<ResponseBody> acceptProjectApplicant(@Header("Authorization") String token,
+                                              @Path("projectId") int projectId,
+                                              @Path("userId") int userId);
+
+    @PUT("api/projects/{projectId}/decline-applicant/{userId}")
+    Call<ResponseBody> declineProjectApplicant(@Header("Authorization") String token,
+                                               @Path("projectId") int projectId,
+                                               @Path("userId") int userId);
+
 
 
 }

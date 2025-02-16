@@ -85,6 +85,15 @@
             android:id="@+id/action_searchFragment_to_searchFilterFragment"
             app:destination="@id/fragmentSearchFilter" />
     </fragment>
+    <fragment
+        android:id="@+id/appliedUsersFragment"
+        android:name="com.example.projectapp.AppliedUsersFragment"
+        android:label="AppliedUsers"
+        tools:layout="@layout/fragment_applied_users" >
+        <action
+            android:id="@+id/action_appliedUsersFragment_to_userProfileFragment"
+            app:destination="@id/fragmentUser" />
+    </fragment>
 
     <!-- ProfileFragment  -->
     <fragment

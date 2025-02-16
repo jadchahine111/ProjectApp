@@ -1,6 +1,7 @@
 package com.example.projectapp.Model;
 
 public class User {
+    private int id;
     private String email;
     private String username;
     private String password;
@@ -33,6 +34,14 @@ public class User {
     }
 
     public User() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     // Getters and Setters for each field

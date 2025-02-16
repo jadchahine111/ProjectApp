@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.projectapp.Model.Project;
+import com.example.projectapp.Model.User;
 import com.example.projectapp.MyApplication.MyApplication;
 import com.example.projectapp.Repository.ProjectRepository;
 
@@ -28,6 +29,8 @@ public class ProjectViewModel extends ViewModel {
     private final MutableLiveData<List<Project>> rejectedProjectsLiveData = new MutableLiveData<>();
     private final MutableLiveData<List<Project>> acceptedProjectsLiveData = new MutableLiveData<>();
     private final MutableLiveData<List<Project>> archivedProjectsLiveData = new MutableLiveData<>();
+    private final MutableLiveData<List<User>> appliedUsersLiveData = new MutableLiveData<>();
+
     private final MutableLiveData<Project> projectDetails = new MutableLiveData<>();
 
 
@@ -52,6 +55,7 @@ public class ProjectViewModel extends ViewModel {
     public LiveData<List<Project>> getFilteredProjects() {
         return filteredProjectsLiveData;
     }
+    public LiveData<List<User>> getAppliedUsersLiveData() { return appliedUsersLiveData; }
 
     public MutableLiveData<List<Project>> getAllUserActiveProjectsLiveData() {
         return allUserActiveProjectsLiveData;
@@ -132,6 +136,51 @@ public class ProjectViewModel extends ViewModel {
             }
         });
     }
+    public void loadAppliedUsersForProject(int projectId) {
+        projectRepository.getAppliedUsersForProject(projectId, new ProjectRepository.GetAppliedUsersCallback() {
+            @Override
+            public void onSuccess(List<User> users) {
+                appliedUsersLiveData.setValue(users);
+            }
+            @Override
+            public void onFailure(String error) {
+                errorMessageLiveData.setValue(error);
+            }
+        });
+    }
+    public void acceptProjectApplicant(int projectId, int userId, final AcceptCallback successCallback, final FailureCallback failureCallback) {
+        projectRepository.acceptProjectApplicant(projectId, userId, new ProjectRepository.AcceptProjectApplicantCallback() {
+            @Override
+            public void onSuccess(String message) {
+                successCallback.onSuccess(message);
+            }
+            @Override
+            public void onFailure(String error) {
+                failureCallback.onFailure(error);
+            }
+        });
+    }
+
+    // New: Decline project applicant
+    public void declineProjectApplicant(int projectId, int userId, final AcceptCallback successCallback, final FailureCallback failureCallback) {
+        projectRepository.declineProjectApplicant(projectId, userId, new ProjectRepository.DeclineProjectApplicantCallback() {
+            @Override
+            public void onSuccess(String message) {
+                successCallback.onSuccess(message);
+            }
+            @Override
+            public void onFailure(String error) {
+                failureCallback.onFailure(error);
+            }
+        });
+    }
+    public interface AcceptCallback {
+        void onSuccess(String message);
+    }
+    public interface FailureCallback {
+        void onFailure(String error);
+    }
+
 
     // Load user active projects
     public void loadUserActiveProjects() {

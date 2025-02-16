@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.projectapp.Model.Project;
+import com.example.projectapp.Model.User;
 import com.example.projectapp.Retrofit.ApiClient;
 import com.example.projectapp.Retrofit.ApiInterface;
 
@@ -35,6 +36,126 @@ public class ProjectRepository {
     public interface GetProjectsCallback {
         void onSuccess(List<Project> projectList);
         void onFailure(String errorMessage);
+    }
+    public interface GetAppliedUsersCallback {
+        void onSuccess(List<User> users);
+        void onFailure(String error);
+    }
+    public interface AcceptProjectApplicantCallback {
+        void onSuccess(String message);
+        void onFailure(String error);
+    }
+
+    public void acceptProjectApplicant(int projectId, int userId, final AcceptProjectApplicantCallback callback) {
+        SharedPreferences prefs = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        String token = prefs.getString("token", null);
+        if (token == null) {
+            callback.onFailure("Token not found");
+            return;
+        }
+        Call<ResponseBody> call = apiInterface.acceptProjectApplicant("Bearer " + token, projectId, userId);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.isSuccessful()) {
+                    try {
+                        String msg = response.body().string();
+                        callback.onSuccess(msg);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        callback.onFailure("Error parsing response");
+                    }
+                } else {
+                    String errorMsg = "Error: " + response.code();
+                    if(response.errorBody() != null) {
+                        try {
+                            errorMsg = response.errorBody().string();
+                        } catch(IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    callback.onFailure(errorMsg);
+                }
+            }
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                callback.onFailure("Network error: " + t.getMessage());
+            }
+        });
+    }
+
+    public interface DeclineProjectApplicantCallback {
+        void onSuccess(String message);
+        void onFailure(String error);
+    }
+
+    public void declineProjectApplicant(int projectId, int userId, final DeclineProjectApplicantCallback callback) {
+        SharedPreferences prefs = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        String token = prefs.getString("token", null);
+        if (token == null) {
+            callback.onFailure("Token not found");
+            return;
+        }
+        Call<ResponseBody> call = apiInterface.declineProjectApplicant("Bearer " + token, projectId, userId);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.isSuccessful()) {
+                    try {
+                        String msg = response.body().string();
+                        callback.onSuccess(msg);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        callback.onFailure("Error parsing response");
+                    }
+                } else {
+                    String errorMsg = "Error: " + response.code();
+                    if(response.errorBody() != null) {
+                        try {
+                            errorMsg = response.errorBody().string();
+                        } catch(IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    callback.onFailure(errorMsg);
+                }
+            }
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                callback.onFailure("Network error: " + t.getMessage());
+            }
+        });
+    }
+    public void getAppliedUsersForProject(int projectId, final GetAppliedUsersCallback callback) {
+        SharedPreferences prefs = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        String token = prefs.getString("token", null);
+        if(token == null) {
+            callback.onFailure("Token not found");
+            return;
+        }
+        Call<List<User>> call = apiInterface.getAppliedUsersForProject("Bearer " + token, projectId);
+        call.enqueue(new Callback<List<User>>() {
+            @Override
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                if(response.isSuccessful() && response.body() != null) {
+                    callback.onSuccess(response.body());
+                } else {
+                    String errorMsg = "Error: empty response or server error.";
+                    if(response.errorBody() != null) {
+                        try {
+                            errorMsg = "Error: " + response.errorBody().string();
+                        } catch(IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    callback.onFailure(errorMsg);
+                }
+            }
+            @Override
+            public void onFailure(Call<List<User>> call, Throwable t) {
+                callback.onFailure("Network error: " + t.getMessage());
+            }
+        });
     }
 
     // Fetch recent active projects
