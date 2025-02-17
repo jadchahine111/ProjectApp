@@ -1,8 +1,6 @@
 package com.example.projectapp;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +12,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
 import com.example.projectapp.Adapter.CategoryAdapter;
 import com.example.projectapp.ViewModels.CategoryViewModel;
 import com.example.projectapp.databinding.FragmentSearchBinding;
-
 import java.util.ArrayList;
 
 public class SearchFragment extends Fragment {
@@ -40,45 +36,30 @@ public class SearchFragment extends Fragment {
                               @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Set up RecyclerView for categories
+        // Setup RecyclerView for categories
         binding.categoryRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         categoryAdapter = new CategoryAdapter(requireContext(), new ArrayList<>());
         binding.categoryRecyclerView.setAdapter(categoryAdapter);
 
-        // Obtain the CategoryViewModel (scoped to the activity if shared)
+        // Obtain the CategoryViewModel
         categoryViewModel = new ViewModelProvider(requireActivity()).get(CategoryViewModel.class);
 
-        // Observe the filtered categories LiveData
+        // Observe categories LiveData
         categoryViewModel.getCategories().observe(getViewLifecycleOwner(), categories -> {
             if (categories != null) {
                 categoryAdapter.setCategories(categories);
             }
         });
 
-        // Optionally, observe error messages
-        categoryViewModel.getErrorMessage().observe(getViewLifecycleOwner(), error -> {
-            if (error != null) {
-                // Display error (e.g., via Toast)
-            }
+        // Set click listener on category adapter to navigate to FilterFragment with category ID
+        categoryAdapter.setOnCategoryClickListener(category -> {
+            Bundle bundle = new Bundle();
+            bundle.putInt("categoryId", category.getId());
+            NavController navController = Navigation.findNavController(view);
+            navController.navigate(R.id.action_searchFragment_to_searchFilterFragment, bundle);
         });
 
-        // Attach a TextWatcher to the search bar
-        binding.searchBar.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // No action needed
-            }
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // Filter categories as user types
-                categoryViewModel.filterCategories(s.toString());
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
-                // No action needed
-            }
-        });
-
+        // Optional: If you have a text watcher or filter button, add those listeners as needed.
         binding.filterButton.setOnClickListener(v -> {
             NavController navController = Navigation.findNavController(binding.getRoot());
             navController.navigate(R.id.action_searchFragment_to_searchFilterFragment);

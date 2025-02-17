@@ -86,6 +86,8 @@ public interface ApiInterface {
     Call<ResponseBody> declineProjectApplicant(@Header("Authorization") String token,
                                                @Path("projectId") int projectId,
                                                @Path("userId") int userId);
+    @GET("api/user/{id}")
+    Call<User> getOtherUserDetailsById(@Header("Authorization") String token, @Path("id") int id);
 
 
 

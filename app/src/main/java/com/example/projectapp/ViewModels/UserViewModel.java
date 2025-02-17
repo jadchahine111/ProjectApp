@@ -2,6 +2,7 @@ package com.example.projectapp.ViewModels;
 
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -15,11 +16,13 @@ public class UserViewModel extends ViewModel {
     private MutableLiveData<String> errorMessageLiveData;
     private MutableLiveData<String> responseLiveData; // LiveData to store raw response
     private MutableLiveData<String> skillsLiveData; // Add this to store skills
+    private MutableLiveData<User> otherUserLiveData;
 
 
     public UserViewModel() {
         userRepository = new UserRepository(MyApplication.getAppContext());
         userLiveData = new MutableLiveData<>(new User()); // Initialize User object
+        otherUserLiveData = new MutableLiveData<>();
         errorMessageLiveData = new MutableLiveData<>();
         responseLiveData = new MutableLiveData<>(); // Initialize the response LiveData
         skillsLiveData = new MutableLiveData<>(); // Initialize the skills LiveData
@@ -30,6 +33,9 @@ public class UserViewModel extends ViewModel {
     // Expose LiveData
     public MutableLiveData<User> getUserLiveData() {
         return userLiveData;
+    }
+    public MutableLiveData<User> getOtherUserLiveData() {
+        return otherUserLiveData;
     }
 
     public MutableLiveData<String> getErrorMessageLiveData() {
@@ -79,6 +85,18 @@ public class UserViewModel extends ViewModel {
             public void onSuccess(User updatedUser) {
                 // Update LiveData with the updated user.
                 userLiveData.setValue(updatedUser);
+            }
+            @Override
+            public void onFailure(String error) {
+                errorMessageLiveData.setValue(error);
+            }
+        });
+    }
+    public void loadOtherUserDetails(int id) {
+        userRepository.getOtherUserDetailsById(id, new UserRepository.GetOtherUserDetailsCallback() {
+            @Override
+            public void onSuccess(User user) {
+                otherUserLiveData.setValue(user);
             }
             @Override
             public void onFailure(String error) {
