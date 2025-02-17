@@ -18,6 +18,8 @@ public class UserViewModel extends ViewModel {
     private MutableLiveData<String> skillsLiveData; // Add this to store skills
     private MutableLiveData<User> otherUserLiveData;
 
+    private MutableLiveData<String> verificationStatusLiveData;  // Add this for verification status
+
 
     public UserViewModel() {
         userRepository = new UserRepository(MyApplication.getAppContext());
@@ -26,8 +28,41 @@ public class UserViewModel extends ViewModel {
         errorMessageLiveData = new MutableLiveData<>();
         responseLiveData = new MutableLiveData<>(); // Initialize the response LiveData
         skillsLiveData = new MutableLiveData<>(); // Initialize the skills LiveData
+        verificationStatusLiveData = new MutableLiveData<>();  // Initialize LiveData for verification status
         loadUserDetails();
 
+    }
+
+    public LiveData<String> getVerificationStatus() {
+        return verificationStatusLiveData;  // Expose verification status LiveData
+    }
+
+    // Add method to check email verification status
+    public void checkEmailVerification(String email) {
+        userRepository.checkEmailVerificationStatus(email, new UserRepository.EmailVerificationCallback() {
+            @Override
+            public void onSuccess(String status) {
+                verificationStatusLiveData.postValue(status);
+            }
+
+            @Override
+            public void onFailure(String error) {
+                errorMessageLiveData.postValue(error);
+            }
+        });
+    }
+
+
+    public void setSkills(String skills) {
+        // Update skillsLiveData
+        skillsLiveData.setValue(skills);
+
+        // Update the skills field in the User object
+        User user = userLiveData.getValue();
+        if (user != null) {
+            user.setSkills(skills);
+            userLiveData.setValue(user); // Update userLiveData
+        }
     }
 
     // Expose LiveData
@@ -104,4 +139,6 @@ public class UserViewModel extends ViewModel {
             }
         });
     }
+
+
 }

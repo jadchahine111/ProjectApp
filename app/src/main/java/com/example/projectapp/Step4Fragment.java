@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.projectapp.Model.User;
 import com.example.projectapp.ViewModels.UserViewModel;
@@ -41,12 +43,17 @@ public class Step4Fragment extends Fragment {
                 binding.tvEmail.setText(user.getEmail());
                 binding.tvUsername.setText(user.getUsername());
                 binding.tvPassword.setText(user.getPassword());
-                binding.tvPassword.setText(user.getPassword());
 
                 binding.tvFirstName.setText(user.getFirstName());
                 binding.tvLastName.setText(user.getLastName());
                 binding.tvBio.setText(user.getBio());
                 binding.tvLinkedIn.setText(user.getLinkedinURL());
+                // Update tvSkills with the skills from the User object
+                if (user.getSkills() != null && !user.getSkills().isEmpty()) {
+                    binding.tvSkills.setText(user.getSkills());
+                } else {
+                    binding.tvSkills.setText("No skills selected");
+                }
             }
         });
 
@@ -63,10 +70,15 @@ public class Step4Fragment extends Fragment {
             if (isValidUserData(user)) {
                 // Call the registerUser method from ViewModel to submit the data
                 userViewModel.registerUser(user);
+
+                // Navigate to the Email Verification Fragment after successful registration
+                NavController navController = NavHostFragment.findNavController(Step4Fragment.this);
+                navController.navigate(R.id.action_signupFragment_to_emailVerificationFragment);
             } else {
                 Toast.makeText(getContext(), "Please fill in all fields correctly", Toast.LENGTH_SHORT).show();
             }
         });
+
 
         // Observe the registration result
         userViewModel.getResponseLiveData().observe(getViewLifecycleOwner(), response -> {
@@ -74,12 +86,6 @@ public class Step4Fragment extends Fragment {
             Log.d("Step4Fragment", "Registration successful: " + response);
             Toast.makeText(getContext(), "Sign-up successful", Toast.LENGTH_SHORT).show();
             // Optionally, navigate to another screen after successful registration
-        });
-
-        userViewModel.getErrorMessageLiveData().observe(getViewLifecycleOwner(), error -> {
-            // Handle error response
-            Log.e("Step4Fragment", "Registration failed: " + error);
-            Toast.makeText(getContext(), "Error: " + error, Toast.LENGTH_SHORT).show();
         });
 
         return view;
