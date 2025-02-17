@@ -14,6 +14,7 @@ public class Project implements Serializable {
     private int userId;
     private int amount;
     private String createdAt;
+    private boolean isSaved;
     @SerializedName("jsonKey")
     private String updatedAt;
 
@@ -109,5 +110,14 @@ public class Project implements Serializable {
 
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    // Getters and Setters
+    public boolean isSaved() { // This should be named correctly
+        return isSaved;
+    }
+
+    public void setSaved(boolean saved) {
+        isSaved = saved;
     }
 }

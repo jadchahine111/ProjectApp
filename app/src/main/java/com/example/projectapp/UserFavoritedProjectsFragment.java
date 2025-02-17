@@ -58,6 +58,7 @@ public class UserFavoritedProjectsFragment extends Fragment {
                 // Call your ViewModel to remove this project from favorites.
                 projectViewModel.remProjectFromFav(project.getId());
                 projectViewModel.loadUserFavoritedProjects();
+                projectViewModel.clearSuccessMessage();
             }
 
             @Override

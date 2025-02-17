@@ -91,7 +91,7 @@ public class UserProjectsAdapter extends RecyclerView.Adapter<UserProjectsAdapte
         // If an unfavorite button is present, set its click listener
         if (actionListener != null && holder.unfavoriteButton != null) {
             holder.unfavoriteButton.setClickable(true);  // Make it clickable
-            holder.unfavoriteButton.setOnClickListener(v -> actionListener.onUnfavoriteClicked(project));
+            holder.unfavoriteButton.setOnClickListener(v -> actionListener.onUnfavoriteClicked(project ));
         }
 
 

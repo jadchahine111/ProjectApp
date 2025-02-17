@@ -101,6 +101,15 @@ public class ProjectViewModel extends ViewModel {
         return allUserActiveProjectsLiveData;
     }
 
+    public void clearSuccessMessage() {
+        successMessageLiveData.setValue(null);
+    }
+
+    public void clearErrorMessage() {
+        errorMessageLiveData.setValue(null);
+    }
+
+
     public LiveData<Project> getProjectDetails() {
         return projectDetails;
     }
