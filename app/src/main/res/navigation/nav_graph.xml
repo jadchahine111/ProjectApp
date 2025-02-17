@@ -306,5 +306,8 @@
         android:id="@+id/action_global_projectDetailsFragment"
         app:destination="@id/fragmentProjectDetails" />
 
+    <action
+        android:id="@+id/action_global_manageFragment"
+        app:destination="@id/appliedUsersFragment" />
 
 </navigation>

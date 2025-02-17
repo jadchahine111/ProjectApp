@@ -45,6 +45,8 @@ public class UserArchivedProjectsFragment extends Fragment {
             @Override
             public void onArchiveClicked(Project project) {
 
+
+
             }
             @Override
             public void onUnarchiveClicked(Project project) {
@@ -55,6 +57,15 @@ public class UserArchivedProjectsFragment extends Fragment {
             @Override
             public void onUnfavoriteClicked(Project project) {
 
+            }
+
+            @Override
+            public void onManageClicked(Project project) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("projectId", project.getId());  // Pass project ID to details screen
+
+                NavController navController = Navigation.findNavController(binding.getRoot());
+                navController.navigate(R.id.action_global_manageFragment, bundle);
             }
         });
 

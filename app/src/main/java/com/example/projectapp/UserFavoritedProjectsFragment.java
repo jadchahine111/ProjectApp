@@ -59,6 +59,15 @@ public class UserFavoritedProjectsFragment extends Fragment {
                 projectViewModel.remProjectFromFav(project.getId());
                 projectViewModel.loadUserFavoritedProjects();
             }
+
+            @Override
+            public void onManageClicked(Project project) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("projectId", project.getId());  // Pass project ID to details screen
+
+                NavController navController = Navigation.findNavController(binding.getRoot());
+                navController.navigate(R.id.action_global_manageFragment, bundle);
+            }
         });
 
         // Obtain the shared ProjectViewModel

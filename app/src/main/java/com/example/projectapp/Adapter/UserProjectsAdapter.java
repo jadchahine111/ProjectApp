@@ -12,6 +12,9 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.projectapp.Model.Project;
 import com.example.projectapp.R;
+
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class UserProjectsAdapter extends RecyclerView.Adapter<UserProjectsAdapter.UserProjectViewHolder> {
@@ -25,6 +28,8 @@ public class UserProjectsAdapter extends RecyclerView.Adapter<UserProjectsAdapte
         void onArchiveClicked(Project project);
         void onUnarchiveClicked(Project project);
         void onUnfavoriteClicked(Project project);
+
+        void onManageClicked(Project project);
     }
 
     private OnProjectActionListener actionListener;
@@ -68,6 +73,13 @@ public class UserProjectsAdapter extends RecyclerView.Adapter<UserProjectsAdapte
             navController.navigate(R.id.action_global_projectDetailsFragment, bundle);
         });
 
+
+        // If an archive button is present, set its click listener
+        if (actionListener != null && holder.manage != null) {
+            holder.manage.setOnClickListener(v -> actionListener.onManageClicked(project));
+        }
+
+
         // If an archive button is present, set its click listener
         if (actionListener != null && holder.archiveButton != null) {
             holder.archiveButton.setOnClickListener(v -> actionListener.onArchiveClicked(project));
@@ -78,8 +90,11 @@ public class UserProjectsAdapter extends RecyclerView.Adapter<UserProjectsAdapte
         }
         // If an unfavorite button is present, set its click listener
         if (actionListener != null && holder.unfavoriteButton != null) {
+            holder.unfavoriteButton.setClickable(true);  // Make it clickable
             holder.unfavoriteButton.setOnClickListener(v -> actionListener.onUnfavoriteClicked(project));
         }
+
+
     }
 
     @Override
@@ -99,6 +114,8 @@ public class UserProjectsAdapter extends RecyclerView.Adapter<UserProjectsAdapte
         TextView projectTitle;
 
         TextView viewDetails;
+
+        TextView manage;
         TextView skill;
         // Optional buttons – they might be present in some layouts but not others.
         TextView archiveButton;    // e.g. for archiving in posted projects
@@ -114,6 +131,7 @@ public class UserProjectsAdapter extends RecyclerView.Adapter<UserProjectsAdapte
             unarchiveButton = itemView.findViewById(R.id.unarchive_button);
             unfavoriteButton = itemView.findViewById(R.id.unfavorite_button);
             viewDetails = itemView.findViewById(R.id.view_details);
+            manage = itemView.findViewById(R.id.manage_button);
         }
     }
 }
