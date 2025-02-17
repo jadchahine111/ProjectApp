@@ -56,7 +56,7 @@ public class SearchFragment extends Fragment {
             Bundle bundle = new Bundle();
             bundle.putInt("categoryId", category.getId());
             NavController navController = Navigation.findNavController(view);
-            navController.navigate(R.id.action_searchFragment_to_searchFilterFragment, bundle);
+            navController.navigate(R.id.action_searchFilterFragment_to_filteredProjectsFragment, bundle);
         });
 
         // Optional: If you have a text watcher or filter button, add those listeners as needed.

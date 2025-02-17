@@ -61,12 +61,6 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
             holder.skill.setText("No skills specified");
         }
 
-        // Set favorite button click listener
-        holder.favoriteButton.setOnClickListener(v -> {
-            if (favoriteClickListener != null) {
-                favoriteClickListener.onFavoriteClicked(project);
-            }
-        });
 
         // Handle card click to navigate to project details
         holder.itemView.setOnClickListener(v -> {
@@ -93,7 +87,6 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
             projectTitle = itemView.findViewById(R.id.project_title);
             projectOwnerUsername = itemView.findViewById(R.id.project_owner_username);
             skill = itemView.findViewById(R.id.skill);
-            favoriteButton = itemView.findViewById(R.id.favorite_button);
         }
     }
 

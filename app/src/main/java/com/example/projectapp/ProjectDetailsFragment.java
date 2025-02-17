@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,7 +21,6 @@ import com.example.projectapp.databinding.FragmentProjectDetailsBinding;
 public class ProjectDetailsFragment extends Fragment {
 
     private FragmentProjectDetailsBinding binding;
-
     private ProjectViewModel projectViewModel;
 
     @Override
@@ -35,6 +35,7 @@ public class ProjectDetailsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         projectViewModel = new ViewModelProvider(requireActivity()).get(ProjectViewModel.class);
+
         if (getArguments() != null) {
             int projectId = getArguments().getInt("projectId");
 
@@ -50,10 +51,43 @@ public class ProjectDetailsFragment extends Fragment {
                         binding.projectTitle.setText(project.getTitle());
                         binding.projectAdditionalDetails.setText(project.getDescription());
                         binding.projectDescriptionDetails.setText(project.getSkillsNeeded());
+
+                        // Update button text and make it unclickable if already saved
+                        if (project.isSaved()) {
+                            binding.saveButton.setText("Saved");
+                            binding.saveButton.setEnabled(false);
+                        } else {
+                            binding.saveButton.setText("Save");
+                            binding.saveButton.setEnabled(true);
+
+                            // Handle click event to save project
+                            binding.saveButton.setOnClickListener(v -> {
+                                projectViewModel.addProjectToFav(project);
+                            });
+                        }
                     }
                 }
             });
+
+            // Observe success message
+            projectViewModel.getSuccessMessageLiveData().observe(getViewLifecycleOwner(), successMessage -> {
+                if (successMessage != null) {
+                    Toast.makeText(requireContext(), "Project added to favorites!", Toast.LENGTH_SHORT).show();
+                    binding.saveButton.setText("Saved");
+                    binding.saveButton.setEnabled(false);
+                    projectViewModel.clearSuccessMessage(); // Clear the message after showing
+                }
+            });
+
+            projectViewModel.getErrorMessageLiveData().observe(getViewLifecycleOwner(), errorMessage -> {
+                if (errorMessage != null) {
+                    Toast.makeText(requireContext(), "Failed to save project: " + errorMessage, Toast.LENGTH_SHORT).show();
+                    projectViewModel.clearErrorMessage(); // Clear the error message after showing
+                }
+            });
+
         }
+
         binding.backButton.setOnClickListener(v -> {
             NavController navController = Navigation.findNavController(requireView());
             navController.popBackStack();

@@ -198,12 +198,8 @@
         android:id="@+id/fragmentSearchFilter"
         android:name="com.example.projectapp.SearchFilterFragment"
         android:label="Filter Search Screen"
-        tools:layout="@layout/fragment_edit_cv" >
+        tools:layout="@layout/fragment_search_filter" >
 
-        <!-- ADD THIS ACTION to navigate to FilteredProjectsFragment -->
-        <action
-            android:id="@+id/action_searchFilterFragment_to_filteredProjectsFragment"
-            app:destination="@id/filteredProjectsFragment" />
     </fragment>
 
     <!-- AddProjectFragment  -->
@@ -309,5 +305,10 @@
     <action
         android:id="@+id/action_global_manageFragment"
         app:destination="@id/appliedUsersFragment" />
+
+    <!-- ADD THIS ACTION to navigate to FilteredProjectsFragment -->
+    <action
+        android:id="@+id/action_searchFilterFragment_to_filteredProjectsFragment"
+        app:destination="@id/filteredProjectsFragment" />
 
 </navigation>
