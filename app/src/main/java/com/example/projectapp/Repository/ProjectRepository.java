@@ -45,6 +45,37 @@ public class ProjectRepository {
         void onSuccess(String message);
         void onFailure(String error);
     }
+    public void getProjectsByCategory(int categoryId, final GetProjectsCallback callback) {
+        SharedPreferences prefs = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        String token = prefs.getString("token", null);
+        if (token == null) {
+            callback.onFailure("Token not found");
+            return;
+        }
+        Call<List<Project>> call = apiInterface.getProjectsByCategory("Bearer " + token, categoryId);
+        call.enqueue(new Callback<List<Project>>() {
+            @Override
+            public void onResponse(Call<List<Project>> call, Response<List<Project>> response) {
+                if(response.isSuccessful() && response.body() != null) {
+                    callback.onSuccess(response.body());
+                } else {
+                    String errorMsg = "Error: empty response or server error.";
+                    if(response.errorBody() != null) {
+                        try {
+                            errorMsg = response.errorBody().string();
+                        } catch(IOException e) {
+                            Log.e("API Error", "Error reading error body", e);
+                        }
+                    }
+                    callback.onFailure(errorMsg);
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Project>> call, Throwable t) {
+                callback.onFailure("Network error: " + t.getMessage());
+            }
+        });
+    }
 
     public void acceptProjectApplicant(int projectId, int userId, final AcceptProjectApplicantCallback callback) {
         SharedPreferences prefs = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
@@ -554,7 +585,7 @@ public class ProjectRepository {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
                     try {
                         String msg = response.body().string();
                         callback.onSuccess(msg);
@@ -564,7 +595,7 @@ public class ProjectRepository {
                     }
                 } else {
                     String errorMsg = "Error: " + response.code();
-                    if(response.errorBody() != null) {
+                    if (response.errorBody() != null) {
                         try {
                             errorMsg = response.errorBody().string();
                         } catch (IOException e) {
@@ -574,8 +605,42 @@ public class ProjectRepository {
                     callback.onFailure(errorMsg);
                 }
             }
+
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                callback.onFailure("Network error: " + t.getMessage());
+            }
+        });
+    }
+    public void getFilteredProjects(String query, int minAmount, int maxAmount, int categoryId, final GetProjectsCallback callback) {
+        SharedPreferences prefs = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        String token = prefs.getString("token", null);
+        if (token == null) {
+            callback.onFailure("Token not found");
+            return;
+        }
+
+        Call<List<Project>> call = apiInterface.getFilteredProjects("Bearer " + token, query, minAmount, maxAmount, categoryId);
+        call.enqueue(new Callback<List<Project>>() {
+            @Override
+            public void onResponse(Call<List<Project>> call, Response<List<Project>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    callback.onSuccess(response.body());
+                } else {
+                    String errorMsg = "Error: empty response or server error.";
+                    if (response.errorBody() != null) {
+                        try {
+                            errorMsg = response.errorBody().string();
+                        } catch (IOException e) {
+                            Log.e("API Error", "Error reading error body", e);
+                        }
+                    }
+                    callback.onFailure(errorMsg);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Project>> call, Throwable t) {
                 callback.onFailure("Network error: " + t.getMessage());
             }
         });
@@ -585,7 +650,8 @@ public class ProjectRepository {
 
 
 
-    // Fetch project by ID
+
+        // Fetch project by ID
     public void getProjectById(int projectId, GetProjectByIdCallback callback) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
         String token = sharedPreferences.getString("token", null);

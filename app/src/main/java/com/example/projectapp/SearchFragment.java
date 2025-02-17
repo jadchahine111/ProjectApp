@@ -14,6 +14,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.projectapp.Adapter.CategoryAdapter;
 import com.example.projectapp.ViewModels.CategoryViewModel;
+import com.example.projectapp.ViewModels.ProjectViewModel;
 import com.example.projectapp.databinding.FragmentSearchBinding;
 import java.util.ArrayList;
 
@@ -21,6 +22,7 @@ public class SearchFragment extends Fragment {
 
     private FragmentSearchBinding binding;
     private CategoryViewModel categoryViewModel;
+    private ProjectViewModel projectViewModel;
     private CategoryAdapter categoryAdapter;
 
     @Override
@@ -41,8 +43,9 @@ public class SearchFragment extends Fragment {
         categoryAdapter = new CategoryAdapter(requireContext(), new ArrayList<>());
         binding.categoryRecyclerView.setAdapter(categoryAdapter);
 
-        // Obtain the CategoryViewModel
+        // Obtain ViewModels (shared with the activity)
         categoryViewModel = new ViewModelProvider(requireActivity()).get(CategoryViewModel.class);
+        projectViewModel = new ViewModelProvider(requireActivity()).get(ProjectViewModel.class);
 
         // Observe categories LiveData
         categoryViewModel.getCategories().observe(getViewLifecycleOwner(), categories -> {
@@ -51,15 +54,15 @@ public class SearchFragment extends Fragment {
             }
         });
 
-        // Set click listener on category adapter to navigate to FilterFragment with category ID
+        // When a category is clicked, navigate to ProjectsByCategoryFragment
         categoryAdapter.setOnCategoryClickListener(category -> {
             Bundle bundle = new Bundle();
             bundle.putInt("categoryId", category.getId());
             NavController navController = Navigation.findNavController(view);
-            navController.navigate(R.id.action_searchFragment_to_searchFilterFragment, bundle);
+            navController.navigate(R.id.action_searchFragment_to_projectsByCategoryFragment, bundle);
         });
 
-        // Optional: If you have a text watcher or filter button, add those listeners as needed.
+        // Optionally, set up filter button to navigate to a more advanced filter screen
         binding.filterButton.setOnClickListener(v -> {
             NavController navController = Navigation.findNavController(binding.getRoot());
             navController.navigate(R.id.action_searchFragment_to_searchFilterFragment);

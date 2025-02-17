@@ -148,6 +148,18 @@ public class ProjectViewModel extends ViewModel {
             }
         });
     }
+    public void loadFilteredProjects(String query, int minAmount, int maxAmount, int categoryId) {
+        projectRepository.getFilteredProjects(query, minAmount, maxAmount, categoryId, new ProjectRepository.GetProjectsCallback() {
+            @Override
+            public void onSuccess(List<Project> projectList) {
+                filteredProjectsLiveData.setValue(projectList);
+            }
+            @Override
+            public void onFailure(String error) {
+                errorMessageLiveData.setValue(error);
+            }
+        });
+    }
     public void acceptProjectApplicant(int projectId, int userId, final AcceptCallback successCallback, final FailureCallback failureCallback) {
         projectRepository.acceptProjectApplicant(projectId, userId, new ProjectRepository.AcceptProjectApplicantCallback() {
             @Override
@@ -265,39 +277,6 @@ public class ProjectViewModel extends ViewModel {
         });
     }
 
-    // Filter method by title, amount range, and category
-    public void filterProjects(String query, int minAmount, int maxAmount, int categoryId) {
-        List<Project> originalList = allProjectsLiveData.getValue();
-        if (originalList == null) return;
-
-        List<Project> newFilteredList = new ArrayList<>();
-        for (Project p : originalList) {
-            boolean matches = true;
-
-            // Search by title
-            if (query != null && !query.isEmpty()) {
-                if (!p.getTitle().toLowerCase().contains(query.toLowerCase())) {
-                    matches = false;
-                }
-            }
-
-            // Amount range filtering
-            int amount = p.getAmount();
-            if (amount < minAmount || amount > maxAmount) {
-                matches = false;
-            }
-
-            // Category filtering (if categoryId==0, then it's "all")
-            if (categoryId != 0 && p.getCategoryId() != categoryId) {
-                matches = false;
-            }
-
-            if (matches) {
-                newFilteredList.add(p);
-            }
-        }
-        filteredProjectsLiveData.setValue(newFilteredList);
-    }
     public void unarchiveProject(int projectId) {
         projectRepository.unarchiveProject(projectId, new ProjectRepository.UnarchiveProjectCallback() {
             @Override
@@ -349,6 +328,18 @@ public class ProjectViewModel extends ViewModel {
                 successMessageLiveData.setValue(message);
                 // Refresh the favorites list so the removed project disappears
                 loadUserFavoritedProjects();
+            }
+            @Override
+            public void onFailure(String error) {
+                errorMessageLiveData.setValue(error);
+            }
+        });
+    }
+    public void loadProjectsByCategory(int categoryId) {
+        projectRepository.getProjectsByCategory(categoryId, new ProjectRepository.GetProjectsCallback() {
+            @Override
+            public void onSuccess(List<Project> projectList) {
+                filteredProjectsLiveData.setValue(projectList);
             }
             @Override
             public void onFailure(String error) {

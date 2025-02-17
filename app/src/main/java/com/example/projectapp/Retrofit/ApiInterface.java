@@ -93,6 +93,18 @@ public interface ApiInterface {
 
     @GET("/api/auth/check-verification-status")
     Call<ResponseBody> checkEmailVerificationStatus(@Query("email") String email);
+    @GET("api/projects/{categoryId}/projects-by-category")
+    Call<List<Project>> getProjectsByCategory(@Header("Authorization") String token,
+                                              @Path("categoryId") int categoryId);
+
+    @GET("api/projects/filtered-projects")
+    Call<List<Project>> getFilteredProjects(
+            @Header("Authorization") String token,
+            @Query("query") String query,
+            @Query("minAmount") int minAmount,
+            @Query("maxAmount") int maxAmount,
+            @Query("categoryId") int categoryId
+    );
 
 
 }

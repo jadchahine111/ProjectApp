@@ -65,6 +65,11 @@
         android:name="com.example.projectapp.Step4Fragment"
         android:label="Step 4: Confirmation" />
 
+    <fragment
+        android:id="@+id/projectDetailsFragment"
+        android:name="com.example.projectapp.ProjectByCategoryFragment"
+        android:label="ProjectByCategory" />
+
     <!-- HomeFragment  -->
     <fragment
         android:id="@+id/homeFragment"
@@ -74,9 +79,6 @@
         <action
             android:id="@+id/action_homeFragment_to_notificationFragment"
             app:destination="@id/fragmentNotifications" />
-        <action
-            android:id="@+id/action_homeFragment_to_projectDetailsFragment"
-            app:destination="@id/fragmentProjectDetails" />
     </fragment>
 
     <!-- SearchFragment  -->
@@ -88,6 +90,9 @@
         <action
             android:id="@+id/action_searchFragment_to_searchFilterFragment"
             app:destination="@id/fragmentSearchFilter" />
+        <action
+            android:id="@+id/action_searchFragment_to_projectsByCategoryFragment"
+            app:destination="@id/projectDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/appliedUsersFragment"
