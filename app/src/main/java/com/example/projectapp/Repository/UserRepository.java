@@ -148,6 +148,42 @@ public class UserRepository {
             }
         });
     }
+    public void getOtherUserDetailsById(int id, final GetOtherUserDetailsCallback callback) {
+        SharedPreferences prefs = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        String token = prefs.getString("token", null);
+        if (token == null) {
+            callback.onFailure("Token not found");
+            return;
+        }
+        Call<User> call = apiInterface.getOtherUserDetailsById("Bearer " + token, id);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    callback.onSuccess(response.body());
+                } else {
+                    String errorMsg = "Error: " + response.code();
+                    if (response.errorBody() != null) {
+                        try {
+                            errorMsg = response.errorBody().string();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    callback.onFailure(errorMsg);
+                }
+            }
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                callback.onFailure("Network error: " + t.getMessage());
+            }
+        });
+    }
+
+    public interface GetOtherUserDetailsCallback {
+        void onSuccess(User user);
+        void onFailure(String error);
+    }
     public void updateUserDetails(User user, final UpdateUserCallback callback) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
         String token = sharedPreferences.getString("token", null);

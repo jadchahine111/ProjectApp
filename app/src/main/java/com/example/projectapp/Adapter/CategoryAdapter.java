@@ -16,6 +16,17 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     private Context context;
     private List<Category> categoryList;
 
+    // Interface for category click action
+    public interface OnCategoryClickListener {
+        void onCategoryClicked(Category category);
+    }
+
+    private OnCategoryClickListener clickListener;
+
+    public void setOnCategoryClickListener(OnCategoryClickListener listener) {
+        this.clickListener = listener;
+    }
+
     public CategoryAdapter(Context context, List<Category> categoryList) {
         this.context = context;
         this.categoryList = categoryList;
@@ -32,7 +43,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
         Category category = categoryList.get(position);
         holder.categoryName.setText(category.getCategoryName());
-        // Optionally, update project count or other details
+        // Set click listener on entire item view
+        holder.itemView.setOnClickListener(v -> {
+            if (clickListener != null) {
+                clickListener.onCategoryClicked(category);
+            }
+        });
     }
 
     @Override
@@ -40,16 +56,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         return categoryList.size();
     }
 
-    public void setCategories(List<Category> newCategories) {
-        categoryList.clear();
-        categoryList.addAll(newCategories);
+    public void setCategories(List<Category> categories) {
+        this.categoryList.clear();
+        this.categoryList.addAll(categories);
         notifyDataSetChanged();
     }
 
     public static class CategoryViewHolder extends RecyclerView.ViewHolder {
         TextView categoryName;
-        // Other views if needed
-
         public CategoryViewHolder(@NonNull View itemView) {
             super(itemView);
             categoryName = itemView.findViewById(R.id.category_name);
