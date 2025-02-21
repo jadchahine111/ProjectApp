@@ -398,8 +398,37 @@ public class ProjectViewModel extends ViewModel {
     }
 
 
+    public void filterProjectsApi(String query, int minAmount, int maxAmount, int categoryId) {
+        projectRepository.getFilteredProjects(query, minAmount, maxAmount, categoryId, new ProjectRepository.GetProjectsCallback() {
+            @Override
+            public void onSuccess(List<Project> projectList) {
+                filteredProjectsLiveData.setValue(projectList);
+            }
+            @Override
+            public void onFailure(String error) {
+                errorMessageLiveData.setValue(error);
+            }
+        });
+    }
+
 
     public void resetSuccessMessage() {
         successMessageLiveData.postValue(null);
     }
+
+
+    public void applyToProject(int projectId) {
+        projectRepository.applyToProject(projectId, new ProjectRepository.ApplyProjectCallback() {
+            @Override
+            public void onSuccess(String message) {
+                successMessageLiveData.setValue(message);
+                // Optionally reload projects or update UI state here.
+            }
+            @Override
+            public void onFailure(String error) {
+                errorMessageLiveData.setValue(error);
+            }
+        });
+    }
+
 }

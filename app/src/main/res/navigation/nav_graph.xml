@@ -79,6 +79,10 @@
         <action
             android:id="@+id/action_homeFragment_to_notificationFragment"
             app:destination="@id/fragmentNotifications" />
+        <action
+            android:id="@+id/action_homeFragment_to_projectDetailsFragment"
+            app:destination="@id/fragmentProjectDetails" />
+
     </fragment>
 
     <!-- SearchFragment  -->

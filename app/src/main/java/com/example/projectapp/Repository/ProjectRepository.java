@@ -754,4 +754,53 @@ public class ProjectRepository {
         void onFailure(String errorMessage);
     }
 
+
+    public interface ApplyProjectCallback {
+        void onSuccess(String message);
+        void onFailure(String error);
+    }
+
+    public void applyToProject(int projectId, final ApplyProjectCallback callback) {
+        SharedPreferences prefs = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        String token = prefs.getString("token", null);
+        if(token == null) {
+            callback.onFailure("Token not found");
+            return;
+        }
+        Call<ResponseBody> call = apiInterface.applyToProject("Bearer " + token, projectId);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.isSuccessful()) {
+                    try {
+                        String msg = response.body().string();
+                        callback.onSuccess(msg);
+                    } catch(IOException e) {
+                        e.printStackTrace();
+                        callback.onFailure("Error parsing response");
+                    }
+                } else {
+                    String errorMsg = "Error: " + response.code();
+                    if(response.errorBody() != null) {
+                        try {
+                            errorMsg = response.errorBody().string();
+                        } catch(IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    callback.onFailure(errorMsg);
+                }
+            }
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                callback.onFailure("Network error: " + t.getMessage());
+            }
+        });
+    }
+
+
+
+
+
+
 }

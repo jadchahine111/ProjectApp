@@ -50,10 +50,10 @@ public class UserFragment extends Fragment {
         userViewModel.getOtherUserLiveData().observe(getViewLifecycleOwner(), user -> {
             if (user != null) {
                 // Fill UI elements with user details
+                if (!TextUtils.isEmpty(user.getEmail()))
+                    binding.userEmail.setText(user.getEmail());
                 if (!TextUtils.isEmpty(user.getUsername()))
                     binding.userUsername.setText(user.getUsername());
-                if (!TextUtils.isEmpty(user.getEmail()))
-                    binding.userUsername.setText(user.getEmail());
                 if (!TextUtils.isEmpty(user.getFirstName()))
                     binding.userFirstname.setText(user.getFirstName());
                 if (!TextUtils.isEmpty(user.getLastName()))

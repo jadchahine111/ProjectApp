@@ -67,7 +67,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
             Bundle bundle = new Bundle();
             bundle.putInt("projectId", project.getId());  // Passing the projectId
             NavController navController = Navigation.findNavController(v);
-            navController.navigate(R.id.action_homeFragment_to_projectDetailsFragment, bundle);
+            navController.navigate(R.id.action_global_projectDetailsFragment, bundle);
         });
     }
 

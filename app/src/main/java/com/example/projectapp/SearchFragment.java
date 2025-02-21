@@ -1,6 +1,8 @@
 package com.example.projectapp;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +14,15 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.example.projectapp.Adapter.CategoryAdapter;
+import com.example.projectapp.Model.Category;
 import com.example.projectapp.ViewModels.CategoryViewModel;
 import com.example.projectapp.ViewModels.ProjectViewModel;
 import com.example.projectapp.databinding.FragmentSearchBinding;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class SearchFragment extends Fragment {
 
@@ -24,6 +30,7 @@ public class SearchFragment extends Fragment {
     private CategoryViewModel categoryViewModel;
     private ProjectViewModel projectViewModel;
     private CategoryAdapter categoryAdapter;
+    private List<Category> fullCategoryList = new ArrayList<>(); // Store the full category list
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -50,7 +57,26 @@ public class SearchFragment extends Fragment {
         // Observe categories LiveData
         categoryViewModel.getCategories().observe(getViewLifecycleOwner(), categories -> {
             if (categories != null) {
+                fullCategoryList = new ArrayList<>(categories);  // Save the full list of categories
                 categoryAdapter.setCategories(categories);
+            }
+        });
+
+        // Search bar text change listener
+        binding.searchBar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // No action needed.
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterCategories(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // No action needed.
             }
         });
 
@@ -67,6 +93,16 @@ public class SearchFragment extends Fragment {
             NavController navController = Navigation.findNavController(binding.getRoot());
             navController.navigate(R.id.action_searchFragment_to_searchFilterFragment);
         });
+    }
+
+    private void filterCategories(String query) {
+        List<Category> filteredList = new ArrayList<>();
+        for (Category category : fullCategoryList) {
+            if (category.getCategoryName().toLowerCase().contains(query.toLowerCase())) {
+                filteredList.add(category);
+            }
+        }
+        categoryAdapter.setCategories(filteredList);
     }
 
     @Override

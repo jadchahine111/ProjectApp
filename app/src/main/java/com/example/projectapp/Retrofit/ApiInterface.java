@@ -74,6 +74,9 @@ public interface ApiInterface {
     Call<ResponseBody> deleteNotification(@Header("Authorization") String token, @Path("notificationId") int notificationId);
     @POST("api/user/add-fav/{projectId}")
     Call<ResponseBody> addProjectToFav(@Header("Authorization") String token, @Path("projectId") int projectId);
+
+    @POST("api/user/user-projects/apply/{projectId}")
+    Call<ResponseBody> applyToProject(@Header("Authorization") String token, @Path("projectId") int projectId);
     @DELETE("api/user/remove-fav/{projectId}")
     Call<ResponseBody> remProjectFromFav(@Header("Authorization") String token, @Path("projectId") int projectId);
     @GET("api/projects/{projectId}/applied-users")
@@ -105,6 +108,8 @@ public interface ApiInterface {
             @Query("maxAmount") int maxAmount,
             @Query("categoryId") int categoryId
     );
+
+
 
 
 }

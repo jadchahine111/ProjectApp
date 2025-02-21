@@ -15,6 +15,9 @@ public class Project implements Serializable {
     private int amount;
     private String createdAt;
     private boolean isSaved;
+
+    private boolean isApplied;
+
     @SerializedName("jsonKey")
     private String updatedAt;
 
@@ -119,5 +122,15 @@ public class Project implements Serializable {
 
     public void setSaved(boolean saved) {
         isSaved = saved;
+    }
+
+
+
+    public boolean isApplied() { // This should be named correctly
+        return isApplied;
+    }
+
+    public void setApplied(boolean applied) {
+        isApplied = applied;
     }
 }

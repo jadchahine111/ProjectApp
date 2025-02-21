@@ -28,7 +28,6 @@ public class SearchFilterFragment extends Fragment {
     private FragmentSearchFilterBinding binding;
     private CategoryViewModel categoryViewModel;
     private ProjectViewModel projectViewModel;
-
     private final List<Category> categoryList = new ArrayList<>();
     private int selectedCategoryId = 0; // 0 = "All" categories
 
@@ -41,39 +40,29 @@ public class SearchFilterFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(
-            @NonNull View view,
-            @Nullable Bundle savedInstanceState
-    ) {
+    public void onViewCreated(@NonNull View view,
+                              @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // 1. Obtain both ViewModels (shared with other fragments/activities)
+        // Obtain both ViewModels (shared with the Activity)
         categoryViewModel = new ViewModelProvider(requireActivity()).get(CategoryViewModel.class);
         projectViewModel = new ViewModelProvider(requireActivity()).get(ProjectViewModel.class);
 
-        // 2. Observe categories from CategoryViewModel
+        // Observe categories and set up the spinner as before
         categoryViewModel.getCategories().observe(getViewLifecycleOwner(), categories -> {
-            // Clear old data
             categoryList.clear();
-
             // Add an "All" category at position 0
             Category catAll = new Category();
             catAll.setId(0);
             catAll.setCategoryName("All");
             categoryList.add(catAll);
-
-            // Add categories from the API
             if (categories != null) {
                 categoryList.addAll(categories);
             }
-
-            // Build a list of names for the spinner
             List<String> categoryNames = new ArrayList<>();
             for (Category c : categoryList) {
                 categoryNames.add(c.getCategoryName());
             }
-
-            // Create Spinner adapter
             ArrayAdapter<String> adapter = new ArrayAdapter<>(
                     requireContext(),
                     android.R.layout.simple_spinner_item,
@@ -81,46 +70,30 @@ public class SearchFilterFragment extends Fragment {
             );
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             binding.spinner.setAdapter(adapter);
-
-            // Handle spinner selection
             binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
-                public void onItemSelected(
-                        AdapterView<?> parent,
-                        View view,
-                        int position,
-                        long id
-                ) {
-                    // store the selected category ID
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     selectedCategoryId = categoryList.get(position).getId();
                 }
-
                 @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-                    // Do nothing
-                }
+                public void onNothingSelected(AdapterView<?> parent) {}
             });
         });
 
-        // 3. If categories not loaded yet, call loadCategories()
         categoryViewModel.loadCategories();
 
-        // Back button → navigate up or popBackStack
+        // Back button → navigate up
         binding.backButton.setOnClickListener(v -> {
             NavController navController = Navigation.findNavController(view);
             navController.navigateUp();
         });
 
-        // 4. "Apply Filter" button
-        //    → Filter the projects, then go to FilteredProjectsFragment
+        // "Apply Filter" button: now call the API-based filter method
         binding.goToLogin.setOnClickListener(v -> applyFilterAndNavigate());
     }
 
-    /**
-     * Reads user inputs, calls filterProjects, and navigates to the new fragment.
-     */
     private void applyFilterAndNavigate() {
-        // 1. Gather user inputs
+        // Gather user inputs
         String query = binding.searchBar.getText().toString().trim();
 
         int min = 0;
@@ -133,10 +106,10 @@ public class SearchFilterFragment extends Fragment {
             max = Integer.parseInt(binding.maxAmount.getText().toString());
         }
 
-        // 2. Call filter method in ProjectViewModel
-        projectViewModel.filterProjects(query, min, max, selectedCategoryId);
+        // Call the API-based filter method in the ProjectViewModel
+        projectViewModel.filterProjectsApi(query, min, max, selectedCategoryId);
 
-        // 3. Navigate to FilteredProjectsFragment (instead of navigateUp)
+        // Navigate to FilteredProjectsFragment
         NavController navController = Navigation.findNavController(binding.getRoot());
         navController.navigate(R.id.action_searchFilterFragment_to_filteredProjectsFragment);
     }

@@ -27,13 +27,6 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/project_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/projects_count"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
     </LinearLayout>
 
 

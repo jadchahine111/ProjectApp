@@ -23,7 +23,7 @@
         android:id="@+id/specialization_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Projects by Category"
+        android:text=""
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/black"
